@@ -7,11 +7,11 @@
     <ctl name="Voice Tx Mute" value="0" />
     <ctl name="Voice Rx Volume" value="0" />
     <ctl name="TTY Mode" value="Off" />
-    <ctl name="LINEOUT1 Volume" value="12" />
-    <ctl name="LINEOUT2 Volume" value="12" />
-    <ctl name="LINEOUT3 Volume" value="12" />
-    <ctl name="LINEOUT4 Volume" value="12" />
-    <ctl name="LINEOUT5 Volume" value="12" />
+    <ctl name="LINEOUT1 Volume" value="16" />
+    <ctl name="LINEOUT2 Volume" value="16" />
+    <ctl name="LINEOUT3 Volume" value="16" />
+    <ctl name="LINEOUT4 Volume" value="16" />
+    <ctl name="LINEOUT5 Volume" value="16" />
     <ctl name="HPHL Volume" value="6" />
     <ctl name="HPHR Volume" value="6" />
     <ctl name="RX1 Digital Volume" value="60" />
@@ -223,12 +223,20 @@
     </path>
 
     <path name="speaker">
-        <ctl name="SLIM_0_RX Channels" value="One" />
+        <ctl name="SLIM_0_RX Channels" value="Two" />
         <ctl name="RX3 MIX1 INP1" value="RX1" />
+        <ctl name="RX5 MIX1 INP1" value="RX2" />
+        <ctl name="RX7 MIX1 INP1" value="RX3" />
         <ctl name="RX3 MIX1 INP2" value="RX6" />
         <ctl name="RX4 DSM MUX" value="DSM_INV" />
+        <ctl name="RX6 DSM MUX" value="DSM_INV" />
         <ctl name="RX3 Digital Volume" value="63" />
         <ctl name="SLIM TX3 MUX" value="RMIX3" />
+        <ctl name="LINEOUT1 Volume" value="17" />
+        <ctl name="LINEOUT2 Volume" value="17" />
+        <ctl name="LINEOUT3 Volume" value="17" />
+        <ctl name="LINEOUT4 Volume" value="17" />
+        <ctl name="LINEOUT5 Volume" value="17" />
     </path>
 
     <path name="speaker-reverse">
