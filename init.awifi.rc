@@ -368,6 +368,9 @@ on property:ro.build.type=userdebug
    chmod 0444 /proc/cmdline
 
 on init
+    chmod 0701 /mnt/media_rw
+    mkdir /mnt/media_rw/sdcard 0775 system system
+    mkdir /mnt/media_rw/usb 0775 system system
     # Set permissions for persist partition
     mkdir /persist 0771 system system
     # See storage config details at http://source.android.com/tech/storage/
@@ -844,7 +847,7 @@ service btwlancoex /system/bin/sh /system/etc/init.qcom.coex.sh
 service p2p_supplicant /system/bin/wpa_supplicant \
     -ip2p0  -Dnl80211 -c/data/misc/wifi/p2p_supplicant.conf -N \
     -iwlan0 -Dnl80211 -c/data/misc/wifi/wpa_supplicant.conf \
-    -e/data/misc/wifi/entropy.bin -puse_p2p_group_interface=1use_multi_chan_concurrent=1
+    -e/data/misc/wifi/entropy.bin -puse_p2p_group_interface=1use_multi_chan_concurrent=1 -g@android:wpa_wlan0 -O/data/misc/wifi/sockets
     #   we will start as root and wpa_supplicant will switch to user wifi
     #   after setting up the capabilities required for WEXT
     #   user wifi
@@ -856,7 +859,7 @@ service p2p_supplicant /system/bin/wpa_supplicant \
 
 service wpa_supplicant /system/bin/wpa_supplicant \
     -iwlan0 -Dnl80211 -c/data/misc/wifi/wpa_supplicant.conf \
-    -e/data/misc/wifi/entropy.bin
+    -e/data/misc/wifi/entropy.bin -g@android:wpa_wlan0 -O/data/misc/wifi/sockets
     #   we will start as root and wpa_supplicant will switch to user wifi
     #   after setting up the capabilities required for WEXT
     #   user wifi
@@ -1015,7 +1018,7 @@ service profiler_daemon /system/bin/profiler_daemon
     group root
     disabled
 
-service sdcard /system/bin/sdcard /data/media /mnt/shell/emulated 1023 1023
+service sdcard /system/bin/sdcard -u 1023 -g 1023 -l /data/media /mnt/shell/emulated
     class main
 #    disabled
 
@@ -1033,6 +1036,14 @@ on nonencrypted
 
 on property:vold.decrypt=trigger_restart_framework
     setprop ro.fuse_sdcard ${persist.fuse_sdcard}
+
+service fuse_sdcard /system/bin/sdcard -u 1023 -g 1023 /mnt/media_rw/sdcard /storage/sdcard1
+    class late_start
+    disabled
+
+service fuse_usb /system/bin/sdcard -u 1023 -g 1023 /mnt/media_rw/usb /storage/usb
+    class late_start
+    disabled
 
 service hcidump /system/bin/sh /system/etc/hcidump.sh
     user bluetooth
@@ -1070,7 +1081,6 @@ on property:persist.sys.cabc_off=true
 on property:persist.sys.cabc_off=false
     write /sys/devices/platform/mipi_lgit.1793/cabc_off 0
 
-
 service ssr_diag /system/bin/ssr_diag
     class late_start
     user system
@@ -1100,44 +1110,6 @@ on property:ro.build.type=user
    write /sys/module/subsystem_restart/parameters/restart_level 3
    write /sys/module/subsystem_restart/parameters/enable_ramdumps 0
    write /sys/module/wcnss_ssr_8960/parameters/enable_riva_ssr 1
-
-service ftm_ptt /system/bin/ftm_ptt -d
-    class late_start
-    user root
-    group radio
-    disabled
-    oneshot
-
-on property:hw.ftm_ptt_start=1
-    start ftm_ptt
-
-on property:hw.ftm_ptt_start=0
-    stop ftm_ptt
-#LGE_CHANGE_S 2012.04 lg-msp@lge.com MTS TEAM
-	service mtsd /system/bin/mtsd
-	class late_start
-	oneshot
-	socket mtsd.port stream 660 system system
-#LGE_CHANGE_E 2012.04 lg-msp@lge.com MTS TEAM
-
-
-# LGBACKUP [ig.kang@lge.com] SystemService Daemon
-service bnrd /system/bin/bnrd
-      class main
-      socket bnrd stream 660 root system
-      user root
-      group system radio sdcard_rw
-# LGBACKUP SystemService Daemon
-
-service ssbd /system/bin/ssbd
-    class main
-    disabled
-
-on property:ssbd.enable=1
-    start ssbd
-
-on property:ssbd.enable=0
-    stop ssbd
 
 service conn_init /system/bin/logwrapper /system/bin/conn_init
     class core
