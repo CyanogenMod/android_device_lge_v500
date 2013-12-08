@@ -96,12 +96,13 @@ BOARD_HAVE_LOW_LATENCY_AUDIO := true
 BOARD_HAS_NO_SELECT_BUTTON := true
 
 BOARD_USES_QCOM_HARDWARE := true
-TARGET_USES_QCOM_BSP := true
-COMMON_GLOBAL_CFLAGS += -DQCOM_HARDWARE -DQCOM_BSP_CAMERA_ABI_HACK -DQCOM_BSP
+COMMON_GLOBAL_CFLAGS += -DQCOM_HARDWARE -DQCOM_BSP_CAMERA_ABI_HACK
 TARGET_QCOM_DISPLAY_VARIANT := caf
 TARGET_QCOM_MEDIA_VARIANT := caf
-#TARGET_DISPLAY_USE_RETIRE_FENCE := true
-
+USE_DEVICE_SPECIFIC_CAMERA := true
+COMMON_GLOBAL_CFLAGS += -DNEEDS_VECTORIMPL_SYMBOLS
+TARGET_DISPLAY_USE_RETIRE_FENCE := true
+TARGET_ENABLE_QC_AV_ENHANCEMENTS := true
 
 BOARD_HAVE_BLUETOOTH_QCOM := true
 BLUETOOTH_HCI_USE_MCT := true
@@ -128,35 +129,25 @@ BOARD_HAS_NO_SELECT_BUTTON := true
 BOARD_SEPOLICY_DIRS += \
         device/lge/v500/sepolicy
 
-BOARD_SEPOLICY_UNION += \
-	file_contexts \
-	property_contexts \
-	te_macros \
-	bluetooth_loader.te \
-	bridge.te \
-	camera.te \
-	conn_init.te \
-	device.te \
-	dhcp.te \
-	domain.te \
-	drmserver.te \
-	file.te \
-	kickstart.te \
-	init.te \
-	mediaserver.te \
-	mpdecision.te \
-	netmgrd.te \
-	property.te \
-	qmux.te \
-	rild.te \
-	rmt.te \
-	sensors.te \
-	surfaceflinger.te \
-	system.te \
-	tee.te \
-	thermald.te \
-	ueventd.te \
-	wpa_supplicant.te
+BOARD_SEPOLICY_UNION := \
+        app.te \
+        bluetooth.te \
+        device.te \
+        domain.te \
+        drmserver.te \
+        file.te \
+        file_contexts \
+        hci_init.te \
+        init_shell.te \
+        keystore.te \
+        mediaserver.te \
+        kickstart.te \
+        nfc.te \
+        rild.te \
+        surfaceflinger.te \
+        system.te \
+        ueventd.te \
+        wpa.te
 
 TARGET_RELEASETOOLS_EXTENSIONS := device/lge/v500/releasetools
 
