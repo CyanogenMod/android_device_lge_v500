@@ -559,11 +559,6 @@ on boot
     chown system system /sys/class/android_usb/android0/otg
 # LGE_CHANGE_E, 20130108, seokjeong.hong@lge.com, AAT OTG Test
 
-# NFC Feature [start]
-   symlink /dev/ttyHSL2 /dev/snfc_uart
-   #symlink /dev/i2c-0 /dev/snfc_i2c
-# NFC Feature [end]
-
 # enable exfat feature
    insmod /system/lib/modules/texfat.ko
 
