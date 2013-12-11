@@ -128,6 +128,7 @@ bin/rild
 bin/mm-qcamera-daemon
 bin/mpdecision
 bin/time_daemon
+bin/gsiff_daemon
 etc/firmware/vidc.b00
 etc/firmware/vidc.b01
 etc/firmware/vidc.b02
@@ -146,6 +147,12 @@ lib/libc2d2_a3xx.so
 lib/liblgftmitem.so
 lib/libllvm-a3xx.so
 lib/libloc_api_v02.so
+lib/libgeofence.so
+lib/libgps.utils.so
+lib/libloc_eng.so
+lib/libxt_v02.so
+lib/libloc_adapter.so
+lib/hw/gps.msm8960.so
 lib/libsc-a2xx.so
 lib/libsc-a3xx.so
 lib/libgsl.so
