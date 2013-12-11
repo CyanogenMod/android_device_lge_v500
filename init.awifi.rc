@@ -385,6 +385,7 @@ on init
     export EXTERNAL_STORAGE /storage/emulated/legacy
     export EMULATED_STORAGE_SOURCE /mnt/shell/emulated
     export EMULATED_STORAGE_TARGET /storage/emulated
+    export SECONDARY_STORAGE /storage/sdcard1:/storage/usb
 
     # Support legacy paths
 	#2013.03.13 add symlink for Docomo PlayReady DRM[START] 
@@ -393,7 +394,7 @@ on init
     symlink /storage/emulated/legacy /sdcard
     symlink /storage/emulated/legacy /mnt/sdcard
     symlink /storage/emulated/legacy /storage/sdcard0
-    symlink /storage/sdcard0 /storage/external_SD
+    symlink /storage/sdcard1 /storage/external_SD
 
 on early-boot
     # set RLIMIT_MEMLOCK to 64MB
