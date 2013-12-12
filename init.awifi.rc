@@ -369,7 +369,7 @@ on property:ro.build.type=userdebug
 
 on init
     chmod 0701 /mnt/media_rw
-    mkdir /mnt/media_rw/sdcard 0775 system system
+    mkdir /mnt/media_rw/sdcard1 0775 system system
     mkdir /mnt/media_rw/usb 0775 system system
     # Set permissions for persist partition
     mkdir /persist 0771 system system
@@ -1033,7 +1033,7 @@ on nonencrypted
 on property:vold.decrypt=trigger_restart_framework
     setprop ro.fuse_sdcard ${persist.fuse_sdcard}
 
-service fuse_sdcard /system/bin/sdcard -u 1023 -g 1023 /mnt/media_rw/sdcard /storage/sdcard1
+service fuse_sdcard1 /system/bin/sdcard -u 1023 -g 1023 /mnt/media_rw/sdcard1 /storage/sdcard1
     class late_start
     disabled
 
