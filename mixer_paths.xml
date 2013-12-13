@@ -229,6 +229,7 @@
         <ctl name="RX4 DSM MUX" value="DSM_INV" />
         <ctl name="RX6 DSM MUX" value="DSM_INV" />
         <ctl name="RX3 Digital Volume" value="70" />
+        <ctl name="RX5 Digital Volume" value="70" />
         <ctl name="SLIM TX3 MUX" value="RMIX3" />
         <ctl name="LINEOUT1 Volume" value="18" />
         <ctl name="LINEOUT2 Volume" value="18" />
