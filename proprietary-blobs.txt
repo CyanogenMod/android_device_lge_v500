@@ -6,7 +6,6 @@ lib/libmercury.so
 lib/libmmstillomx.so
 lib/libimage-jpeg-enc-omx-comp.so
 lib/libimage-omx-common.so
-lib/libmmcamera_interface2.so
 lib/libacdbloader.so
 lib/libdiag.so
 lib/libril-qc-qmi-1.so
@@ -20,12 +19,9 @@ lib/libmmcamera_faceproc.so
 lib/libmmcamera_frameproc.so
 lib/libmmcamera_hdr_lib.so
 lib/libmmcamera_image_stab.so
-lib/libmmcamera_interface2.so
 lib/libmmcamera_plugin.so
 lib/libmmcamera_statsproc31.so
 lib/libmmcamera_wavelet_lib.so
-lib/libmmcamera_tintless_algo.so
-lib/libmmcamera_tintless_wrapper.so
 lib/libmorpho_movie_stabilization.so
 lib/libmorpho_noise_reduction.so
 lib/libmmcamera_interface.so
