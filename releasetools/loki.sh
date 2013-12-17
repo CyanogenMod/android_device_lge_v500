@@ -5,6 +5,9 @@
 # See here for more information on loki: https://github.com/djrbliss/loki
 #
 
+# Don't apply loki to the palman
+grep -q androidboot.hardware=palman /proc/cmdline && exit 0
+
 export C=/tmp/loki_tmpdir
 
 mkdir -p $C
