@@ -87,4 +87,5 @@
     <!-- This device is not "voice capable"; it's data-only. -->
     <bool name="config_voice_capable">false</bool>
 
+    <bool name="config_lidControlsSleep">true</bool>
 </resources>
