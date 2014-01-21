@@ -19,8 +19,6 @@
 
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
-    <bool name="config_lidControlsSleep">true</bool>
-
     <integer name="config_deviceHardwareKeys">0</integer>
 
     <!-- Whether a software navigation bar should be shown. NOTE: in the future this may be
@@ -84,8 +82,14 @@
     <integer name="config_screenBrightnessSettingDefault">102</integer>
     <integer name="config_screenBrightnessSettingMinimum">10</integer>
 
+    <!-- This device does not allow sms service. -->
+    <bool name="config_sms_capable">false</bool>
+
     <!-- This device is not "voice capable"; it's data-only. -->
     <bool name="config_voice_capable">false</bool>
 
     <bool name="config_lidControlsSleep">true</bool>
+
+    <!--  Maximum number of supported users -->
+    <integer name="config_multiuserMaximumUsers">8</integer>
 </resources>
