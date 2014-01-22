@@ -176,9 +176,6 @@ service usf-post-boot /system/bin/sh /system/etc/usf_post_boot.sh
 on property:init.svc.bootanim=stopped
     start usf-post-boot
 
-on property:dev.bootcomplete=1
-    write /sys/devices/i2c-3/3-004b/knock_on 1
-
 service time_daemon /system/bin/time_daemon
    class late_start
    user root
@@ -689,9 +686,17 @@ on post-fs-data
     setprop ro.ssbd.session /dev/block/platform/msm_sdcc.1/by-name/eksst
     setprop ro.ssbd.offset 0
 
-
 # bonkang.koo@lge.com 2012.10.23 set default sdcard fs type
     setprop vold.sdcard_fs_type none
+
+    chown root system /sys/devices/platform/kcal_ctrl.0/kcal
+    chown root system /sys/devices/platform/kcal_ctrl.0/kcal_ctrl
+    chmod 0664 /sys/class/timed_output/vibrator/amp
+    chmod 0664 /sys/devices/platform/kcal_ctrl.0/kcal
+    chmod 0664 /sys/devices/platform/kcal_ctrl.0/kcal_ctrl
+    restorecon /sys/class/timed_output/vibrator/amp
+    restorecon /sys/devices/platform/kcal_ctrl.0/kcal
+    restorecon /sys/devices/platform/kcal_ctrl.0/kcal_ctrl
 
 # Export GPIO56 for fusion targets to enable/disable hub
 service usbhub_init /system/bin/usbhub_init
