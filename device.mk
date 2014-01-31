@@ -43,8 +43,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.audio.handset.mic.type=digital \
     persist.audio.dualmic.config=false \
     persist.audio.fluence.voicecall=true \
-    persist.audio.lowlatency.rec=false \
-    af.resampler.quality=4
+    persist.audio.lowlatency.rec=false
 
 # Bluetooth
 PRODUCT_PACKAGES += \
