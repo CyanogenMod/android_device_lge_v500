@@ -415,7 +415,6 @@ on boot
 #2012-03-06 seongmook.yim(seongmook.yim@lge.com) [P6/MDMBSP] ADD LGODL [END]
 
 #LGE_CHANGE_S 20130821 sw84.lee [AWIFI][Touch] enable knock_on feature
-    chown system system /sys/devices/i2c-3/3-004b/knock_on
     chmod 660 /sys/devices/i2c-3/3-004b/knock_on
 #LGE_CHANGE_E 20130821 sw84.lee [AWIFI][Touch] enable knock_on feature
 #LGE_CHANGE_S 20130830 goensoo.kim [AWIFI][Touch] enable smart_cover feature
@@ -563,6 +562,9 @@ on boot
 # LGE_CHANGE_S, 20130108, seokjeong.hong@lge.com, AAT OTG Test
     chown system system /sys/class/android_usb/android0/otg
 # LGE_CHANGE_E, 20130108, seokjeong.hong@lge.com, AAT OTG Test
+
+    # create symlink for fb1 as HDMI
+    symlink /dev/graphics/fb1 /dev/graphics/hdmi
 
     # Remove write permissions to video related nodes
     chmod 0664 /sys/devices/virtual/graphics/fb1/hpd
