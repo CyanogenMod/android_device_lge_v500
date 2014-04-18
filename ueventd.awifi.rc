@@ -126,3 +126,4 @@
 #[AUDIO_BSP][L05E] gooyeon.jung@lge.com 2013-02-21 Immersion vib. driver porting [END]
 
 /dev/block/mmcblk0p18     0660   root     system
+/dev/ttyHSL1              0660   system     inet

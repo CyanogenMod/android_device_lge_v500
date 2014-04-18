@@ -410,9 +410,6 @@ on early-boot
 on boot
     chown system system /sys/devices/platform/lg_diag_cmd/diag_enable
     chmod 0660 /sys/devices/platform/lg_diag_cmd/diag_enable
-#2012-03-06 seongmook.yim(seongmook.yim@lge.com) [P6/MDMBSP] ADD LGODL [START]
-#    chmod 0777 /system/bin/lg_dm_dev_router
-#2012-03-06 seongmook.yim(seongmook.yim@lge.com) [P6/MDMBSP] ADD LGODL [END]
 
 #LGE_CHANGE_S 20130821 sw84.lee [AWIFI][Touch] enable knock_on feature
     chown system system /sys/devices/i2c-3/3-004b/knock_on
@@ -573,29 +570,6 @@ on boot
     chown system system /sys/devices/virtual/graphics/fb1/format_3d
     chown system system /sys/devices/virtual/graphics/fb1/hpd
 
-
-#[AUDIO_BSP][L05E] gooyeon.jung@lge.com 2013-02-21 Immersion vib. driver porting [START]
-# TouchSense Player Service
-service immvibed /system/bin/immvibed
-    class main
-    user shell
-    group shell
-    oneshot
-#[AUDIO_BSP][L05E] gooyeon.jung@lge.com 2013-02-21 Immersion vib. driver porting [END]
-
-on property:vold.post_fs_data_done=1
-    start postinstaller
-# LGE_CHANGE_E, [LGE_MODEL][CAPP_POSTINSTALL_MODIFIED], haksu.kim@lge.com, 2012-04-09
-
-# LGE_CHANGE_S, 20130208, jinmo.koo@lge.com, enabling remotelock as dev-admin
-service init_devadmin /system/bin/sh /system/vendor/bin/init_devadmin.sh
-    class main
-    user system
-    group system
-    oneshot
-# LGE_CHANGE_E, 20130208, jinmo.koo@lge.com, enabling remotelock as dev-admin
-
-
 on fs
 # LGE_CHANGED_S [2013-02-14][jungjoo.nahm@lge.com] for widevine drm and lgdrm(future-use)
     chown system system /persist-lg
@@ -698,26 +672,11 @@ on post-fs-data
     restorecon /sys/devices/platform/kcal_ctrl.0/kcal
     restorecon /sys/devices/platform/kcal_ctrl.0/kcal_ctrl
 
-# Export GPIO56 for fusion targets to enable/disable hub
-service usbhub_init /system/bin/usbhub_init
-   class late_start
-   user root
-   disabled
-   oneshot
-
 on property:init.svc.surfaceflinger=stopped
     stop ppd
-    stop hdmid
-
-on property:ro.board.platform=msm7630_fusion
-    start usbhub_init
 
 on property:init.svc.wpa_supplicant=stopped
     stop dhcpcd
-
-on property:bluetooth.isEnabled=true
-    start btwlancoex
-    write /sys/class/bluetooth/hci0/idle_timeout 7000
 
 service qcom-c_core-sh /system/bin/sh /init.qcom.class_core.sh
     class core
@@ -732,6 +691,9 @@ service qcom-c_main-sh /system/bin/sh /init.qcom.class_main.sh
 on property:vold.decrypt=trigger_restart_framework
     start qcom-c_main-sh
     start config_bluetooth
+    stop sensors
+    start sensors
+    start conn_init
 
 service cnd /system/bin/cnd
     class late_start
@@ -968,11 +930,6 @@ service wifi-crda /system/bin/sh /system/etc/init.crda.sh
    disabled
    oneshot
 
-service hdmid /system/bin/hdmid
-    class late_start
-    socket hdmid stream 0660 root system graphics
-    disabled
-
 service ppd /system/bin/mm-pp-daemon
     class late_start
     user system
@@ -986,45 +943,9 @@ service hostapd /system/bin/hostapd -dddd /data/hostapd/hostapd.conf
     oneshot
     disabled
 
-service ds_fmc_appd /system/bin/ds_fmc_appd -p "rmnet0" -D
-    class late_start
-    group radio wifi inet
-    disabled
-    oneshot
-
-on property:persist.data.ds_fmc_app.mode=1
-    start ds_fmc_appd
-
-service ims_regmanager /system/bin/exe-ims-regmanagerprocessnative
-    class late_start
-    group qcom_oncrpc net_bt_admin inet radio wifi
-    disabled
-
-on property:persist.ims.regmanager.mode=1
-    start ims_regmanager
-
 on property:ro.data.large_tcp_window_size=true
     # Adjust socket buffer to enlarge TCP receive window for high bandwidth (e.g. DO-RevB)
     write /proc/sys/net/ipv4/tcp_adv_win_scale  1
-
-service battery_monitor /system/bin/battery_monitor
-    user system
-    group system
-    disabled
-
-service ril-daemon1 /system/bin/rild -c 1
-    class main
-    socket rild1 stream 660 root radio
-    socket rild-debug1 stream 660 radio system
-    user root
-    disabled
-    group radio cache inet misc audio sdcard_r sdcard_rw qcom_oncrpc diag qcom_diag log
-
-service profiler_daemon /system/bin/profiler_daemon
-    class late_start
-    user root
-    group root
-    disabled
 
 service sdcard /system/bin/sdcard -u 1023 -g 1023 -l /data/media /mnt/shell/emulated
     class main
@@ -1068,20 +989,6 @@ service hciattach_dut /system/bin/sh /system/etc/init.lge_dut.bt.sh
 service charger /charger
     class charger
 
-# LGE_CHANGE_S, 20120903, jin.park@lge.com, Mobile DM Router
-#service lg_dm_router /system/bin/lg_dm_router
-#    class late_start
-#    user system
-#    group system
-#    disabled
-#    socket Full.DM.port stream 660 system system
-
-#on property:persist.service.dm_app.enable=true
-#    start lg_dm_router
-#on property:persist.service.dm_app.enable=false
-#    stop lg_dm_router
-# LGE_CHANGE_E, 20120903, jin.park@lge.com, Mobile DM Router
-
 
 on property:persist.sys.cabc_off=true
     write /sys/devices/platform/mipi_lgit.1793/cabc_off 1
@@ -1089,23 +996,6 @@ on property:persist.sys.cabc_off=true
 on property:persist.sys.cabc_off=false
     write /sys/devices/platform/mipi_lgit.1793/cabc_off 0
 
-service ssr_diag /system/bin/ssr_diag
-    class late_start
-    user system
-    group system
-
-# LGE_CHANGE_S, 20120203, chaeuk.lee@lge.com, daemon for IrDA obex
-service objectexchanged /system/bin/objectexchanged
-    user system
-    group radio system
-    class core
-# LGE_CHANGE_E, 20120203, chaeuk.lee@lge.com
-
-# 2013-02-04, SangYeol-Byeon(sangyeol.byeon@lge.com), VirusScanDeamon [Start]
-service mfescand /system/bin/mfescand
-    class main
-    socket mfescand stream 600 system system
-# 2013-02-04, SangYeol-Byeon(sangyeol.byeon@lge.com), VirusScanDeamon [End]
 
 # Limit to SoC reset (1) and independent SSR (3)
 on property:persist.sys.ssr.restart_level=1
