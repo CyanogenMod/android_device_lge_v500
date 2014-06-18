@@ -181,7 +181,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # This hw ships locked, work around it with loki
 PRODUCT_PACKAGES += \
 	loki.sh \
-	loki_tool
+	loki_tool_static_gpad \
+	recovery-transform.sh
 
 PRODUCT_PROPERTY_OVERRIDES += \
 	ro.radio.noril=true \
