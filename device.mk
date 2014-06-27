@@ -135,6 +135,10 @@ PRODUCT_PACKAGES += \
 	libOmxQcelp13Enc \
 	libdashplayer
 
+# Voice processing
+PRODUCT_PACKAGES += \
+	libqcomvoiceprocessing
+
 PRODUCT_PACKAGES += \
 	librs_jni \
 	com.android.future.usb.accessory
