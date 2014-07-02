@@ -150,7 +150,8 @@ PRODUCT_PACKAGES += \
 # Loki
 PRODUCT_PACKAGES += \
 	loki.sh \
-	loki_tool
+	loki_tool_static_gpad \
+	recovery-transform.sh
 
 # Default properties
 PRODUCT_PROPERTY_OVERRIDES += \
