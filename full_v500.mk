@@ -14,15 +14,16 @@
 # limitations under the License.
 #
 
-# Inherit from the common Open Source product configuration
+# Inherit from those products. Most specific first.
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base.mk)
 
-PRODUCT_NAME := full_v500
+# Inherit from v500 device
+$(call inherit-product, device/lge/v500/device.mk)
+$(call inherit-product-if-exists, vendor/lge/v500/v500-vendor.mk)
+
+# Device identifier. This must come after all inclusions.
 PRODUCT_DEVICE := v500
+PRODUCT_NAME := full_v500
 PRODUCT_BRAND := lge
 PRODUCT_MODEL := LG-V500
 PRODUCT_MANUFACTURER := LGE
-
-# Inherit from hardware-specific part of the product configuration
-$(call inherit-product, device/lge/v500/device.mk)
-$(call inherit-product-if-exists, vendor/lge/v500/v500-vendor.mk)

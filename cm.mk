@@ -8,7 +8,7 @@ $(call inherit-product, vendor/cm/config/common_full_tablet_wifionly.mk)
 # Inherit device configuration
 $(call inherit-product, device/lge/v500/full_v500.mk)
 
-## Device identifier. This must come after all inclusions
+# Device identifier. This must come after all inclusions
 PRODUCT_DEVICE := v500
 PRODUCT_NAME := cm_v500
 PRODUCT_BRAND := lge
