@@ -20,7 +20,7 @@ PRODUCT_CHARACTERISTICS := tablet
 DEVICE_PACKAGE_OVERLAYS := device/lge/v500/overlay
 
 # Screen density
-PRODUCT_AAPT_CONFIG := normal hdpi xhdpi
+PRODUCT_AAPT_CONFIG := normal large hdpi xhdpi
 PRODUCT_AAPT_PREF_CONFIG := xhdpi
 
 # Dalvik
