@@ -25,53 +25,43 @@ on init
     mkdir /mnt/shell/emulated 0700 shell shell
     mkdir /storage/emulated 0555 root root
 
-    # External storage directories
-    mkdir /mnt/media_rw/sdcard1 0700 media_rw media_rw
-    mkdir /mnt/media_rw/usbdisk 0700 media_rw media_rw
-    mkdir /storage/sdcard1 0700 root root
-    mkdir /storage/usbdisk 0700 root root
-
     export EXTERNAL_STORAGE /storage/emulated/legacy
     export EMULATED_STORAGE_SOURCE /mnt/shell/emulated
     export EMULATED_STORAGE_TARGET /storage/emulated
     export SECONDARY_STORAGE /storage/sdcard1:/storage/usbdisk
+
+    # External SD card
+    mkdir /mnt/media_rw/sdcard1 0700 media_rw media_rw
+    mkdir /storage/sdcard1 0700 root root
+    symlink /storage/sdcard1 /mnt/external_sd
+    symlink /storage/sdcard1 /external_sd
+
+    # USB OTG drive
+    mkdir /mnt/media_rw/usbdisk 0700 media_rw media_rw
+    mkdir /storage/usbdisk 0700 root root
+    symlink /storage/usbdisk /mnt/usb_storage
+    symlink /storage/usbdisk /usb_storage
 
     # Support legacy paths
     symlink /storage/emulated/legacy /sdcard
     symlink /storage/emulated/legacy /mnt/sdcard
     symlink /storage/emulated/legacy /storage/sdcard0
     symlink /mnt/shell/emulated/0 /storage/emulated/legacy
-    symlink /storage/sdcard1 /mnt/external_sd
-    symlink /storage/sdcard1 /external_sd
-    symlink /storage/usbdisk /mnt/usb_storage
-    symlink /storage/usbdisk /usb_storage
 
     # Set permissions for persist partition
     mkdir /persist 0771 system system
     mkdir /firmware 0771 system system
     mkdir /persist-lg 0771 system system
-    mkdir /mpt 0775 system system
     mkdir /factory 0775 system system
+    mkdir /mpt 0775 system system
+
     mkdir /sns 0775 system system
     mkdir /sns/cal 0771 system system
 
 on fs
     mount_all ./fstab.awifi
     setprop ro.crypto.fuse_sdcard true
-
-    wait /dev/block/mmcblk0p1
-    mount vfat /dev/block/mmcblk0p1 /firmware ro umask=002 shortname=lower
-
-    # Widevine firmware
-    mkdir /persist-lg/widevine 0770 drm system
-    mkdir /persist-lg/firmware 0771 system system
-
-    # DivX DRM
-    mkdir /persist-lg/multimedia 0770 media divxdrm
-    mkdir /persist-lg/multimedia/nx 0770 media divxdrm
-    mkdir /persist-lg/multimedia/uma 0770 media divxdrm
-    mkdir /persist-lg/multimedia/scnt 0770 media divxdrm
-    mkdir /persist-lg/multimedia/scnt/sdadf 0770 media divxdrm
+    write /sys/kernel/boot_adsp/boot 1
 
 on early-boot
     # Set RLIMIT_MEMLOCK to 64MB
@@ -85,11 +75,6 @@ on boot
     # Enable smart_cover feature
     chown system system /sys/devices/i2c-3/3-004b/smart_cover
     chmod 660 /sys/devices/i2c-3/3-004b/smart_cover
-
-    # Remove SUID bit for iproute2 ip tool
-    chmod 0755 /system/bin/ip
-
-    chmod 0444 /sys/devices/platform/msm_hsusb/gadget/usb_state
 
     # Create symlink for fb1 as HDMI
     symlink /dev/graphics/fb1 /dev/graphics/hdmi
@@ -111,8 +96,6 @@ on boot
     # Enable DEBUG_SUSPEND, DEBUG_EXIT_SUSPEND, and DEBUG_WAKEUP
     write /sys/module/wakelock/parameters/debug_mask 7
 
-    write /proc/sys/vm/swappiness 0
-
     # To allow interfaces to get v6 address when tethering is enabled
     write /proc/sys/net/ipv6/conf/rmnet0/accept_ra 2
     write /proc/sys/net/ipv6/conf/rmnet1/accept_ra 2
@@ -122,21 +105,13 @@ on boot
     write /proc/sys/net/ipv6/conf/rmnet5/accept_ra 2
     write /proc/sys/net/ipv6/conf/rmnet6/accept_ra 2
     write /proc/sys/net/ipv6/conf/rmnet7/accept_ra 2
-    write /proc/sys/net/ipv6/conf/rmnet_sdio0/accept_ra 2
-    write /proc/sys/net/ipv6/conf/rmnet_sdio1/accept_ra 2
-    write /proc/sys/net/ipv6/conf/rmnet_sdio2/accept_ra 2
-    write /proc/sys/net/ipv6/conf/rmnet_sdio3/accept_ra 2
-    write /proc/sys/net/ipv6/conf/rmnet_sdio4/accept_ra 2
-    write /proc/sys/net/ipv6/conf/rmnet_sdio5/accept_ra 2
-    write /proc/sys/net/ipv6/conf/rmnet_sdio6/accept_ra 2
-    write /proc/sys/net/ipv6/conf/rmnet_sdio7/accept_ra 2
 
-# Assign TCP buffer thresholds to be ceiling value of technology maximums
-# Increased technology maximums should be reflected here.
+    # Assign TCP buffer thresholds to be ceiling value of technology maximums
+    # Increased technology maximums should be reflected here.
     write /proc/sys/net/core/rmem_max  2097152
     write /proc/sys/net/core/wmem_max  2097152
 
-# Tune buffersize for higher Miracast throughput
+    # Tune buffersize for higher Miracast throughput
     setprop net.tcp.buffersize.wifi 524288,1048576,2560000,524288,1048576,2560000
 
 on post-fs-data
@@ -147,32 +122,15 @@ on post-fs-data
     mkdir /data/misc/wifi/sockets 0770 wifi wifi
     mkdir /data/misc/wifi/wpa_supplicant 0770 wifi wifi
     mkdir /data/misc/dhcp 0770 dhcp dhcp
-    # To observe dnsmasq.leases file for dhcp information of soft ap
-    chown dhcp system /data/misc/dhcp
 
-    chown system system /dev/wcnss_wlan
     write /sys/module/wcnss_ssr_8960/parameters/enable_riva_ssr 1
-
-    # Create directory used by audio subsystem
-    mkdir /data/misc/audio 0770 audio audio
 
     # Workaround for conn_init not copying the updated firmware
     rm /data/misc/wifi/WCNSS_qcom_cfg.ini
     rm /data/misc/wifi/WCNSS_qcom_wlan_nv.bin
 
-    # Mounting of persist is moved to 'on emmc-fs' and 'on fs' sections
-    # We chown/chmod /persist again so because mount is run as root + defaults
-    chown system system /persist
-    chmod 0664 /sys/devices/platform/msm_sdcc.1/polling
-    chmod 0664 /sys/devices/platform/msm_sdcc.2/polling
-    chmod 0664 /sys/devices/platform/msm_sdcc.3/polling
-    chmod 0664 /sys/devices/platform/msm_sdcc.4/polling
-
-    # Chown polling nodes as needed from UI running on system server
-    chown system system /sys/devices/platform/msm_sdcc.1/polling
-    chown system system /sys/devices/platform/msm_sdcc.2/polling
-    chown system system /sys/devices/platform/msm_sdcc.3/polling
-    chown system system /sys/devices/platform/msm_sdcc.4/polling
+    # Create directory used by audio subsystem
+    mkdir /data/misc/audio 0770 audio audio
 
     # Create directory used by sensor subsystem (dsps)
     mkdir /data/system/sensors
@@ -190,23 +148,14 @@ on post-fs-data
     # Provide the access to hostapd.conf only to root and group
     chmod 0660 /data/hostapd/hostapd.conf
 
-    # Enable the setgid bit on the directory
-    mkdir /data/audio 0770 media audio
-    chmod 2770 /data/audio
-
-    setprop vold.post_fs_data_done 1
-
-    rm /data/local/tmp/adreno_config.txt
-
     # Communicate with mpdecision and thermald
     mkdir /dev/socket/mpdecision 0770 system system
     chmod 2770 /dev/socket/mpdecision
 
-    # Adjust vibrator amplitude
-    write /sys/class/timed_output/vibrator/amp 70
-
     # Create /data/time folder for time-services
     mkdir /data/time/ 0700 system system
+
+    setprop vold.post_fs_data_done 1
 
     # Enable Power modes and set the CPU Freq Sampling rates
     write /sys/module/rpm_resources/enable_low_power/L2_cache 1
@@ -356,23 +305,16 @@ service iprenew_eth0 /system/bin/dhcpcd -n
     disabled
     oneshot
 
-on property:ro.data.large_tcp_window_size=true
-    # Adjust socket buffer to enlarge TCP receive window for high bandwidth (e.g. DO-RevB)
-    write /proc/sys/net/ipv4/tcp_adv_win_scale  1
-
 service charger /charger
     class charger
 
-# Virtual sdcard daemon running as media_rw (1023)
 service sdcard /system/bin/sdcard -u 1023 -g 1023 -l /data/media /mnt/shell/emulated
     class late_start
 
-# External SD daemon
 service fuse_sdcard1 /system/bin/sdcard -u 1023 -g 1023 -d /mnt/media_rw/sdcard1 /storage/sdcard1
     class late_start
     disabled
 
-# USB OTG storage daemon
 service fuse_usbdisk /system/bin/sdcard -u 1023 -g 1023 -d /mnt/media_rw/usbdisk /storage/usbdisk
     class late_start
     disabled

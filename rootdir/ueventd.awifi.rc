@@ -42,7 +42,7 @@
 /dev/ks_hsic_bridge       0660   system     system
 /dev/efs_hsic_bridge      0660   system     system
 
-#permissions for audio
+# Audio
 /dev/msm_qcelp            0660   system     audio
 /dev/msm_evrc             0660   system     audio
 /dev/msm_wma              0660   system     audio
@@ -56,7 +56,12 @@
 /dev/msm_evrc_in          0660   system     audio
 /dev/msm_amrnb_in         0640   system     audio
 
-#v500
+# Wlan
+/dev/wcnss_wlan           0660   system     system
+
+# IRRC
+/dev/msm_IRRC_pcm_dec     0660   media      media
+
 /dev/genlock              0666   system     system
 /dev/hw_random            0660   system     system
 /dev/msm_amrwbplus        0660   system     audio
