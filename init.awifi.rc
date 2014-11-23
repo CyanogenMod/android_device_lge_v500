@@ -76,10 +76,10 @@ on early-fs
     mkdir /factory 0775 system system
     mkdir /sns 0775 system system
     mount_all fstab.awifi
-
-    wait /dev/block/mmcblk0p1
-    mount vfat /dev/block/mmcblk0p1 /firmware ro umask=002 shortname=lower
     mkdir /sns/cal 0771 system system
+
+    restorecon_recursive /sns
+    restorecon_recursive /persist
 
 on boot
     write /sys/devices/i2c-3/3-0024/cyttsp_update_fw 1
@@ -115,20 +115,17 @@ service mpdecision /system/bin/mpdecision --no_sleep --avg_comp
    class late_start
    user root
 
-service rf4ce /system/bin/rf4ce
-   class main
-   user root
-   group root
-
 # sungwook.park@lge.com 2013.04.23 change qcks, ks, efsks into system process
 service kickstart /system/bin/qcks -i /firmware/image/
     user system
     group system
+    seclabel u:r:mdm_helper:s0
     oneshot
     disabled
 
 service mdm_helper /system/bin/mdm_helper
     class main
+    seclabel u:r:mdm_helper:s0
     onrestart setprop ro.service.mdm_helper_restarted "true"
     disabled
 
@@ -358,19 +355,6 @@ on post-fs-data
 on property:ro.build.type=userdebug
    mount debugfs /sys/kernel/debug /sys/kernel/debug
 
-# LGE_CHANGE_S, Add atd service
-service atd /system/bin/atd /dev/ttyGS0
-   socket atd stream 0660 system inet
-   disabled
-on property:ro.baseband="mdm"
-   start atd
-# kyle00.choi, 20130402, To feature out the modem: mdm --> apq [START]
-on property:ro.baseband="apq"
-   start atd
-
-on property:ro.build.type=userdebug
-   chmod 0444 /proc/cmdline
-
 on init
     chmod 0701 /mnt/media_rw
     mkdir /mnt/media_rw/sdcard1 0775 system system
@@ -591,6 +575,7 @@ on fs
 
 # msm specific files that need to be created on /data
 on post-fs-data
+    write /sys/kernel/boot_adsp/boot 1
     # we will remap this as /mnt/sdcard with the sdcard fuse tool
     mkdir /data/media 0770 media_rw media_rw
     chown media_rw media_rw /data/media
@@ -678,31 +663,12 @@ on property:init.svc.surfaceflinger=stopped
 on property:init.svc.wpa_supplicant=stopped
     stop dhcpcd
 
-service qcom-c_core-sh /system/bin/sh /init.qcom.class_core.sh
-    class core
-    user root
-    oneshot
-
-service qcom-c_main-sh /system/bin/sh /init.qcom.class_main.sh
-    class main
-    user root
-    oneshot
-
 on property:vold.decrypt=trigger_restart_framework
     start qcom-c_main-sh
     start config_bluetooth
     stop sensors
     start sensors
     start conn_init
-
-service cnd /system/bin/cnd
-    class late_start
-    socket cnd stream 660 root inet
-
-service irsc_util /system/bin/logwrapper /system/bin/irsc_util "/etc/sec_config"
-    class main
-    user root
-    oneshot
 
 service rmt_storage /system/bin/rmt_storage
     class core
@@ -714,6 +680,7 @@ on property:ro.boot.emmc=true
 
 service config_bluetooth /system/bin/sh /system/etc/init.qcom.bt.sh "onboot"
     class core
+    seclabel u:r:bluetooth_loader:s0
     user root
     oneshot
 
@@ -740,6 +707,7 @@ service hciattach /system/bin/sh /system/etc/init.qcom.bt.sh
     class late_start
     user bluetooth
     group qcom_oncrpc bluetooth net_bt_admin  system
+    seclabel u:r:bluetooth_loader:s0
     disabled
     oneshot
 
@@ -802,7 +770,7 @@ service netmgrd /system/bin/netmgrd
 service sensors /system/bin/sensors.qcom
     class late_start
     user root
-    group root
+    group root radio system
     disabled
 
 on property:ro.dsps.ready=true
@@ -827,7 +795,7 @@ service btwlancoex /system/bin/sh /system/etc/init.qcom.coex.sh
 service p2p_supplicant /system/bin/wpa_supplicant \
     -ip2p0  -Dnl80211 -c/data/misc/wifi/p2p_supplicant.conf -N \
     -iwlan0 -Dnl80211 -c/data/misc/wifi/wpa_supplicant.conf \
-    -e/data/misc/wifi/entropy.bin -puse_p2p_group_interface=1use_multi_chan_concurrent=1 -g@android:wpa_wlan0 -O/data/misc/wifi/sockets
+    -e/data/misc/wifi/entropy.bin -puse_p2p_group_interface=1use_multi_chan_concurrent=1 -g@android:wpa_wlan0
     #   we will start as root and wpa_supplicant will switch to user wifi
     #   after setting up the capabilities required for WEXT
     #   user wifi
@@ -839,7 +807,7 @@ service p2p_supplicant /system/bin/wpa_supplicant \
 
 service wpa_supplicant /system/bin/wpa_supplicant \
     -iwlan0 -Dnl80211 -c/data/misc/wifi/wpa_supplicant.conf \
-    -e/data/misc/wifi/entropy.bin -g@android:wpa_wlan0 -O/data/misc/wifi/sockets
+    -e/data/misc/wifi/entropy.bin -g@android:wpa_wlan0
     #   we will start as root and wpa_supplicant will switch to user wifi
     #   after setting up the capabilities required for WEXT
     #   user wifi
@@ -930,12 +898,6 @@ service wifi-crda /system/bin/sh /system/etc/init.crda.sh
    disabled
    oneshot
 
-service ppd /system/bin/mm-pp-daemon
-    class late_start
-    user system
-    socket pps stream 0660 system system graphics
-    group system graphics
-
 service hostapd /system/bin/hostapd -dddd /data/hostapd/hostapd.conf
     class late_start
     user root
@@ -986,9 +948,10 @@ service hciattach_dut /system/bin/sh /system/etc/init.lge_dut.bt.sh
    disabled
    oneshot
     
-service charger /charger
+service charger /sbin/healthd -c
     class charger
-
+    critical
+    seclabel u:r:healthd:s0
 
 on property:persist.sys.cabc_off=true
     write /sys/devices/platform/mipi_lgit.1793/cabc_off 1
@@ -1009,7 +972,7 @@ on property:ro.build.type=user
    write /sys/module/subsystem_restart/parameters/enable_ramdumps 0
    write /sys/module/wcnss_ssr_8960/parameters/enable_riva_ssr 1
 
-service conn_init /system/bin/logwrapper /system/bin/conn_init
+service conn_init /system/bin/conn_init
     class core
     user system
     group system wifi

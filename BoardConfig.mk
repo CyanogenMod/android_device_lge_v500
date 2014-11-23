@@ -40,7 +40,7 @@ BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x02000000
 # Try to build the kernel
 TARGET_KERNEL_SOURCE := kernel/lge/v500
 #TARGET_PREBUILT_KERNEL := device/lge/v500/kernel
-BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 user_debug=31 msm_rtb.filter=0x3F ehci-hcd.park=3 lpj=67677 androidboot.hardware=awifi vmalloc=600M
+BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 user_debug=31 msm_rtb.filter=0x3F ehci-hcd.park=3 lpj=67677 androidboot.hardware=awifi vmalloc=400M
 TARGET_KERNEL_CONFIG := cyanogenmod_v500_defconfig
 
 
@@ -66,7 +66,7 @@ USE_OPENGL_RENDERER := true
 TARGET_USES_ION := true
 TARGET_USES_OVERLAY := true
 TARGET_USES_SF_BYPASS := true
-TARGET_USES_C2D_COMPOSITION := true
+TARGET_USES_C2D_COMPOSITION := false
 
 OVERRIDE_RS_DRIVER := libRSDriver_adreno.so
 
@@ -123,28 +123,16 @@ TARGET_RECOVERY_FSTAB = device/lge/v500/fstab.gvar
 
 BOARD_HAS_NO_SELECT_BUTTON := true
 
+# SELinux policies
+# qcom sepolicy
+include device/qcom/sepolicy/sepolicy.mk
+
 BOARD_SEPOLICY_DIRS += \
         device/lge/v500/sepolicy
 
-BOARD_SEPOLICY_UNION := \
-        app.te \
-        bluetooth.te \
-        device.te \
-        domain.te \
-        drmserver.te \
-        file.te \
-        file_contexts \
-        hci_init.te \
-        init_shell.te \
-        keystore.te \
-        mediaserver.te \
-        kickstart.te \
-        nfc.te \
-        rild.te \
-        surfaceflinger.te \
-        system.te \
-        ueventd.te \
-        wpa.te
+BOARD_SEPOLICY_UNION += \
+        bluetooth_loader.te \
+        kernel.te
 
 TARGET_RELEASETOOLS_EXTENSIONS := device/lge/v500/releasetools
 
@@ -153,3 +141,6 @@ BOARD_USES_QC_TIME_SERVICES := true
 COMMON_GLOBAL_CFLAGS += -DBOARD_CHARGING_CMDLINE_NAME='"androidboot.mode"' -DBOARD_CHARGING_CMDLINE_VALUE='"chargerlogo"'
 
 BOARD_HARDWARE_CLASS := device/lge/v500/cmhw/
+
+TARGET_USES_LOGD := false
+BOARD_USES_LEGACY_MMAP := true
