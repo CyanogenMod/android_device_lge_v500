@@ -41,7 +41,8 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_PACKAGES += \
     libaudio-resampler \
-    libqcomvoiceprocessing
+    libqcomvoiceprocessing \
+    libqcomvoiceprocessingdescriptors
     
 PRODUCT_COPY_FILES += \
     device/lge/v500/configs/audio_effects.conf:system/vendor/etc/audio_effects.conf \
@@ -49,11 +50,10 @@ PRODUCT_COPY_FILES += \
     device/lge/v500/configs/mixer_paths.xml:system/etc/mixer_paths.xml
 
 PRODUCT_PROPERTY_OVERRIDES += \
-    persist.audio.handset.mic=digital \
+    persist.audio.handset.mic=dmic \
     persist.audio.fluence.mode=endfire \
     persist.audio.lowlatency.rec=false \
-    af.resampler.quality=255 \
-    media.aac_51_output_enabled=true
+    af.resampler.quality=4
 
 # Bluetooth
 PRODUCT_COPY_FILES += \
@@ -149,6 +149,8 @@ PRODUCT_COPY_FILES += \
 
 # OMX
 PRODUCT_PACKAGES += \
+    mm-vdec-omx-test \
+    mm-venc-omx-test720p \
     libmm-omxcore \
     libdivxdrmdecrypt \
     libOmxVdec \
@@ -156,14 +158,6 @@ PRODUCT_PACKAGES += \
     libOmxCore \
     libstagefrighthw \
     libc2dcolorconvert
-
-# OMX CAF
-PRODUCT_PACKAGES += \
-    libOmxAacEnc \
-    libOmxAmrEnc \
-    libOmxEvrcEnc \
-    libOmxQcelp13Enc \
-    libdashplayer
 
 # Rootdir
 PRODUCT_COPY_FILES += \
