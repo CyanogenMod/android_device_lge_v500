@@ -61,6 +61,7 @@ on init
 on fs
     mount_all ./fstab.awifi
     setprop ro.crypto.fuse_sdcard true
+    write /sys/kernel/boot_adsp/boot 1
 
 on early-boot
     # Set RLIMIT_MEMLOCK to 64MB
@@ -87,10 +88,15 @@ on boot
     chown system system /sys/devices/virtual/graphics/fb1/format_3d
     chown system system /sys/devices/virtual/graphics/fb1/hpd
 
+    chmod 660 /dev/rtc0
+    chown system system /dev/rtc0
+
     chown root system /proc/net/ip_conntrack
 
     # Enable DEBUG_SUSPEND, DEBUG_EXIT_SUSPEND, and DEBUG_WAKEUP
     write /sys/module/wakelock/parameters/debug_mask 7
+
+    write /proc/sys/vm/swappiness 0
 
     # To allow interfaces to get v6 address when tethering is enabled
     write /proc/sys/net/ipv6/conf/rmnet0/accept_ra 2
@@ -119,6 +125,7 @@ on post-fs-data
     mkdir /data/misc/wifi/wpa_supplicant 0770 wifi wifi
     mkdir /data/misc/dhcp 0770 dhcp dhcp
 
+    chown system system /dev/wcnss_wlan
     write /sys/module/wcnss_ssr_8960/parameters/enable_riva_ssr 1
 
     # Workaround for conn_init not copying the updated firmware
@@ -140,6 +147,13 @@ on post-fs-data
 
     mkdir /persist/sensors
     chmod 775 /persist/sensors
+
+    # Provide the access to hostapd.conf only to root and group
+    chmod 0660 /data/hostapd/hostapd.conf
+
+    # Communicate with mpdecision and thermald
+    mkdir /dev/socket/mpdecision 0770 system system
+    chmod 2770 /dev/socket/mpdecision
 
     # Create /data/time folder for time-services
     mkdir /data/time/ 0700 system system
@@ -195,6 +209,13 @@ on charger
     write /sys/devices/system/cpu/cpu1/online 0
     write /sys/devices/system/cpu/cpu2/online 0
     write /sys/devices/system/cpu/cpu3/online 0
+
+on property:init.svc.wpa_supplicant=stopped
+    stop dhcpcd
+
+service rmt_storage /system/bin/rmt_storage
+    class main
+    user root
 
 service config_bluetooth /system/bin/sh /system/etc/init.qcom.bt.sh "onboot"
     class core
@@ -327,10 +348,16 @@ on property:ro.boot.baseband=apq
     setprop ro.radio.noril yes
     stop ril-daemon
 
+# Start GNSS/Sensor interface daemon
+service gsiff_daemon /system/bin/gsiff_daemon
+    class late_start
+    user system
+    group gps qcom_oncrpc net_raw
+
 chown media media /dev/msm_IRRC_pcm_dec
 chmod 0660 /dev/msm_IRRC_pcm_dec
 
-setprop ro.build.target_country NA
+setprop ro.build.target_country EU
 setprop persist.sys.lge.eula_agreement true
 
 service irrcServer /system/bin/irrcServer
