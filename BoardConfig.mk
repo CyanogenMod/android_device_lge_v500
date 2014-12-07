@@ -40,7 +40,7 @@ BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x02000000
 # Try to build the kernel
 TARGET_KERNEL_SOURCE := kernel/lge/v500
 #TARGET_PREBUILT_KERNEL := device/lge/v500/kernel
-BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 user_debug=31 msm_rtb.filter=0x3F ehci-hcd.park=3 lpj=67677 androidboot.hardware=awifi vmalloc=400M
+BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 user_debug=31 msm_rtb.filter=0x3F ehci-hcd.park=3 lpj=67677 androidboot.hardware=awifi vmalloc=400M no_console_suspend
 TARGET_KERNEL_CONFIG := cyanogenmod_v500_defconfig
 
 

@@ -100,8 +100,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
 	persist.audio.handset.mic=digital \
 	persist.audio.fluence.mode=endfire \
-	persist.audio.lowlatency.rec=false \
-	af.resampler.quality=4
+	persist.audio.lowlatency.rec=false
 
 #Upto 3 layers can go through overlays
 PRODUCT_PROPERTY_OVERRIDES += persist.hwc.mdpcomp.enable=true
