@@ -78,9 +78,21 @@ PRODUCT_PACKAGES += \
     setup_fs
 
 # GPS
+PRODUCT_PACKAGES += \
+    libloc_adapter \
+    libloc_eng \
+    libloc_api_v02 \
+    libloc_ds_api \
+    libloc_core \
+    libizat_core \
+    libgeofence \
+    libgps.utils \
+    gps.conf \
+    gps.msm8960 \
+    flp.msm8960
+
 PRODUCT_COPY_FILES += \
-    device/lge/v500/configs/gps.conf:system/etc/gps.conf \
-    device/lge/v500/configs/sap.conf:system/etc/sap.conf
+    device/lge/v500/configs/gps.conf:system/etc/gps.conf
 
 # Graphics
 PRODUCT_PACKAGES += \
