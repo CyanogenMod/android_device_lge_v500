@@ -243,9 +243,9 @@ on post-fs-data
    write /sys/module/pm_8x60/modes/cpu2/power_collapse/suspend_enabled 1
    write /sys/module/pm_8x60/modes/cpu3/power_collapse/suspend_enabled 1
    write /sys/module/pm_8x60/modes/cpu0/standalone_power_collapse/suspend_enabled 1
-   write /sys/module/pm_8x60/modes/cpu1/standalone_power_collapse/suspend_enabled 1
-   write /sys/module/pm_8x60/modes/cpu2/standalone_power_collapse/suspend_enabled 1
-   write /sys/module/pm_8x60/modes/cpu3/standalone_power_collapse/suspend_enabled 1
+   write /sys/module/pm_8x60/modes/cpu1/standalone_power_collapse/suspend_enabled 0
+   write /sys/module/pm_8x60/modes/cpu2/standalone_power_collapse/suspend_enabled 0
+   write /sys/module/pm_8x60/modes/cpu3/standalone_power_collapse/suspend_enabled 0
    write /sys/module/pm_8x60/modes/cpu0/standalone_power_collapse/idle_enabled 1
    write /sys/module/pm_8x60/modes/cpu1/standalone_power_collapse/idle_enabled 1
    write /sys/module/pm_8x60/modes/cpu2/standalone_power_collapse/idle_enabled 1
@@ -298,6 +298,7 @@ on post-fs-data
    chmod 0664 /sys/devices/system/cpu/cpu1/online
    chmod 0664 /sys/devices/system/cpu/cpu2/online
    chmod 0664 /sys/devices/system/cpu/cpu3/online
+   write /dev/cpuctl/apps/cpu.notify_on_migrate 1
    # set DCVS parameters for CPU
    write /sys/module/msm_dcvs/cores/cpu0/slack_time_max_us 40000
    write /sys/module/msm_dcvs/cores/cpu0/slack_time_min_us 40000
@@ -396,8 +397,8 @@ on boot
     chmod 0660 /sys/devices/platform/lg_diag_cmd/diag_enable
 
 #LGE_CHANGE_S 20130821 sw84.lee [AWIFI][Touch] enable knock_on feature
-    chown system system /sys/devices/i2c-3/3-004b/knock_on
-    chmod 660 /sys/devices/i2c-3/3-004b/knock_on
+    chown system system /sys/devices/virtual/input/lge_touch/knock_on
+    chmod 660 /sys/devices/virtual/input/lge_touch/knock_on
 #LGE_CHANGE_E 20130821 sw84.lee [AWIFI][Touch] enable knock_on feature
 #LGE_CHANGE_S 20130830 goensoo.kim [AWIFI][Touch] enable smart_cover feature
     chown system system /sys/devices/i2c-3/3-004b/smart_cover

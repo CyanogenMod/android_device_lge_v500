@@ -20,7 +20,7 @@ import org.cyanogenmod.hardware.util.FileUtils;
 
 public class TapToWake {
 
-    private static String CONTROL_PATH = "/sys/devices/i2c-3/3-004b/knock_on";
+    private static String CONTROL_PATH = "/sys/devices/virtual/input/lge_touch/knock_on";
     private static boolean mEnabled = true;
 
     public static boolean isSupported() {
