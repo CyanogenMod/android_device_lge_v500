@@ -47,6 +47,9 @@ BOARD_KERNEL_PAGESIZE := 2048
 BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 user_debug=31 msm_rtb.filter=0x3F ehci-hcd.park=3 lpj=67677 androidboot.hardware=awifi vmalloc=600M
 BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x02000000
 
+# Assert
+TARGET_OTA_ASSERT_DEVICE := awifi,v500
+
 # Audio
 BOARD_USES_ALSA_AUDIO:= true
 
