@@ -37,10 +37,10 @@ PRODUCT_PACKAGES += \
     audio.primary.msm8960 \
     audio.a2dp.default \
     audio.usb.default \
-    audio.r_submix.default
+    audio.r_submix.default \
+    libaudio-resampler
 
 PRODUCT_PACKAGES += \
-    libaudio-resampler \
     libqcomvoiceprocessing \
     libqcomvoiceprocessingdescriptors
     
@@ -50,7 +50,7 @@ PRODUCT_COPY_FILES += \
     device/lge/v500/configs/mixer_paths.xml:system/etc/mixer_paths.xml
 
 PRODUCT_PROPERTY_OVERRIDES += \
-    persist.audio.handset.mic=dmic \
+    persist.audio.handset.mic=digital \
     persist.audio.fluence.mode=endfire \
     persist.audio.lowlatency.rec=false \
     af.resampler.quality=4
@@ -98,20 +98,20 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # Hardware-specific features
 PRODUCT_COPY_FILES += \
-    frameworks/native/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml \
+    frameworks/native/data/etc/android.hardware.audio.low_latency.xml:system/etc/permissions/android.hardware.audio.low_latency.xml \
+    frameworks/native/data/etc/android.hardware.bluetooth_le.xml:system/etc/permissions/android.hardware.bluetooth_le.xml \
     frameworks/native/data/etc/android.hardware.camera.autofocus.xml:system/etc/permissions/android.hardware.camera.autofocus.xml \
     frameworks/native/data/etc/android.hardware.camera.front.xml:system/etc/permissions/android.hardware.camera.front.xml \
     frameworks/native/data/etc/android.hardware.location.gps.xml:system/etc/permissions/android.hardware.location.gps.xml \
-    frameworks/native/data/etc/android.hardware.wifi.xml:system/etc/permissions/android.hardware.wifi.xml \
-    frameworks/native/data/etc/android.hardware.wifi.direct.xml:system/etc/permissions/android.hardware.wifi.direct.xml \
     frameworks/native/data/etc/android.hardware.sensor.light.xml:system/etc/permissions/android.hardware.sensor.light.xml \
     frameworks/native/data/etc/android.hardware.sensor.gyroscope.xml:system/etc/permissions/android.hardware.sensor.gyroscope.xml \
     frameworks/native/data/etc/android.hardware.touchscreen.multitouch.jazzhand.xml:system/etc/permissions/android.hardware.touchscreen.multitouch.jazzhand.xml \
-    frameworks/native/data/etc/android.software.sip.voip.xml:system/etc/permissions/android.software.sip.voip.xml \
     frameworks/native/data/etc/android.hardware.usb.accessory.xml:system/etc/permissions/android.hardware.usb.accessory.xml \
     frameworks/native/data/etc/android.hardware.usb.host.xml:system/etc/permissions/android.hardware.usb.host.xml \
-    frameworks/native/data/etc/android.hardware.audio.low_latency.xml:system/etc/permissions/android.hardware.audio.low_latency.xml \
-    frameworks/native/data/etc/android.hardware.bluetooth_le.xml:system/etc/permissions/android.hardware.bluetooth_le.xml
+    frameworks/native/data/etc/android.hardware.wifi.xml:system/etc/permissions/android.hardware.wifi.xml \
+    frameworks/native/data/etc/android.hardware.wifi.direct.xml:system/etc/permissions/android.hardware.wifi.direct.xml \
+    frameworks/native/data/etc/android.software.sip.voip.xml:system/etc/permissions/android.software.sip.voip.xml \
+    frameworks/native/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml
 
 # IDC
 PRODUCT_COPY_FILES += \
@@ -147,10 +147,11 @@ PRODUCT_COPY_FILES += \
     device/lge/v500/configs/media_codecs.xml:system/etc/media_codecs.xml \
     device/lge/v500/configs/media_profiles.xml:system/etc/media_profiles.xml
 
+PRODUCT_PROPERTY_OVERRIDES += \
+    media.aac_51_output_enabled=true
+
 # OMX
 PRODUCT_PACKAGES += \
-    mm-vdec-omx-test \
-    mm-venc-omx-test720p \
     libmm-omxcore \
     libdivxdrmdecrypt \
     libOmxVdec \
