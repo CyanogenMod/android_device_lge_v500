@@ -14,7 +14,7 @@
 # limitations under the License.
 #
 
-ifeq ($(TARGET_DEVICE),v500)
+ifeq ($(TARGET_DEVICE),awifi)
 
 LOCAL_PATH := $(call my-dir)
 

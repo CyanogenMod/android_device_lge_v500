@@ -15,4 +15,4 @@
 #
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/full_v500.mk
+    $(LOCAL_DIR)/full_awifi.mk

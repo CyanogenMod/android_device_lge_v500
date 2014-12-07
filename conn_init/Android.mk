@@ -14,7 +14,7 @@
 # limitations under the License.
 #
 
-ifneq ($(filter v500 ,$(TARGET_DEVICE)),)
+ifneq ($(filter awifi ,$(TARGET_DEVICE)),)
 
 LOCAL_PATH:= $(call my-dir)
 

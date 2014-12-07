@@ -17,7 +17,7 @@
 PRODUCT_CHARACTERISTICS := tablet
 
 # Overlay
-DEVICE_PACKAGE_OVERLAYS := device/lge/v500/overlay
+DEVICE_PACKAGE_OVERLAYS := $(LOCAL_PATH)/overlay
 
 # Screen density
 PRODUCT_AAPT_CONFIG := normal large hdpi xhdpi
@@ -45,9 +45,9 @@ PRODUCT_PACKAGES += \
     libqcomvoiceprocessingdescriptors
     
 PRODUCT_COPY_FILES += \
-    device/lge/v500/configs/audio_effects.conf:system/vendor/etc/audio_effects.conf \
-    device/lge/v500/configs/audio_policy.conf:system/etc/audio_policy.conf \
-    device/lge/v500/configs/mixer_paths.xml:system/etc/mixer_paths.xml
+    $(LOCAL_PATH)/configs/audio_effects.conf:system/vendor/etc/audio_effects.conf \
+    $(LOCAL_PATH)/configs/audio_policy.conf:system/etc/audio_policy.conf \
+    $(LOCAL_PATH)/configs/mixer_paths.xml:system/etc/mixer_paths.xml
 
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.audio.handset.mic=digital \
@@ -57,7 +57,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # Bluetooth
 PRODUCT_COPY_FILES += \
-    device/lge/v500/configs/init.qcom.bt.sh:system/etc/init.qcom.bt.sh
+    $(LOCAL_PATH)/configs/init.qcom.bt.sh:system/etc/init.qcom.bt.sh
 
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.bt.bdaddr_path=/data/misc/bdaddr \
@@ -92,7 +92,7 @@ PRODUCT_PACKAGES += \
     flp.msm8960
 
 PRODUCT_COPY_FILES += \
-    device/lge/v500/configs/gps.conf:system/etc/gps.conf
+    $(LOCAL_PATH)/configs/gps.conf:system/etc/gps.conf
 
 # Graphics
 PRODUCT_PACKAGES += \
@@ -127,22 +127,22 @@ PRODUCT_COPY_FILES += \
 
 # IDC
 PRODUCT_COPY_FILES += \
-    device/lge/v500/configs/touch_mxt1188S.idc:system/usr/idc/touch_mxt1188S.idc
+    $(LOCAL_PATH)/configs/touch_mxt1188S.idc:system/usr/idc/touch_mxt1188S.idc
 
 # Keychars
 PRODUCT_COPY_FILES += \
-    device/lge/v500/keychars/apq8064-tabla-snd-card_Button_Jack.kcm:system/usr/keychars/apq8064-tabla-snd-card_Button_Jack.kcm \
-    device/lge/v500/keychars/hs_detect.kcm:system/usr/keychars/hs_detect.kcm \
-    device/lge/v500/keychars/keypad_8064.kcm:system/usr/keychars/keypad_8064.kcm \
-    device/lge/v500/keychars/pmic8xxx_pwrkey.kcm:system/usr/keychars/pmic8xxx_pwrkey.kcm
+    $(LOCAL_PATH)/keychars/apq8064-tabla-snd-card_Button_Jack.kcm:system/usr/keychars/apq8064-tabla-snd-card_Button_Jack.kcm \
+    $(LOCAL_PATH)/keychars/hs_detect.kcm:system/usr/keychars/hs_detect.kcm \
+    $(LOCAL_PATH)/keychars/keypad_8064.kcm:system/usr/keychars/keypad_8064.kcm \
+    $(LOCAL_PATH)/keychars/pmic8xxx_pwrkey.kcm:system/usr/keychars/pmic8xxx_pwrkey.kcm
 
 # Keylayout
 PRODUCT_COPY_FILES += \
-    device/lge/v500/keylayout/awifi-keypad-8064.kl:system/usr/keylayout/awifi-keypad-8064.kl \
-    device/lge/v500/keylayout/apq8064-tabla-snd-card_Button_Jack.kl:system/usr/keylayout/apq8064-tabla-snd-card_Button_Jack.kl \
-    device/lge/v500/keylayout/hs_detect.kl:system/usr/keylayout/hs_detect.kl \
-    device/lge/v500/keylayout/pmic8xxx_pwrkey.kl:system/usr/keylayout/pmic8xxx_pwrkey.kl \
-    device/lge/v500/keylayout/keypad_8064.kl:system/usr/keylayout/keypad_8064.kl
+    $(LOCAL_PATH)/keylayout/awifi-keypad-8064.kl:system/usr/keylayout/awifi-keypad-8064.kl \
+    $(LOCAL_PATH)/keylayout/apq8064-tabla-snd-card_Button_Jack.kl:system/usr/keylayout/apq8064-tabla-snd-card_Button_Jack.kl \
+    $(LOCAL_PATH)/keylayout/hs_detect.kl:system/usr/keylayout/hs_detect.kl \
+    $(LOCAL_PATH)/keylayout/pmic8xxx_pwrkey.kl:system/usr/keylayout/pmic8xxx_pwrkey.kl \
+    $(LOCAL_PATH)/keylayout/keypad_8064.kl:system/usr/keylayout/keypad_8064.kl
 
 # Lights
 PRODUCT_PACKAGES += \
@@ -156,8 +156,8 @@ PRODUCT_PACKAGES += \
 
 # Media
 PRODUCT_COPY_FILES += \
-    device/lge/v500/configs/media_codecs.xml:system/etc/media_codecs.xml \
-    device/lge/v500/configs/media_profiles.xml:system/etc/media_profiles.xml
+    $(LOCAL_PATH)/configs/media_codecs.xml:system/etc/media_codecs.xml \
+    $(LOCAL_PATH)/configs/media_profiles.xml:system/etc/media_profiles.xml
 
 PRODUCT_PROPERTY_OVERRIDES += \
     media.aac_51_output_enabled=true
@@ -174,10 +174,10 @@ PRODUCT_PACKAGES += \
 
 # Rootdir
 PRODUCT_COPY_FILES += \
-    device/lge/v500/rootdir/fstab.awifi:root/fstab.awifi \
-    device/lge/v500/rootdir/init.awifi.rc:root/init.awifi.rc \
-    device/lge/v500/rootdir/init.awifi.usb.rc:root/init.awifi.usb.rc \
-    device/lge/v500/rootdir/ueventd.awifi.rc:root/ueventd.awifi.rc
+    $(LOCAL_PATH)/rootdir/fstab.awifi:root/fstab.awifi \
+    $(LOCAL_PATH)/rootdir/init.awifi.rc:root/init.awifi.rc \
+    $(LOCAL_PATH)/rootdir/init.awifi.usb.rc:root/init.awifi.usb.rc \
+    $(LOCAL_PATH)/rootdir/ueventd.awifi.rc:root/ueventd.awifi.rc
 
 # Sensors
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -186,7 +186,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # Thermal
 PRODUCT_COPY_FILES += \
-    device/lge/v500/configs/thermald-8064.conf:system/etc/thermald-8064.conf
+    $(LOCAL_PATH)/configs/thermald-8064.conf:system/etc/thermald-8064.conf
 
 # USB
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
@@ -197,12 +197,12 @@ PRODUCT_PACKAGES += \
 
 # Wifi
 PRODUCT_COPY_FILES += \
-    device/lge/v500/wlan/WCNSS_cfg.dat:system/vendor/firmware/wlan/prima/WCNSS_cfg.dat \
-    device/lge/v500/wlan/WCNSS_qcom_cfg.ini:system/etc/firmware/wlan/prima/WCNSS_qcom_cfg.ini \
-    device/lge/v500/wlan/WCNSS_qcom_cfg.ini:system/etc/wifi/WCNSS_qcom_cfg.ini \
-    device/lge/v500/wlan/WCNSS_qcom_wlan_nv.bin:system/etc/wifi/WCNSS_qcom_wlan_nv.bin \
-    device/lge/v500/wlan/p2p_supplicant_overlay.conf:system/etc/wifi/p2p_supplicant_overlay.conf \
-    device/lge/v500/wlan/wpa_supplicant_overlay.conf:system/etc/wifi/wpa_supplicant_overlay.conf
+    $(LOCAL_PATH)/wlan/WCNSS_cfg.dat:system/vendor/firmware/wlan/prima/WCNSS_cfg.dat \
+    $(LOCAL_PATH)/wlan/WCNSS_qcom_cfg.ini:system/etc/firmware/wlan/prima/WCNSS_qcom_cfg.ini \
+    $(LOCAL_PATH)/wlan/WCNSS_qcom_cfg.ini:system/etc/wifi/WCNSS_qcom_cfg.ini \
+    $(LOCAL_PATH)/wlan/WCNSS_qcom_wlan_nv.bin:system/etc/wifi/WCNSS_qcom_wlan_nv.bin \
+    $(LOCAL_PATH)/wlan/p2p_supplicant_overlay.conf:system/etc/wifi/p2p_supplicant_overlay.conf \
+    $(LOCAL_PATH)/wlan/wpa_supplicant_overlay.conf:system/etc/wifi/wpa_supplicant_overlay.conf
 
 PRODUCT_PACKAGES += \
     conn_init \

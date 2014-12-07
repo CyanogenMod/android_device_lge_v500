@@ -15,8 +15,8 @@
 #
 
 # Bootloader
-TARGET_BOOTLOADER_BOARD_NAME := awifi
-TARGET_BOOTLOADER_NAME := v500
+TARGET_BOOTLOADER_BOARD_NAME := AWIFI
+TARGET_BOOTLOADER_NAME := awifi
 TARGET_NO_BOOTLOADER := true
 TARGET_NO_RADIOIMAGE := true
 
@@ -40,8 +40,8 @@ TARGET_KRAIT_BIONIC_BBTHRESH := 64
 TARGET_KRAIT_BIONIC_PLDSIZE := 64
 
 # Kernel
-TARGET_KERNEL_SOURCE := kernel/lge/v500
-TARGET_KERNEL_CONFIG := cyanogenmod_v500_defconfig
+TARGET_KERNEL_SOURCE := kernel/lge/awifi
+TARGET_KERNEL_CONFIG := cyanogenmod_awifi_defconfig
 BOARD_KERNEL_BASE := 0x80200000
 BOARD_KERNEL_PAGESIZE := 2048
 BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 user_debug=31 msm_rtb.filter=0x3F ehci-hcd.park=3 lpj=67677 androidboot.hardware=awifi vmalloc=600M
@@ -57,7 +57,7 @@ BOARD_HAVE_LOW_LATENCY_AUDIO := true
 BOARD_HAVE_BLUETOOTH := true
 BOARD_HAVE_BLUETOOTH_QCOM := true
 BLUETOOTH_HCI_USE_MCT := true
-BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/lge/v500/bluetooth
+BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/lge/awifi/bluetooth
 
 # Camera
 USE_DEVICE_SPECIFIC_CAMERA := true
@@ -68,7 +68,7 @@ BOARD_CHARGER_ENABLE_SUSPEND := true
 COMMON_GLOBAL_CFLAGS += -DBOARD_CHARGING_CMDLINE_NAME='"androidboot.mode"' -DBOARD_CHARGING_CMDLINE_VALUE='"chargerlogo"'
 
 # Graphics
-BOARD_EGL_CFG := device/lge/v500/configs/egl.cfg
+BOARD_EGL_CFG := device/lge/awifi/configs/egl.cfg
 TARGET_USES_ION := true
 TARGET_USES_OVERLAY := true
 TARGET_USES_SF_BYPASS := true
@@ -83,7 +83,7 @@ BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := $(TARGET_BOARD_PLATFORM)
 TARGET_NO_RPC := true
 
 # Hardware tunables
-BOARD_HARDWARE_CLASS := device/lge/v500/cmhw/
+BOARD_HARDWARE_CLASS := device/lge/awifi/cmhw/
 
 # Misc
 BOARD_USES_SECURE_SERVICES := true
@@ -99,7 +99,7 @@ BOARD_CACHEIMAGE_PARTITION_SIZE    := 838860800 # 800M
 BOARD_FLASH_BLOCK_SIZE             := 131072 # (BOARD_KERNEL_PAGESIZE * 64)
 
 # Recovery
-TARGET_RECOVERY_FSTAB := device/lge/v500/rootdir/fstab.awifi
+TARGET_RECOVERY_FSTAB := device/lge/awifi/rootdir/fstab.awifi
 TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
 BOARD_USE_CUSTOM_RECOVERY_FONT := \"roboto_23x41.h\"
 BOARD_HAS_NO_SELECT_BUTTON := true
@@ -107,7 +107,7 @@ BOARD_RECOVERY_SWIPE := true
 ENABLE_LOKI_RECOVERY := true
 
 # Releasetools
-TARGET_RELEASETOOLS_EXTENSIONS := device/lge/v500/releasetools
+TARGET_RELEASETOOLS_EXTENSIONS := device/lge/awifi/releasetools
 
 # Time services
 BOARD_USES_QC_TIME_SERVICES := true
@@ -128,4 +128,4 @@ WIFI_DRIVER_FW_PATH_STA := "sta"
 WIFI_DRIVER_FW_PATH_AP  := "ap"
 
 # inherit from the proprietary version
--include vendor/lge/v500/BoardConfigVendor.mk
+-include vendor/lge/awifi/BoardConfigVendor.mk

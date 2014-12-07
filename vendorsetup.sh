@@ -14,4 +14,4 @@
 # limitations under the License.
 #
 
-add_lunch_combo full_v500-userdebug
+add_lunch_combo full_awifi-userdebug
