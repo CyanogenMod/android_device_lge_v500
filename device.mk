@@ -56,8 +56,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
     af.resampler.quality=4
 
 # Bluetooth
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/init.qcom.bt.sh:system/etc/init.qcom.bt.sh
+PRODUCT_PACKAGES += \
+    init.qcom.bt.sh
 
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.bt.bdaddr_path=/data/misc/bdaddr \
@@ -169,11 +169,11 @@ PRODUCT_PACKAGES += \
     libc2dcolorconvert
 
 # Rootdir
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/rootdir/fstab.awifi:root/fstab.awifi \
-    $(LOCAL_PATH)/rootdir/init.awifi.rc:root/init.awifi.rc \
-    $(LOCAL_PATH)/rootdir/init.awifi.usb.rc:root/init.awifi.usb.rc \
-    $(LOCAL_PATH)/rootdir/ueventd.awifi.rc:root/ueventd.awifi.rc
+PRODUCT_PACKAGES += \
+    fstab.awifi \
+    init.awifi.rc \
+    init.awifi.usb.rc \
+    ueventd.awifi.rc
 
 # Sensors
 PRODUCT_PROPERTY_OVERRIDES += \
