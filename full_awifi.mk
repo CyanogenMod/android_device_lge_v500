@@ -14,10 +14,10 @@
 # limitations under the License.
 #
 
-# Inherit from those products. Most specific first.
+# Inherit from the common Open Source product configuration
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base.mk)
 
-# Inherit from awifi device
+# Inherit from hardware-specific part of the product configuration
 $(call inherit-product, device/lge/awifi/device.mk)
 $(call inherit-product-if-exists, vendor/lge/awifi/awifi-vendor.mk)
 
