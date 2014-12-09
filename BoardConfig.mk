@@ -44,8 +44,12 @@ TARGET_KERNEL_SOURCE := kernel/lge/awifi
 TARGET_KERNEL_CONFIG := cyanogenmod_awifi_defconfig
 BOARD_KERNEL_BASE := 0x80200000
 BOARD_KERNEL_PAGESIZE := 2048
-BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 user_debug=31 msm_rtb.filter=0x3F ehci-hcd.park=3 lpj=67677 androidboot.hardware=awifi vmalloc=600M
+BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 user_debug=31 msm_rtb.filter=0x3F ehci-hcd.park=3 lpj=67677 androidboot.hardware=awifi vmalloc=400M
 BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x02000000
+
+# Bionic
+TARGET_USES_LOGD := false
+BOARD_USES_LEGACY_MMAP := true
 
 # Assert
 TARGET_OTA_ASSERT_DEVICE := awifi,v500
@@ -67,12 +71,22 @@ BOARD_USES_CAMERA_FAST_AUTOFOCUS := true
 BOARD_CHARGER_ENABLE_SUSPEND := true
 COMMON_GLOBAL_CFLAGS += -DBOARD_CHARGING_CMDLINE_NAME='"androidboot.mode"' -DBOARD_CHARGING_CMDLINE_VALUE='"chargerlogo"'
 
+# Enable dex-preoptimization to speed up first boot sequence
+ifeq ($(HOST_OS),linux)
+  ifeq ($(TARGET_BUILD_VARIANT),user)
+    ifeq ($(WITH_DEXPREOPT),)
+      WITH_DEXPREOPT := true
+    endif
+  endif
+endif
+WITH_DEXPREOPT_BOOT_IMG_ONLY ?= true
+
 # Graphics
 BOARD_EGL_CFG := device/lge/awifi/configs/egl.cfg
 TARGET_USES_ION := true
 TARGET_USES_OVERLAY := true
 TARGET_USES_SF_BYPASS := true
-TARGET_USES_C2D_COMPOSITION := true
+TARGET_USES_C2D_COMPOSITION := false
 TARGET_DISPLAY_USE_RETIRE_FENCE := true
 OVERRIDE_RS_DRIVER := libRSDriver_adreno.so
 NUM_FRAMEBUFFER_SURFACE_BUFFERS := 3
@@ -84,6 +98,9 @@ TARGET_NO_RPC := true
 
 # Hardware tunables
 BOARD_HARDWARE_CLASS := device/lge/awifi/cmhw/
+
+# Include an expanded selection of fonts
+EXTENDED_FONT_FOOTPRINT := true
 
 # Misc
 BOARD_USES_SECURE_SERVICES := true
@@ -108,6 +125,16 @@ ENABLE_LOKI_RECOVERY := true
 
 # Releasetools
 TARGET_RELEASETOOLS_EXTENSIONS := device/lge/awifi/releasetools
+
+# SELinux policies
+# qcom sepolicy
+include device/qcom/sepolicy/sepolicy.mk
+
+BOARD_SEPOLICY_DIRS += device/lge/awifi/sepolicy
+
+BOARD_SEPOLICY_UNION += \
+        bluetooth_loader.te \
+        kernel.te
 
 # Time services
 BOARD_USES_QC_TIME_SERVICES := true

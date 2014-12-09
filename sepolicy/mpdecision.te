@@ -1,0 +1,5 @@
+type_transition mpdecision socket_device:sock_file mpctl_socket;
+
+allow servicemanager mpdecision:dir { search };
+allow servicemanager mpdecision:file { r_file_perms };
+allow servicemanager mpdecision:process { getattr };
