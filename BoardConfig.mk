@@ -47,10 +47,6 @@ BOARD_KERNEL_PAGESIZE := 2048
 BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 user_debug=31 msm_rtb.filter=0x3F ehci-hcd.park=3 lpj=67677 androidboot.hardware=awifi vmalloc=400M no_console_suspend
 BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x02000000
 
-# Bionic
-TARGET_USES_LOGD := false
-BOARD_USES_LEGACY_MMAP := true
-
 # Assert
 TARGET_OTA_ASSERT_DEVICE := awifi,v500
 
@@ -66,6 +62,7 @@ BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/lge/awifi/bluetooth
 # Camera
 USE_DEVICE_SPECIFIC_CAMERA := true
 BOARD_USES_CAMERA_FAST_AUTOFOCUS := true
+BOARD_USES_LEGACY_MMAP := true
 
 # Charger
 BOARD_CHARGER_ENABLE_SUSPEND := true
@@ -101,6 +98,9 @@ BOARD_HARDWARE_CLASS := device/lge/awifi/cmhw/
 
 # Include an expanded selection of fonts
 EXTENDED_FONT_FOOTPRINT := true
+
+# Logging
+TARGET_USES_LOGD := false
 
 # Misc
 BOARD_USES_SECURE_SERVICES := true
