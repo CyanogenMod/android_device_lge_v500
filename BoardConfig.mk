@@ -102,10 +102,6 @@ EXTENDED_FONT_FOOTPRINT := true
 # Logging
 TARGET_USES_LOGD := false
 
-# Misc
-BOARD_USES_SECURE_SERVICES := true
-BOARD_USES_EXTRA_THERMAL_SENSOR := true
-
 # Partitions
 TARGET_USERIMAGES_USE_EXT4         := true
 BOARD_BOOTIMAGE_PARTITION_SIZE     := 25165824 # 24M
@@ -126,6 +122,9 @@ ENABLE_LOKI_RECOVERY := true
 # Releasetools
 TARGET_RELEASETOOLS_EXTENSIONS := device/lge/awifi/releasetools
 
+# Security
+BOARD_USES_SECURE_SERVICES := true
+
 # SELinux policies
 # qcom sepolicy
 include device/qcom/sepolicy/sepolicy.mk
@@ -136,12 +135,11 @@ BOARD_SEPOLICY_UNION += \
         bluetooth_loader.te \
         kernel.te
 
+# Thermal
+BOARD_USES_EXTRA_THERMAL_SENSOR := true
+
 # Time services
 BOARD_USES_QC_TIME_SERVICES := true
-
-# Webkit
-ENABLE_WEBGL := true
-TARGET_FORCE_CPU_UPLOAD := true
 
 # Wifi
 BOARD_HAS_QCOM_WLAN := true
