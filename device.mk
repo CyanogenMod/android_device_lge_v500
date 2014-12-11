@@ -123,17 +123,14 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.software.sip.voip.xml:system/etc/permissions/android.software.sip.voip.xml \
     frameworks/native/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml
 
-# IDC
+# Input device calibration
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/touch_mxt1188S.idc:system/usr/idc/touch_mxt1188S.idc
 
-# Keychars
+# Keychars & Keylayouts
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/hs_detect.kcm:system/usr/keychars/hs_detect.kcm \
-    $(LOCAL_PATH)/configs/pmic8xxx_pwrkey.kcm:system/usr/keychars/pmic8xxx_pwrkey.kcm
-
-# Keylayout
-PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/pmic8xxx_pwrkey.kcm:system/usr/keychars/pmic8xxx_pwrkey.kcm \
     $(LOCAL_PATH)/configs/awifi-keypad-8064.kl:system/usr/keylayout/awifi-keypad-8064.kl \
     $(LOCAL_PATH)/configs/hs_detect.kl:system/usr/keylayout/hs_detect.kl \
     $(LOCAL_PATH)/configs/pmic8xxx_pwrkey.kl:system/usr/keylayout/pmic8xxx_pwrkey.kl
