@@ -54,17 +54,14 @@ on init
     mkdir /persist-lg 0771 system system
     mkdir /factory 0775 system system
     mkdir /mpt 0775 system system
-
     mkdir /sns 0775 system system
     mkdir /sns/cal 0771 system system
 
 on fs
     mount_all ./fstab.awifi
-    setprop ro.crypto.fuse_sdcard true
-    write /sys/kernel/boot_adsp/boot 1
-
     restorecon_recursive /sns
     restorecon_recursive /persist
+    setprop ro.crypto.fuse_sdcard true
 
 on early-boot
     # Set RLIMIT_MEMLOCK to 64MB
@@ -99,8 +96,6 @@ on boot
     # Enable DEBUG_SUSPEND, DEBUG_EXIT_SUSPEND, and DEBUG_WAKEUP
     write /sys/module/wakelock/parameters/debug_mask 7
 
-    write /proc/sys/vm/swappiness 0
-
     # To allow interfaces to get v6 address when tethering is enabled
     write /proc/sys/net/ipv6/conf/rmnet0/accept_ra 2
     write /proc/sys/net/ipv6/conf/rmnet1/accept_ra 2
@@ -111,15 +106,18 @@ on boot
     write /proc/sys/net/ipv6/conf/rmnet6/accept_ra 2
     write /proc/sys/net/ipv6/conf/rmnet7/accept_ra 2
 
+    # Enable logging of the wake up reasons in the kernel log
+    write /sys/module/msm_show_resume_irq/parameters/debug_mask 1
+
     # Assign TCP buffer thresholds to be ceiling value of technology maximums
     # Increased technology maximums should be reflected here.
-    write /proc/sys/net/core/rmem_max  2097152
-    write /proc/sys/net/core/wmem_max  2097152
+    write /proc/sys/net/core/rmem_max  1220608
+    write /proc/sys/net/core/wmem_max  1220608
 
-    # Tune buffersize for higher Miracast throughput
-    setprop net.tcp.buffersize.wifi 524288,1048576,2560000,524288,1048576,2560000
-
+# msm specific files that need to be created on /data
 on post-fs-data
+    write /sys/kernel/boot_adsp/boot 1
+
     mkdir /data/media 0770 media_rw media_rw
 
     # Create the directories used by the Wireless subsystem
@@ -131,12 +129,28 @@ on post-fs-data
     chown system system /dev/wcnss_wlan
     write /sys/module/wcnss_ssr_8960/parameters/enable_riva_ssr 1
 
+    # Create directory used by audio subsystem
+    mkdir /data/misc/audio 0770 audio audio
+
     # Workaround for conn_init not copying the updated firmware
     rm /data/misc/wifi/WCNSS_qcom_cfg.ini
     rm /data/misc/wifi/WCNSS_qcom_wlan_nv.bin
 
-    # Create directory used by audio subsystem
-    mkdir /data/misc/audio 0770 audio audio
+    # Mounting of persist is moved to 'on emmc-fs' and 'on fs' sections
+    # We chown/chmod /persist again so because mount is run as root + defaults
+    chown system system /persist
+    chmod 0664 /sys/devices/platform/msm_sdcc.1/polling
+    chmod 0664 /sys/devices/platform/msm_sdcc.2/polling
+    chmod 0664 /sys/devices/platform/msm_sdcc.3/polling
+    chmod 0664 /sys/devices/platform/msm_sdcc.4/polling
+
+    # Chown polling nodes as needed from UI running on system server
+    chown system system /sys/devices/platform/msm_sdcc.1/polling
+    chown system system /sys/devices/platform/msm_sdcc.2/polling
+    chown system system /sys/devices/platform/msm_sdcc.3/polling
+    chown system system /sys/devices/platform/msm_sdcc.4/polling
+
+    mkdir /data/system 0775 system system
 
     # Create directory used by sensor subsystem (dsps)
     mkdir /data/system/sensors
@@ -155,22 +169,13 @@ on post-fs-data
     # Provide the access to hostapd.conf only to root and group
     chmod 0660 /data/hostapd/hostapd.conf
 
+    setprop vold.post_fs_data_done 1
+
     # Communicate with mpdecision and thermald
-    mkdir /dev/socket/mpdecision 0770 system system
-    chmod 2770 /dev/socket/mpdecision
+    mkdir /dev/socket/mpdecision 2770 root system
 
     # Create /data/time folder for time-services
     mkdir /data/time/ 0700 system system
-
-    setprop vold.post_fs_data_done 1
-
-    # Color calibration
-    chown root system /sys/devices/platform/kcal_ctrl.0/kcal
-    chown root system /sys/devices/platform/kcal_ctrl.0/kcal_ctrl
-    chmod 0664 /sys/devices/platform/kcal_ctrl.0/kcal
-    chmod 0664 /sys/devices/platform/kcal_ctrl.0/kcal_ctrl
-    restorecon /sys/devices/platform/kcal_ctrl.0/kcal
-    restorecon /sys/devices/platform/kcal_ctrl.0/kcal_ctrl
 
     # Enable Power modes and set the CPU Freq Sampling rates
     write /sys/module/rpm_resources/enable_low_power/L2_cache 1
@@ -209,6 +214,22 @@ on post-fs-data
     write /sys/devices/system/cpu/cpu3/online 1
     write /dev/cpuctl/apps/cpu.notify_on_migrate 1
 
+    # Chown cpu online files as needed for the Settings app
+    chown system system /sys/devices/system/cpu/cpu1/online
+    chown system system /sys/devices/system/cpu/cpu2/online
+    chown system system /sys/devices/system/cpu/cpu3/online
+
+    # Hardware tunables
+    chown root system /sys/devices/platform/kcal_ctrl.0/kcal
+    chown root system /sys/devices/platform/kcal_ctrl.0/kcal_ctrl
+    chmod 0664 /sys/devices/platform/kcal_ctrl.0/kcal
+    chmod 0664 /sys/devices/platform/kcal_ctrl.0/kcal_ctrl
+    restorecon /sys/devices/platform/kcal_ctrl.0/kcal
+    restorecon /sys/devices/platform/kcal_ctrl.0/kcal_ctrl
+
+    # Disable diag port
+    rm /dev/diag
+
 on charger
     # Enable Power modes and set the CPU Freq Sampling rates
     write /sys/module/rpm_resources/enable_low_power/L2_cache 1
@@ -232,13 +253,17 @@ on charger
     write /sys/devices/system/cpu/cpu1/cpufreq/scaling_min_freq 384000
     write /sys/devices/system/cpu/cpu2/cpufreq/scaling_min_freq 384000
     write /sys/devices/system/cpu/cpu3/cpufreq/scaling_min_freq 384000
+    write /sys/devices/system/cpu/cpu1/online 0
+    write /sys/devices/system/cpu/cpu2/online 0
+    write /sys/devices/system/cpu/cpu3/online 0
 
 on property:init.svc.wpa_supplicant=stopped
     stop dhcpcd
 
 service rmt_storage /system/bin/rmt_storage
-    class main
+    class core
     user root
+    group system
 
 service config_bluetooth /system/bin/sh /system/etc/init.qcom.bt.sh "onboot"
     class core
@@ -259,6 +284,11 @@ on property:bluetooth.hciattach=true
 
 on property:bluetooth.hciattach=false
     setprop bluetooth.status off
+
+service sensors /system/bin/sensors.qcom
+    class late_start
+    user root
+    group root radio system
 
 service wpa_supplicant /system/bin/wpa_supplicant \
     -iwlan0 -Dnl80211 -c/data/misc/wifi/wpa_supplicant.conf \
@@ -294,12 +324,12 @@ service dhcpcd_wlan0 /system/bin/dhcpcd -aABDKL
     disabled
     oneshot
 
-service iprenew_wlan0 /system/bin/dhcpcd -n
+service dhcpcd_p2p /system/bin/dhcpcd -aABKL
     class main
     disabled
     oneshot
 
-service dhcpcd_p2p /system/bin/dhcpcd -aABKL
+service iprenew_wlan0 /system/bin/dhcpcd -n
     class main
     disabled
     oneshot
@@ -327,32 +357,37 @@ service iprenew_eth0 /system/bin/dhcpcd -n
     disabled
     oneshot
 
+on property:ro.data.large_tcp_window_size=true
+    # Adjust socket buffer to enlarge TCP receive window for high bandwidth (e.g. DO-RevB)
+    write /proc/sys/net/ipv4/tcp_adv_win_scale  1
+
 service charger /sbin/healthd -c
     class charger
     critical
     seclabel u:r:healthd:s0
 
+# Virtual sdcard daemon running as media_rw (1023)
 service sdcard /system/bin/sdcard -u 1023 -g 1023 -l /data/media /mnt/shell/emulated
     class late_start
 
+# Fusewrapped external sdcard daemon running as media_rw (1023)
 service fuse_sdcard1 /system/bin/sdcard -u 1023 -g 1023 -d /mnt/media_rw/sdcard1 /storage/sdcard1
     class late_start
     disabled
 
+# Fusewrapped usb storage daemon running as media_rw (1023)
 service fuse_usbdisk /system/bin/sdcard -u 1023 -g 1023 -d /mnt/media_rw/usbdisk /storage/usbdisk
     class late_start
     disabled
 
-service sensors /system/bin/sensors.qcom
-    class late_start
-    user root
-    group root radio system
-
 service thermald /system/bin/thermald
     class main
+    group radio system
 
 service mpdecision /system/bin/mpdecision --no_sleep --avg_comp
     class main
+    user root
+    group root system
 
 service qcamerasvr /system/bin/mm-qcamera-daemon
     class late_start
