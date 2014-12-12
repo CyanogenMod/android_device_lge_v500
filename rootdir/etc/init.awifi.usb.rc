@@ -16,7 +16,6 @@ on init
     write /sys/class/android_usb/android0/f_rndis/manufacturer LGE
     write /sys/class/android_usb/android0/f_rndis/vendorID 1004
     write /sys/class/android_usb/android0/f_rndis/wceis 1
-    write /sys/class/android_usb/f_mass_storage/lun/nofua 1
 
 on boot
     write /sys/class/android_usb/android0/iSerial ${ro.serialno}

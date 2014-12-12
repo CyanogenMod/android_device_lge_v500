@@ -33,7 +33,6 @@ $(call inherit-product, hardware/qcom/msm8960/msm8960.mk)
 # Audio
 PRODUCT_PACKAGES += \
     alsa.msm8960 \
-    audio_policy.msm8960 \
     audio.primary.msm8960 \
     audio.a2dp.default \
     audio.usb.default \
@@ -77,28 +76,22 @@ PRODUCT_PACKAGES += \
 
 # GPS
 PRODUCT_PACKAGES += \
-    libloc_adapter \
     libloc_eng \
-    libloc_api_v02 \
-    libloc_ds_api \
     libloc_core \
-    libizat_core \
-    libgeofence \
     libgps.utils \
-    gps.conf \
-    gps.msm8960 \
-    flp.msm8960
+    gps.msm8960
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/gps.conf:system/etc/gps.conf
 
 # Graphics
 PRODUCT_PACKAGES += \
-    copybit.msm8960 \
-    gralloc.msm8960 \
+    libgenlock \
+    liboverlay \
     hwcomposer.msm8960 \
-    memtrack.msm8960 \
-    liboverlay
+    gralloc.msm8960 \
+    copybit.msm8960 \
+    memtrack.msm8960
 
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.opengles.version=196608 \
@@ -126,6 +119,7 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.bluetooth_le.xml:system/etc/permissions/android.hardware.bluetooth_le.xml \
     frameworks/native/data/etc/android.hardware.camera.autofocus.xml:system/etc/permissions/android.hardware.camera.autofocus.xml \
     frameworks/native/data/etc/android.hardware.camera.front.xml:system/etc/permissions/android.hardware.camera.front.xml \
+    frameworks/native/data/etc/android.hardware.ethernet.xml:system/etc/permissions/android.hardware.ethernet.xml \
     frameworks/native/data/etc/android.hardware.location.gps.xml:system/etc/permissions/android.hardware.location.gps.xml \
     frameworks/native/data/etc/android.hardware.sensor.light.xml:system/etc/permissions/android.hardware.sensor.light.xml \
     frameworks/native/data/etc/android.hardware.sensor.gyroscope.xml:system/etc/permissions/android.hardware.sensor.gyroscope.xml \

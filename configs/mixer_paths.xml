@@ -190,6 +190,7 @@
     </path>
 
     <path name="voice-call bt-sco">
+        <ctl name="Internal BTSCO SampleRate" value="8000" />
         <ctl name="Voice Stub Tx Mixer INTERNAL_BT_SCO_TX" value="1" />
         <ctl name="SLIMBUS_1_RX Mixer Voice Stub" value="1" />
         <ctl name="Voice Stub Tx Mixer SLIM_1_TX" value="1" />
