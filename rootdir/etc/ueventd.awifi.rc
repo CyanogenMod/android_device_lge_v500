@@ -34,30 +34,9 @@
 /dev/msm_camera/*         0660   system     camera
 /dev/gemini*              0660   system     camera
 /dev/msm_dsps             0600   system     system
-/dev/bcm2079x-i2c         0660   nfc        nfc
 /dev/qseecom              0660   system     drmrpc
 /dev/diag                 0660   radio      radio
 /dev/mdm                  0660   system     radio
 /dev/gss                  0660   system     gps
 /dev/ks_hsic_bridge       0660   system     system
 /dev/efs_hsic_bridge      0660   system     system
-
-#permissions for audio
-/dev/msm_qcelp            0660   system     audio
-/dev/msm_evrc             0660   system     audio
-/dev/msm_wma              0660   system     audio
-/dev/msm_wmapro           0660   system     audio
-/dev/msm_amrnb            0660   system     audio
-/dev/msm_amrwb            0660   system     audio
-/dev/msm_aac              0660   system     audio
-/dev/msm_multi_aac        0660   system     audio
-/dev/msm_aac_in           0660   system     audio
-/dev/msm_qcelp_in         0660   system     audio
-/dev/msm_evrc_in          0660   system     audio
-/dev/msm_amrnb_in         0640   system     audio
-
-/dev/block/mmcblk0p18     0660   root       system
-/dev/hw_random            0660   system     system
-/dev/msm_vidc_reg         0660   system     audio
-/dev/tspdrv               0660   system     system
-/dev/wcnss_wlan           0660   system     system
