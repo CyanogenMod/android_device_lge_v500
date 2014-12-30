@@ -160,13 +160,17 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # OMX
 PRODUCT_PACKAGES += \
-    libmm-omxcore \
+    libc2dcolorconvert \
+    libdashplayer \
     libdivxdrmdecrypt \
+    libOmxCore \
     libOmxVdec \
     libOmxVenc \
-    libOmxCore \
     libstagefrighthw \
-    libc2dcolorconvert
+    qcmediaplayer
+
+PRODUCT_BOOT_JARS += \
+    qcmediaplayer
 
 # Rootdir
 PRODUCT_PACKAGES += \
