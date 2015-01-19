@@ -402,6 +402,11 @@ on property:ro.boot.baseband=apq
     setprop ro.radio.noril yes
     stop ril-daemon
 
+service time_daemon /system/bin/time_daemon
+    class late_start
+    user root
+    group root
+
 chown media media /dev/msm_IRRC_pcm_dec
 chmod 0660 /dev/msm_IRRC_pcm_dec
 
@@ -409,12 +414,7 @@ setprop ro.build.target_country EU
 setprop persist.sys.lge.eula_agreement true
 
 service irrcServer /system/bin/irrcServer
-   class main
-   user media
-   group media
-   onrestart restart irrcServer
-
-service time_daemon /system/bin/time_daemon
-    class late_start
-    user root
-    group root
+    class main
+    user media
+    group media
+    onrestart restart irrcServer
