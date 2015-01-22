@@ -174,7 +174,7 @@ PRODUCT_COPY_FILES += \
 	$(LOCAL_PATH)/thermald.conf:system/etc/thermald.conf
 
 PRODUCT_PROPERTY_OVERRIDES += \
-	ro.sf.lcd_density=320
+	ro.sf.lcd_density=270
 
 PRODUCT_PACKAGES += \
 	conn_init \
