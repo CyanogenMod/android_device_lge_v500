@@ -46,6 +46,7 @@ TARGET_GCC_VERSION_ARM :=4.8-sm
 TARGET_GCC_VERSION_AND :=4.8-sm
 
 # Liquid Optimizations
+# LIQUIFY := true
 LIQUID_CHANGELOG := true
 
 
