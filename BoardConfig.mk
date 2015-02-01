@@ -63,16 +63,6 @@ BOARD_USES_LEGACY_MMAP := true
 BOARD_CHARGER_ENABLE_SUSPEND := true
 COMMON_GLOBAL_CFLAGS += -DBOARD_CHARGING_CMDLINE_NAME='"androidboot.mode"' -DBOARD_CHARGING_CMDLINE_VALUE='"chargerlogo"'
 
-# Enable dex-preoptimization to speed up first boot sequence
-ifeq ($(HOST_OS),linux)
-  ifeq ($(TARGET_BUILD_VARIANT),user)
-    ifeq ($(WITH_DEXPREOPT),)
-      WITH_DEXPREOPT := true
-    endif
-  endif
-endif
-WITH_DEXPREOPT_BOOT_IMG_ONLY ?= true
-
 # Fonts
 EXTENDED_FONT_FOOTPRINT := true
 
@@ -113,7 +103,6 @@ TARGET_RELEASETOOLS_EXTENSIONS := device/lge/awifi/releasetools
 BOARD_USES_SECURE_SERVICES := true
 
 # SELinux policies
-# qcom sepolicy
 include device/qcom/sepolicy/sepolicy.mk
 
 BOARD_SEPOLICY_DIRS += device/lge/awifi/sepolicy
