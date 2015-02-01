@@ -89,9 +89,6 @@ OVERRIDE_RS_DRIVER := libRSDriver_adreno.so
 # Hardware tunables
 BOARD_HARDWARE_CLASS := device/lge/awifi/cmhw/
 
-# Logging
-TARGET_USES_LOGD := false
-
 # Partitions
 TARGET_USERIMAGES_USE_EXT4         := true
 BOARD_BOOTIMAGE_PARTITION_SIZE     := 25165824    # 24M
