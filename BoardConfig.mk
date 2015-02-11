@@ -46,6 +46,11 @@ TARGET_GCC_VERSION_AND :=4.8-sm
 KERNEL_TOOLCHAIN := $(ANDROID_BUILD_TOP)/prebuilts/gcc/$(HOST_OS)-x86/arm/arm-eabi-4.8-sm/bin
 KERNEL_TOOLCHAIN_PREFIX := arm-eabi-
 
+# Graphite optimizations
+SYMMETRY := true
+GRAPHITE_OPTS := true
+STRICT_ALIASING := true
+
 # Liquid Optimizations
 # LIQUIFY := true
 LIQUID_CHANGELOG := true
