@@ -43,6 +43,11 @@ TARGET_KERNEL_SOURCE := kernel/lge/v500
 BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 user_debug=31 msm_rtb.filter=0x3F ehci-hcd.park=3 lpj=67677 androidboot.hardware=awifi vmalloc=400M no_console_suspend
 TARGET_KERNEL_CONFIG := cyanogenmod_v500_defconfig
 
+# Graphite optimizations
+SYMMETRY := true
+GRAPHITE_OPTS := true
+STRICT_ALIASING := true
+
 # Liquid Optimizations
 # LIQUIFY := true
 LIQUID_CHANGELOG := true
