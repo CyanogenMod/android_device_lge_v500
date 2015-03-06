@@ -121,4 +121,7 @@
     <!-- Whether UI for multi user should be shown -->
     <bool name="config_enableMultiUserUI">true</bool>
 
+    <!-- Enable sdcard unmount storage option -->
+    <bool name="config_batterySdCardAccessibility">true</bool>
+
 </resources>
