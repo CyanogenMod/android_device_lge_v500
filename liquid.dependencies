@@ -22,5 +22,10 @@
    "target_path": "hardware/qcom/media-caf",
    "remote": "github",
    "branch": "lp5.0-caf-8974"
+ },
+ {
+   "repository":  "SlimRoms/device_qcom_common",
+   "target_path": "device/qcom/common",
+   "branch":      "lp5.0"
  }
 ]
