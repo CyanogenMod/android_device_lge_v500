@@ -37,10 +37,12 @@ TARGET_GLOBAL_CPPFLAGS += -mfpu=neon -mfloat-abi=softfp
 # Kernel
 TARGET_KERNEL_SOURCE := kernel/lge/awifi
 TARGET_KERNEL_CONFIG := cyanogenmod_v500_defconfig
+BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 user_debug=31 msm_rtb.filter=0x3F ehci-hcd.park=3 lpj=67677 androidboot.hardware=awifi vmalloc=400M
 BOARD_KERNEL_BASE := 0x80200000
 BOARD_KERNEL_PAGESIZE := 2048
-BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 user_debug=31 msm_rtb.filter=0x3F ehci-hcd.park=3 lpj=67677 androidboot.hardware=awifi vmalloc=400M
 BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x02000000
+BOARD_CUSTOM_BOOTIMG_MK := device/lge/awifi/mkbootimg.mk
+BOARD_CUSTOM_BOOTIMG := true
 
 # Assert
 TARGET_OTA_ASSERT_DEVICE := awifi,v500
@@ -94,10 +96,6 @@ TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
 BOARD_USE_CUSTOM_RECOVERY_FONT := \"roboto_23x41.h\"
 BOARD_HAS_NO_SELECT_BUTTON := true
 BOARD_RECOVERY_SWIPE := true
-ENABLE_LOKI_RECOVERY := true
-
-# Releasetools
-TARGET_RELEASETOOLS_EXTENSIONS := device/lge/awifi/releasetools
 
 # Security
 BOARD_USES_SECURE_SERVICES := true
