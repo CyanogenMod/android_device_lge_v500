@@ -40,14 +40,17 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.audio.handset.mic=digital \
     persist.audio.fluence.mode=endfire \
-    persist.audio.lowlatency.rec=false
+    persist.audio.handset.mic.type=digital \
+    persist.audio.dualmic.config=false \
+    persist.audio.fluence.voicecall=true \
+    persist.audio.lowlatency.rec=false \
+    af.resampler.quality=4
 
 # Bluetooth
 PRODUCT_PACKAGES += \
     init.qcom.bt.sh
 
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.bt.bdaddr_path=/data/misc/bdaddr \
     ro.qualcomm.bt.hci_transport=smd
 
 # Charger
