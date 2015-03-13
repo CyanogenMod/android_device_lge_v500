@@ -40,3 +40,4 @@
 /dev/gss                  0660   system     gps
 /dev/ks_hsic_bridge       0660   system     system
 /dev/efs_hsic_bridge      0660   system     system
+/dev/block/mmcblk0p18     0660   root       system
