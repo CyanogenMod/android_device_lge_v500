@@ -43,6 +43,15 @@ TARGET_KERNEL_SOURCE := kernel/lge/v500
 BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 user_debug=31 msm_rtb.filter=0x3F ehci-hcd.park=3 lpj=67677 androidboot.hardware=awifi vmalloc=400M no_console_suspend
 TARGET_KERNEL_CONFIG := cyanogenmod_v500_defconfig
 
+# Graphite optimizations
+SYMMETRY := true
+GRAPHITE_OPTS := true
+STRICT_ALIASING := true
+
+# Liquid Optimizations
+# LIQUIFY := true
+LIQUID_CHANGELOG := true
+
 
 BOARD_USES_ALSA_AUDIO:= true
 BOARD_USES_LEGACY_ALSA_AUDIO:= false
@@ -98,6 +107,14 @@ BOARD_HAVE_LOW_LATENCY_AUDIO := true
 
 BOARD_HAS_NO_SELECT_BUTTON := true
 
+# QCOM/CAF hardware
+COMMON_GLOBAL_CFLAGS += -DQCOM_HARDWARE
+BOARD_USES_QCOM_HARDWARE := true
+TARGET_QCOM_DISPLAY_VARIANT := caf
+TARGET_QCOM_MEDIA_VARIANT := caf
+TARGET_ENABLE_QC_AV_ENHANCEMENTS := true
+BOARD_USES_QC_TIME_SERVICES := true
+
 USE_DEVICE_SPECIFIC_CAMERA := true
 TARGET_DISPLAY_USE_RETIRE_FENCE := true
 
@@ -135,8 +152,6 @@ BOARD_SEPOLICY_UNION += \
         kernel.te
 
 TARGET_RELEASETOOLS_EXTENSIONS := device/lge/v500/releasetools
-
-BOARD_USES_QC_TIME_SERVICES := true
 
 COMMON_GLOBAL_CFLAGS += -DBOARD_CHARGING_CMDLINE_NAME='"androidboot.mode"' -DBOARD_CHARGING_CMDLINE_VALUE='"chargerlogo"'
 
