@@ -184,15 +184,12 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/wlan/wpa_supplicant_overlay.conf:system/etc/wifi/wpa_supplicant_overlay.conf
 
 PRODUCT_PACKAGES += \
+    conn_init \
     libwpa_client \
     hostapd \
     dhcpcd.conf \
     wpa_supplicant \
     wpa_supplicant.conf
-
-PRODUCT_PACKAGES += \
-    conn_init \
-    hwaddrs
 
 PRODUCT_PROPERTY_OVERRIDES += \
     wifi.interface=wlan0 \
