@@ -107,6 +107,11 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/touch_mxt1188S.idc:system/usr/idc/touch_mxt1188S.idc
 
+# IRRC
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.build.target_country=EU \
+    persist.sys.lge.eula_agreement=true
+
 # Keychars & Keylayouts
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/hs_detect.kcm:system/usr/keychars/hs_detect.kcm \

@@ -106,6 +106,8 @@ BOARD_SEPOLICY_DIRS += device/lge/awifi/sepolicy
 
 BOARD_SEPOLICY_UNION += \
         bluetooth_loader.te \
+        device.te \
+        irrc.te \
         kernel.te
 
 # Thermal
