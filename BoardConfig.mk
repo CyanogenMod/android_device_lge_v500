@@ -57,8 +57,6 @@ BLUETOOTH_HCI_USE_MCT := true
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/lge/awifi/bluetooth
 
 # Camera
-USE_DEVICE_SPECIFIC_CAMERA := true
-BOARD_USES_CAMERA_FAST_AUTOFOCUS := true
 BOARD_USES_LEGACY_MMAP := true
 
 # Charger
@@ -93,12 +91,6 @@ BOARD_FLASH_BLOCK_SIZE             := 131072      # (BOARD_KERNEL_PAGESIZE * 64)
 # Recovery
 TARGET_RECOVERY_FSTAB := device/lge/awifi/rootdir/etc/fstab.awifi
 TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
-BOARD_USE_CUSTOM_RECOVERY_FONT := \"roboto_23x41.h\"
-BOARD_HAS_NO_SELECT_BUTTON := true
-BOARD_RECOVERY_SWIPE := true
-
-# Security
-BOARD_USES_SECURE_SERVICES := true
 
 # SELinux policies
 include device/qcom/sepolicy/sepolicy.mk
@@ -110,9 +102,6 @@ BOARD_SEPOLICY_UNION += \
         device.te \
         irrc.te \
         kernel.te
-
-# Thermal
-BOARD_USES_EXTRA_THERMAL_SENSOR := true
 
 # Time services
 BOARD_USES_QC_TIME_SERVICES := true
