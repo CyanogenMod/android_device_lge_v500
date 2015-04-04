@@ -19,7 +19,7 @@ domain_auto_trans(bluetooth_loader, hci_attach_exec, hci_attach)
 allow hci_attach bluetooth_loader:fd use;
 
 # Read mac address from persist partition, set it from misc
-allow bluetooth_loader misc_partition:blk_file read;
+allow bluetooth_loader misc_partition:blk_file { getattr open read };
 allow bluetooth_loader persist_file:dir search;
 r_dir_file(bluetooth_loader, persist_bluetooth_file)
 
