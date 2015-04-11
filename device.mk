@@ -111,6 +111,7 @@ PRODUCT_COPY_FILES += \
 
 # IRRC
 PRODUCT_PROPERTY_OVERRIDES += \
+    ro.lge.irrc.type=sw \
     ro.build.target_country=EU \
     persist.sys.lge.eula_agreement=true
 

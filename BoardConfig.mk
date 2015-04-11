@@ -100,7 +100,7 @@ BOARD_SEPOLICY_DIRS += device/lge/awifi/sepolicy
 BOARD_SEPOLICY_UNION += \
         bluetooth_loader.te \
         device.te \
-        irrc.te \
+        irrcServer.te \
         kernel.te
 
 # Time services
