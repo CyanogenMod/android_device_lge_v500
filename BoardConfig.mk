@@ -74,7 +74,7 @@ TARGET_USES_OVERLAY := true
 TARGET_USES_SF_BYPASS := true
 TARGET_USES_C2D_COMPOSITION := false
 TARGET_DISPLAY_USE_RETIRE_FENCE := true
-#OVERRIDE_RS_DRIVER := libRSDriver_adreno.so
+OVERRIDE_RS_DRIVER := libRSDriver_adreno.so
 
 # Hardware tunables
 BOARD_HARDWARE_CLASS := device/lge/awifi/cmhw/
