@@ -36,6 +36,8 @@ TARGET_NO_BOOTLOADER := true
 BOARD_KERNEL_BASE := 0x80200000
 BOARD_KERNEL_PAGESIZE := 2048
 BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x02000000
+BOARD_CUSTOM_BOOTIMG_MK := device/lge/awifi/mkbootimg.mk
+BOARD_CUSTOM_BOOTIMG := true
 
 # Try to build the kernel
 TARGET_KERNEL_SOURCE := kernel/lge/v500
@@ -73,7 +75,6 @@ OVERRIDE_RS_DRIVER := libRSDriver_adreno.so
 # Recovery
 BOARD_USE_CUSTOM_RECOVERY_FONT := \"roboto_23x41.h\"
 RECOVERY_FSTAB_VERSION = 2
-ENABLE_LOKI_RECOVERY := true
 BOARD_RECOVERY_SWIPE := true
 
 TARGET_USERIMAGES_USE_EXT4 := true
@@ -133,8 +134,6 @@ BOARD_SEPOLICY_DIRS += \
 BOARD_SEPOLICY_UNION += \
         bluetooth_loader.te \
         kernel.te
-
-TARGET_RELEASETOOLS_EXTENSIONS := device/lge/v500/releasetools
 
 BOARD_USES_QC_TIME_SERVICES := true
 
