@@ -143,6 +143,7 @@ PRODUCT_PACKAGES += \
     libc2dcolorconvert \
     libdashplayer \
     libdivxdrmdecrypt \
+    libmm-omxcore \
     libOmxCore \
     libOmxVdec \
     libOmxVenc \
