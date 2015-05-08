@@ -1,3 +1,2 @@
-type_transition mpdecision socket_device:sock_file mpctl_socket;
-
-binder_use(mpdecision)
+allow mpdecision servicemanager:binder call;
+allow mpdecision socket_device:sock_file unlink;
