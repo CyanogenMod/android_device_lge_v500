@@ -136,6 +136,9 @@ on post-fs-data
     chown system system /dev/wcnss_wlan
     write /sys/module/wcnss_ssr_8960/parameters/enable_riva_ssr 1
 
+    # Create directory used by camera subsystem
+    mkdir /data/misc/camera 0770 camera camera
+
     # Create directory used by audio subsystem
     mkdir /data/misc/audio 0770 audio audio
 

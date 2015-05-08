@@ -1,7 +1,7 @@
 /dev/socket/mpctl                  u:object_r:mpctl_socket:s0
 /dev/gss                           u:object_r:sensors_device:s0
 
-/data/cam_socket.*                 u:object_r:camera_socket:s0
+/data/misc/camera/cam_socket.*     u:object_r:camera_socket:s0
 
 /data/app/sensor_ctl_socket        u:object_r:sensors_socket:s0
 
