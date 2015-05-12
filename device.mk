@@ -26,7 +26,6 @@ PRODUCT_AAPT_PREF_CONFIG := xhdpi
 
 $(call inherit-product, frameworks/native/build/tablet-7in-xhdpi-2048-dalvik-heap.mk)
 $(call inherit-product, frameworks/native/build/phone-xxhdpi-2048-hwui-memory.mk)
-$(call inherit-product, hardware/qcom/msm8960/msm8960.mk)
 
 # Audio
 PRODUCT_PACKAGES += \
