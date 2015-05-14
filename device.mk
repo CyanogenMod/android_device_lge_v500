@@ -106,7 +106,7 @@ PRODUCT_COPY_FILES += \
 
 # Input device calibration
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/touch_mxt1188S.idc:system/usr/idc/touch_mxt1188S.idc
+    $(LOCAL_PATH)/configs/touch_dev.idc:system/usr/idc/touch_dev.idc
 
 # IRRC
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -114,13 +114,9 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.build.target_country=EU \
     persist.sys.lge.eula_agreement=true
 
-# Keychars & Keylayouts
+# Keylayout
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/hs_detect.kcm:system/usr/keychars/hs_detect.kcm \
-    $(LOCAL_PATH)/configs/pmic8xxx_pwrkey.kcm:system/usr/keychars/pmic8xxx_pwrkey.kcm \
-    $(LOCAL_PATH)/configs/awifi-keypad-8064.kl:system/usr/keylayout/awifi-keypad-8064.kl \
-    $(LOCAL_PATH)/configs/hs_detect.kl:system/usr/keylayout/hs_detect.kl \
-    $(LOCAL_PATH)/configs/pmic8xxx_pwrkey.kl:system/usr/keylayout/pmic8xxx_pwrkey.kl
+    $(LOCAL_PATH)/configs/awifi-keypad-8064.kl:system/usr/keylayout/awifi-keypad-8064.kl
 
 # Lights
 PRODUCT_PACKAGES += \
