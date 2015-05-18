@@ -40,8 +40,6 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/mixer_paths.xml:system/etc/mixer_paths.xml
 
 PRODUCT_PROPERTY_OVERRIDES += \
-    persist.audio.handset.mic=digital \
-    persist.audio.fluence.mode=endfire \
     persist.audio.handset.mic.type=digital \
     persist.audio.dualmic.config=false \
     persist.audio.fluence.voicecall=true \
