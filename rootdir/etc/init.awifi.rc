@@ -325,6 +325,7 @@ service mpdecision /system/bin/mpdecision --no_sleep --avg_comp
     class main
     user root
     group root system
+    disabled
 
 service qcamerasvr /system/bin/mm-qcamera-daemon
     class late_start
@@ -383,6 +384,7 @@ on charger
     write /sys/devices/system/cpu/cpu1/online 0
     write /sys/devices/system/cpu/cpu2/online 0
     write /sys/devices/system/cpu/cpu3/online 0
+    start mpdecision
 
 on property:sys.boot_completed=1
     # Enable Power modes and set the CPU Freq Sampling rates
@@ -408,6 +410,7 @@ on property:sys.boot_completed=1
     write /sys/devices/system/cpu/cpu2/cpufreq/scaling_min_freq 384000
     write /sys/devices/system/cpu/cpu3/cpufreq/scaling_min_freq 384000
     write /sys/block/mmcblk0/queue/scheduler row
+    start mpdecision
 
 # CyanogenMod Performance Profiles
 
