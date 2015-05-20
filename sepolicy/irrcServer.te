@@ -8,6 +8,8 @@ init_daemon_domain(irrcServer)
 # Allow access to /dev/msm_IRRC_pcm_dec
 allow irrcServer irrc_device:chr_file rw_file_perms;
 
+allow irrcServer irrc_service:service_manager add;
+
 # Call the servicemanager and transfer references to it
 allow irrcServer servicemanager:binder { call transfer };
 
