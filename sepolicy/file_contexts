@@ -1,13 +1,10 @@
+# Camera
 /data/misc/camera/cam_socket.*                    u:object_r:camera_socket:s0
 
+# IRRC
 /dev/msm_IRRC_pcm_dec                             u:object_r:irrc_device:s0
 /system/bin/irrcServer                            u:object_r:irrcServer_exec:s0
 
-/dev/smd3                                         u:object_r:hci_attach_dev:s0
-/persist/\.bt.*                                   u:object_r:persist_bluetooth_file:s0
-
-/system/bin/btnvtool                              u:object_r:bluetooth_loader_exec:s0
-/system/etc/init\.qcom\.bt\.sh                    u:object_r:bluetooth_loader_exec:s0
-
+# CMHW
 /sys/devices/virtual/graphics/fb0/rgb             u:object_r:kcal_sysfs:s0
-/sys/devices/virtual/input/lge_touch/knock_on     u:object_r:touchpanel_sysfs:s0
+/sys/devices/virtual/input/lge_touch/knock_on     u:object_r:knock_sysfs:s0

@@ -96,10 +96,8 @@ include device/qcom/sepolicy/sepolicy.mk
 BOARD_SEPOLICY_DIRS += device/lge/awifi/sepolicy
 
 BOARD_SEPOLICY_UNION += \
-        bluetooth_loader.te \
         device.te \
-        irrcServer.te \
-        kernel.te
+        irrcServer.te
 
 # Time services
 BOARD_USES_QC_TIME_SERVICES := true

@@ -1,1 +1,0 @@
-allow kernel misc_partition:blk_file r_file_perms;
