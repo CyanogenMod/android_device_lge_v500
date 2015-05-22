@@ -49,9 +49,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PACKAGES += \
     init.qcom.bt.sh
 
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.qualcomm.bt.hci_transport=smd
-
 # Charger
 PRODUCT_PACKAGES += \
     charger_res_images
