@@ -8,3 +8,4 @@
 # CMHW
 /sys/devices/virtual/graphics/fb0/rgb             u:object_r:kcal_sysfs:s0
 /sys/devices/virtual/input/lge_touch/knock_on     u:object_r:knock_sysfs:s0
+/sys/class/timed_output/vibrator/amp              u:object_r:vibeamp_sysfs:s0

@@ -7,3 +7,4 @@ allow system_server time_daemon:unix_stream_socket connectto;
 # CMHW
 allow system_server kcal_sysfs:file { getattr open read write };
 allow system_server knock_sysfs:file { getattr open read write };
+allow system_server vibeamp_sysfs:file { getattr open read write };
