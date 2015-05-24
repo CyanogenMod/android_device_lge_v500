@@ -47,7 +47,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # Bluetooth
 PRODUCT_PACKAGES += \
-    init.qcom.bt.sh
+    init.awifi.bt.sh
+
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.qualcomm.bt.hci_transport=smd
 
 # Charger
 PRODUCT_PACKAGES += \
