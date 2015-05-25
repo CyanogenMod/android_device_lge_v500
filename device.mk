@@ -159,24 +159,16 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/thermald.conf:system/etc/thermald.conf
 
 # USB
+PRODUCT_PACKAGES += \
+    com.android.future.usb.accessory
+
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
     persist.sys.usb.config=mtp
 
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.sys.isUsbOtgEnabled=1
 
-PRODUCT_PACKAGES += \
-    com.android.future.usb.accessory
-
 # Wifi
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/wlan/WCNSS_cfg.dat:system/vendor/firmware/wlan/prima/WCNSS_cfg.dat \
-    $(LOCAL_PATH)/wlan/WCNSS_qcom_cfg.ini:system/etc/wifi/WCNSS_qcom_cfg.ini \
-    $(LOCAL_PATH)/wlan/WCNSS_qcom_wlan_nv.bin:system/etc/wifi/WCNSS_qcom_wlan_nv.bin \
-    $(LOCAL_PATH)/wlan/WCNSS_qcom_wlan_nv_init.bin:system/vendor/firmware/wlan/prima/WCNSS_qcom_wlan_nv_init.bin \
-    $(LOCAL_PATH)/wlan/p2p_supplicant_overlay.conf:system/etc/wifi/p2p_supplicant_overlay.conf \
-    $(LOCAL_PATH)/wlan/wpa_supplicant_overlay.conf:system/etc/wifi/wpa_supplicant_overlay.conf
-
 PRODUCT_PACKAGES += \
     conn_init \
     libwpa_client \
@@ -184,6 +176,16 @@ PRODUCT_PACKAGES += \
     dhcpcd.conf \
     wpa_supplicant \
     wpa_supplicant.conf
+
+PRODUCT_PACKAGES += \
+    p2p_supplicant_overlay.conf \
+    wpa_supplicant_overlay.conf
+
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/wifi/WCNSS_cfg.dat:system/vendor/firmware/wlan/prima/WCNSS_cfg.dat \
+    $(LOCAL_PATH)/wifi/WCNSS_qcom_cfg.ini:system/etc/wifi/WCNSS_qcom_cfg.ini \
+    $(LOCAL_PATH)/wifi/WCNSS_qcom_wlan_nv.bin:system/etc/wifi/WCNSS_qcom_wlan_nv.bin \
+    $(LOCAL_PATH)/wifi/WCNSS_qcom_wlan_nv_init.bin:system/vendor/firmware/wlan/prima/WCNSS_qcom_wlan_nv_init.bin
 
 PRODUCT_PROPERTY_OVERRIDES += \
     wifi.interface=wlan0 \
