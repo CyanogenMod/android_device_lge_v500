@@ -69,10 +69,8 @@ PRODUCT_COPY_FILES += \
 # Graphics
 PRODUCT_PACKAGES += \
     libgenlock \
-    liboverlay \
     hwcomposer.msm8960 \
     gralloc.msm8960 \
-    copybit.msm8960 \
     memtrack.msm8960
 
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -130,17 +128,12 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # OMX
 PRODUCT_PACKAGES += \
     libc2dcolorconvert \
-    libdashplayer \
     libdivxdrmdecrypt \
     libmm-omxcore \
     libOmxCore \
     libOmxVdec \
     libOmxVenc \
-    libstagefrighthw \
-    qcmediaplayer
-
-PRODUCT_BOOT_JARS += \
-    qcmediaplayer
+    libstagefrighthw
 
 # Rootdir
 PRODUCT_PACKAGES += \
