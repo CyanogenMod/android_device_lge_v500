@@ -135,6 +135,10 @@ PRODUCT_PACKAGES += \
     libOmxVenc \
     libstagefrighthw
 
+# Power HAL
+PRODUCT_PACKAGES += \
+    power.msm8960
+
 # Rootdir
 PRODUCT_PACKAGES += \
     fstab.awifi \
