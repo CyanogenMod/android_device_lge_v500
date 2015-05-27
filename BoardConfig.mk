@@ -86,6 +86,7 @@ BOARD_FLASH_BLOCK_SIZE             := 131072      # (BOARD_KERNEL_PAGESIZE * 64)
 
 # Platform
 TARGET_BOARD_PLATFORM := msm8960
+TARGET_BOARD_PLATFORM_GPU := qcom-adreno320
 
 # Recovery
 TARGET_RECOVERY_FSTAB := device/lge/awifi/rootdir/etc/fstab.awifi
