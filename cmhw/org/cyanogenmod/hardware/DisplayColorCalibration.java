@@ -28,11 +28,11 @@ public class DisplayColorCalibration {
         return f.exists();
     }
 
-    public static int getMaxValue()  {
+    public static int getMaxValue() {
         return 32768;
     }
 
-    public static int getMinValue()  {
+    public static int getMinValue() {
         return 255;
     }
 
@@ -40,7 +40,7 @@ public class DisplayColorCalibration {
         return getMaxValue();
     }
 
-    public static String getCurColors()  {
+    public static String getCurColors() {
         return FileUtils.readOneLine(COLOR_FILE);
     }
 

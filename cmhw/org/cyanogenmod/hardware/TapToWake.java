@@ -17,22 +17,23 @@
 package org.cyanogenmod.hardware;
 
 import org.cyanogenmod.hardware.util.FileUtils;
+import java.io.File;
 
 public class TapToWake {
+    private static String KNOCK_PATH = "/sys/devices/virtual/input/lge_touch/knock_on";
 
-    private static String CONTROL_PATH = "/sys/devices/virtual/input/lge_touch/knock_on";
     private static boolean mEnabled = true;
 
     public static boolean isSupported() {
-        return true;
+        return new File(KNOCK_PATH).exists();
     }
 
-    public static boolean isEnabled()  {
+    public static boolean isEnabled() {
         return mEnabled;
     }
 
-    public static boolean setEnabled(boolean state)  {
+    public static boolean setEnabled(boolean state) {
         mEnabled = state;
-        return FileUtils.writeLine(CONTROL_PATH, (state ? "1" : "0"));
+        return FileUtils.writeLine(KNOCK_PATH, (state ? "1" : "0"));
     }
 }
