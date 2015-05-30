@@ -8,6 +8,8 @@ init_daemon_domain(bluetooth_loader)
 # Run shell script
 allow bluetooth_loader shell_exec:file { entrypoint read };
 allow bluetooth_loader bluetooth_loader_exec:file { getattr open execute_no_trans };
+allow bluetooth_loader bluetooth_data_file:file r_file_perms;
+allow shell bluetooth_loader_exec:file { read getattr set };
 
 # shell script needs /system/bin/log access
 allow bluetooth_loader devpts:chr_file rw_file_perms;
