@@ -68,7 +68,7 @@ BOARD_HARDWARE_CLASS := device/lge/awifi/cmhw/
 # Kernel
 TARGET_KERNEL_SOURCE := kernel/lge/awifi
 TARGET_KERNEL_CONFIG := cyanogenmod_awifi_defconfig
-BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 user_debug=31 msm_rtb.filter=0x3F ehci-hcd.park=3 androidboot.hardware=awifi vmalloc=600M
+BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 user_debug=31 msm_rtb.filter=0x3F ehci-hcd.park=3 androidboot.hardware=awifi vmalloc=400M
 BOARD_KERNEL_BASE := 0x80200000
 BOARD_KERNEL_PAGESIZE := 2048
 BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x02000000
