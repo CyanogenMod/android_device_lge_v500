@@ -10,6 +10,7 @@
 /dev/smd3                          u:object_r:hci_attach_dev:s0
 
 /system/bin/btnvtool               u:object_r:bluetooth_loader_exec:s0
+/system/bin/hci_qcomm_init         u:object_r:hci_attach_exec:s0
 /system/etc/init\.qcom\.bt\.sh     u:object_r:bluetooth_loader_exec:s0
 
 /sys/devices/virtual/input/lge_touch/knock_on u:object_r:touchpanel_sysfs:s0
