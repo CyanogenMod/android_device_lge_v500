@@ -21,12 +21,14 @@ allow hci_attach bluetooth_loader:fd use;
 # Read mac address from persist partition, set it from misc
 allow bluetooth_loader misc_partition:blk_file { getattr open read };
 allow bluetooth_loader persist_file:dir search;
+allow bluetooth_loader block_device:dir search;
 r_dir_file(bluetooth_loader, persist_bluetooth_file)
 
 # Talk to init over the property socket
 unix_socket_connect(bluetooth_loader, property, init)
 # Set persist.service.bdroid.* and bluetooth.* property values
 allow bluetooth_loader bluetooth_prop:property_service set;
+allow bluetooth_loader system_prop:property_service set;
 
 # Allow getprop/setprop for shell script
 allow bluetooth_loader system_file:file execute_no_trans;
