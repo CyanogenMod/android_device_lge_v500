@@ -140,6 +140,10 @@ PRODUCT_PACKAGES += \
 	libstagefrighthw \
 	libc2dcolorconvert
 
+# Power HAL
+PRODUCT_PACKAGES += \
+	power.msm8960
+
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
 	rild.libpath=/system/lib/libril-qc-qmi-1.so
 
@@ -160,6 +164,9 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
 	ro.qc.sensors.wl_dis=true \
 	ro.qualcomm.sensors.smd=true
+
+PRODUCT_PROPERTY_OVERRIDES += \
+	ro.vendor.extension_library=/system/lib/libqc-opt.so
 
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
 	persist.sys.usb.config=mtp
