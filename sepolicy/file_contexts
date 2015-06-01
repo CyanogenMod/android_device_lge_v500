@@ -6,11 +6,6 @@
 /data/app/sensor_ctl_socket        u:object_r:sensors_socket:s0
 
 /sns(/.*)?                         u:object_r:sensors_persist_file:s0
-/persist/\.bt.*                    u:object_r:persist_bluetooth_file:s0
-/dev/smd3                          u:object_r:hci_attach_dev:s0
-
-/system/bin/btnvtool               u:object_r:bluetooth_loader_exec:s0
-/system/etc/init\.qcom\.bt\.sh     u:object_r:bluetooth_loader_exec:s0
 
 /sys/devices/virtual/input/lge_touch/knock_on u:object_r:touchpanel_sysfs:s0
 /sys/devices/virtual/graphics/fb0/rgb      u:object_r:kcal_sysfs:s0

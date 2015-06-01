@@ -184,9 +184,6 @@ PRODUCT_COPY_FILES += \
 	$(LOCAL_PATH)/init.qcom.bt.sh:system/etc/init.qcom.bt.sh
 
 PRODUCT_PROPERTY_OVERRIDES += \
-	ro.bt.bdaddr_path=/data/misc/bdaddr
-
-PRODUCT_PROPERTY_OVERRIDES += \
 	ro.radio.noril=true \
 	ro.carrier=wifi-only
 
