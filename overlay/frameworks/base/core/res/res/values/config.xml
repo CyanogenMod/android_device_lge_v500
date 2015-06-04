@@ -140,19 +140,6 @@
          autodetected from the Configuration. -->
     <bool name="config_showNavigationBar">true</bool>
 
-    <!-- Minimum screen brightness setting allowed by the power manager.
-         The user is forbidden from setting the brightness below this level. -->
-    <integer name="config_screenBrightnessSettingMinimum">20</integer>
-
-    <!-- Default screen brightness setting.
-         Must be in the range specified by minimum and maximum. -->
-    <integer name="config_screenBrightnessSettingDefault">137</integer>
-
-    <!-- Screen brightness used to dim the screen when the user activity
-         timeout expires.  May be less than the minimum allowed brightness setting
-         that can be set by the user. -->
-    <integer name="config_screenBrightnessDim">20</integer>
-
     <!-- Array of light sensor LUX values to define our levels for auto backlight brightness support.
          The N entries of this array define N + 1 control points as follows:
          (1-based arrays)
@@ -194,19 +181,19 @@
          The brightness values must be between 0 and 255 and be non-decreasing.
          This must be overridden in platform specific overlays -->
     <integer-array name="config_autoBrightnessLcdBacklightValues">
-        <item>90</item>  <!-- 30% -->  <!-- 0-1 -->
-        <item>114</item> <!-- 40% -->  <!-- 1-5 -->
-        <item>137</item> <!-- 50% -->  <!-- 5-15 -->
-        <item>149</item> <!-- 55% -->  <!-- 15-50 -->
-        <item>160</item> <!-- 60% -->  <!-- 50-100 -->
-        <item>172</item> <!-- 65% -->  <!-- 100-200 -->
-        <item>184</item> <!-- 70% -->  <!-- 200-400 -->
-        <item>196</item> <!-- 75% -->  <!-- 400-650 -->
-        <item>207</item> <!-- 80% -->  <!-- 650-1000 -->
-        <item>219</item> <!-- 85% -->  <!-- 1000-2000 -->
-        <item>231</item> <!-- 90% -->  <!-- 2000-3000 -->
-        <item>243</item> <!-- 95% -->  <!-- 3000-5000 -->
-        <item>255</item> <!-- 100% --> <!-- 5000+ -->
+        <item>45</item>  <!-- 0-1 -->
+        <item>60</item>  <!-- 1-5 -->
+        <item>75</item>  <!-- 5-15 -->
+        <item>90</item>  <!-- 15-50 -->
+        <item>105</item> <!-- 50-100 -->
+        <item>120</item> <!-- 100-200 -->
+        <item>135</item> <!-- 200-400 -->
+        <item>155</item> <!-- 400-650 -->
+        <item>175</item> <!-- 650-1000 -->
+        <item>195</item> <!-- 1000-2000 -->
+        <item>215</item> <!-- 2000-3000 -->
+        <item>235</item> <!-- 3000-5000 -->
+        <item>255</item> <!-- 5000+ -->
     </integer-array>
 
     <!-- Flag indicating whether the current device is "voice capable".
