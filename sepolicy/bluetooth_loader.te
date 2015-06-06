@@ -17,6 +17,7 @@ allow bluetooth_loader hci_attach_dev:chr_file rw_file_perms;
 # Run hci_qcomm_init from shell script
 domain_auto_trans(bluetooth_loader, hci_attach_exec, hci_attach)
 allow hci_attach bluetooth_loader:fd use;
+allow hci_attach bluetooth_loader:fifo_file write;
 
 # Read mac address from persist partition, set it from misc
 allow bluetooth_loader misc_partition:blk_file { getattr open read };
