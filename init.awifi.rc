@@ -72,8 +72,6 @@ on early-init
 on early-fs
     mkdir /persist 0771 system system
     mkdir /persist-lg 0771 system system
-    mkdir /mpt 0775 system system
-    mkdir /factory 0775 system system
     mkdir /sns 0775 system system
     mount_all fstab.awifi
     mkdir /sns/cal 0771 system system
