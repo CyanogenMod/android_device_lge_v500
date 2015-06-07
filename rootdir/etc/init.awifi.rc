@@ -68,10 +68,6 @@ on early-boot
     setrlimit 8 67108864 67108864
 
 on boot
-    # Enable smart_cover feature
-    chown system system /sys/devices/i2c-3/3-004b/smart_cover
-    chmod 660 /sys/devices/i2c-3/3-004b/smart_cover
-
     # IRRC
     chown media media /dev/msm_IRRC_pcm_dec
     chmod 0660 /dev/msm_IRRC_pcm_dec
@@ -117,7 +113,6 @@ on boot
     # Tune buffersize for higher Miracast throughput
     setprop net.tcp.buffersize.wifi 524288,1048576,2560000,524288,1048576,2560000
 
-
 # msm specific files that need to be created on /data
 on post-fs-data
     write /sys/kernel/boot_adsp/boot 1
@@ -130,11 +125,11 @@ on post-fs-data
     chown system system /dev/wcnss_wlan
     write /sys/module/wcnss_ssr_8960/parameters/enable_riva_ssr 1
 
-    # Create directory used by camera subsystem
-    mkdir /data/misc/camera 0770 camera camera
-
     # Create directory used by audio subsystem
     mkdir /data/misc/audio 0770 audio audio
+
+    # Create directory used by camera subsystem
+    mkdir /data/misc/camera 0770 camera camera
 
     # Workaround for conn_init not copying the updated firmware
     rm /data/misc/wifi/WCNSS_qcom_cfg.ini
@@ -183,7 +178,7 @@ on post-fs-data
     # Create /data/time folder for time-services
     mkdir /data/time/ 0700 system system
 
-    # Display calibration
+    # Display color calibration
     chown root system /sys/devices/platform/kcal_ctrl.0/kcal
     chown root system /sys/devices/platform/kcal_ctrl.0/kcal_ctrl
     chmod 0664 /sys/devices/platform/kcal_ctrl.0/kcal
