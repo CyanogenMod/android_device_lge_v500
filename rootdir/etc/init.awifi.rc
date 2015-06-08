@@ -115,8 +115,6 @@ on boot
 
 # msm specific files that need to be created on /data
 on post-fs-data
-    write /sys/kernel/boot_adsp/boot 1
-
     mkdir /data/media 0770 media_rw media_rw
 
     # To observe dnsmasq.leases file for dhcp information of soft ap.
