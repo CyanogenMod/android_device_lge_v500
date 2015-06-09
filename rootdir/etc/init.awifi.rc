@@ -68,6 +68,9 @@ on early-boot
     setrlimit 8 67108864 67108864
 
 on boot
+    # Set default LCD brightness
+    write /sys/class/leds/lcd-backlight/brightness 102
+
     # IRRC
     chown media media /dev/msm_IRRC_pcm_dec
     chmod 0660 /dev/msm_IRRC_pcm_dec
