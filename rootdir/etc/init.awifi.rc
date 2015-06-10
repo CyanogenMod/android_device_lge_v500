@@ -52,14 +52,12 @@ on init
 
     # Set permissions for persist partition
     mkdir /persist 0771 system system
-    mkdir /persist-lg 0755 system system
     mkdir /sns 0755 system system
 
 on fs
     mount_all ./fstab.awifi
-    restorecon_recursive /sns
     restorecon_recursive /persist
-    restorecon_recursive /persist-lg
+    restorecon_recursive /sns
     setprop ro.crypto.fuse_sdcard true
 
 on early-boot
