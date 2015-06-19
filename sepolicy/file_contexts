@@ -4,10 +4,6 @@
 # GPS
 /dev/gss                                          u:object_r:sensors_device:s0
 
-# IRRC
-/dev/msm_IRRC_pcm_dec                             u:object_r:irrc_device:s0
-/system/bin/irrcServer                            u:object_r:irrcServer_exec:s0
-
 # Sensors
 /sns(/.*)?                                        u:object_r:sensors_persist_file:s0
 

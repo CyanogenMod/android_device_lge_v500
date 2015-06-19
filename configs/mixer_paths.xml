@@ -137,10 +137,6 @@
         <ctl name="INTERNAL_BT_SCO_RX Audio Mixer MultiMedia1" value="1" />
     </path>
 
-    <path name="irrc-playback">
-        <ctl name="SLIMBUS_0_RX Audio Mixer MultiMedia2" value="1" />
-    </path>
-
     <path name="deep-buffer-playback bt-sco-wb">
         <ctl name="Internal BTSCO SampleRate" value="16000" />
         <path name="deep-buffer-playback bt-sco" />
@@ -496,17 +492,6 @@
 
     <path name="voice-tty-vco-handset-mic">
         <path name="adc1" />
-    </path>
-
-    <!-- IRRC -->
-    <path name="irrc-lineout">
-        <ctl name="SLIM_0_RX Channels" value="One" />
-        <ctl name="RX7 MIX1 INP1" value="RX1" />
-        <ctl name="LINEOUT5 Volume" value="11" />
-        <ctl name="RX1 Digital Volume" value="0" />
-        <ctl name="RX2 Digital Volume" value="0" />
-        <ctl name="RX3 Digital Volume" value="0" />
-        <ctl name="RX5 Digital Volume" value="0" />
     </path>
 
     <path name="bt-sco-headset-wb">

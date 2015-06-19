@@ -100,10 +100,6 @@ include device/qcom/sepolicy/sepolicy.mk
 
 BOARD_SEPOLICY_DIRS += device/lge/awifi/sepolicy
 
-BOARD_SEPOLICY_UNION += \
-        device.te \
-        irrcServer.te
-
 # Time services
 BOARD_USES_QC_TIME_SERVICES := true
 
