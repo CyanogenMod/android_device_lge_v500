@@ -62,7 +62,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # Filesystem
 PRODUCT_PACKAGES += \
-    e2fsck \
     setup_fs
 
 # GPS
