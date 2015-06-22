@@ -1,0 +1,3 @@
+
+# OTA
+cm.updater.uri=http://ota.randomdroids.com/api
