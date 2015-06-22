@@ -1,2 +1,2 @@
 allow mpdecision servicemanager:binder call;
-allow mpdecision socket_device:sock_file unlink;
+allow mpdecision socket_device:sock_file { unlink setattr };
