@@ -1,5 +1,4 @@
-#
-# Copyright 2014 The Android Open Source Project
+# Copyright (C) 2014 The CyanogenMod project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -12,18 +11,20 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-#
-
-LOCAL_PATH := $(call my-dir)
 
 ifeq ($(TARGET_DEVICE),awifi)
 
-include $(call all-makefiles-under,$(LOCAL_PATH))
+LOCAL_PATH:= $(call my-dir)
 
-# Create a link for the WCNSS config file, which ends up as a writable
-# version in /data/misc/wifi
-$(shell mkdir -p $(TARGET_OUT)/etc/firmware/wlan/prima; \
-    ln -sf /data/misc/wifi/WCNSS_qcom_cfg.ini \
-        $(TARGET_OUT)/etc/firmware/wlan/prima/WCNSS_qcom_cfg.ini)
+include $(CLEAR_VARS)
+
+LOCAL_SRC_FILES := wcnss_lge_client.c
+LOCAL_C_INCLUDES += hardware/qcom/wlan/wcnss_service
+LOCAL_CFLAGS += -Wall
+LOCAL_SHARED_LIBRARIES := libc libcutils libutils liblog
+LOCAL_MODULE_TAGS := optional
+LOCAL_MODULE := libwcnss_qmi
+
+include $(BUILD_SHARED_LIBRARY)
 
 endif
