@@ -8,8 +8,7 @@
 /dev/gss                                          u:object_r:sensors_device:s0
 
 # Sensors
-/sns/cal/akmd_set                                 u:object_r:sensors_persist_file:s0
-/sns/cal/sns.reg                                  u:object_r:sensors_persist_file:s0
+/sns(/.*)?                                        u:object_r:sensors_persist_file:s0
 
 # CMHW
 /sys/devices/platform/kcal_ctrl.0/kcal            u:object_r:kcal_sysfs:s0
