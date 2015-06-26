@@ -198,7 +198,7 @@ service rmt_storage /system/bin/rmt_storage
 
 service bdaddr_loader /system/bin/bdaddr_loader
     class main
-    user bluetooth
+    user root
     group system bluetooth
     oneshot
 
@@ -343,7 +343,7 @@ service time_daemon /system/bin/time_daemon
 
 service wcnss-service /system/bin/wcnss_service
     class late_start
-    user system
+    user root
     group system wifi
     oneshot
 
