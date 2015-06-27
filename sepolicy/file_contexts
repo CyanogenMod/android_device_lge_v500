@@ -1,4 +1,5 @@
 # Camera
+/dev/gemini0                                      u:object_r:camera_device:s0
 /data/misc/camera/cam_socket.*                    u:object_r:camera_socket:s0
 
 # Encryption
