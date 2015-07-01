@@ -44,6 +44,7 @@ BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/lge/awifi/bluetooth
 
 # Charger
 BOARD_CHARGER_ENABLE_SUSPEND := true
+BOARD_CHARGER_SHOW_PERCENTAGE := true
 BOARD_HEALTHD_CUSTOM_CHARGER_RES := device/lge/awifi/charger/images
 BOARD_HEALTHD_CUSTOM_CHARGER := device/lge/awifi/charger/healthd_mode_charger.cpp
 COMMON_GLOBAL_CFLAGS += -DBOARD_CHARGING_CMDLINE_NAME='"androidboot.mode"' -DBOARD_CHARGING_CMDLINE_VALUE='"chargerlogo"'
