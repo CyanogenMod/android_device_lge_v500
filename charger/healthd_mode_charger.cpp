@@ -522,7 +522,7 @@ static void draw_capacity(struct charger *charger)
     snprintf(cap_str, (STR_LEN - 1), "%d%%", charger->batt_anim->capacity);
     str_len_px = gr_measure(cap_str);
     x = (gr_fb_width() - str_len_px) / 2;
-    y = (gr_fb_height() + char_height) / 2;
+    y = (gr_fb_height() + char_height + 60) / 2;
     android_white();
     gr_text(x, y, cap_str, 0);
 }
