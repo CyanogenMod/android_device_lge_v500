@@ -46,8 +46,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.audio.lowlatency.rec=false
 
 # Bluetooth
-PRODUCT_PACKAGES += \
-    init.awifi.bt.sh
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/init.awifi.bt.sh:system/bin/init.awifi.bt.sh
 
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.qualcomm.bt.hci_transport=smd

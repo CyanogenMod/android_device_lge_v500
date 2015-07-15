@@ -203,7 +203,7 @@ service bdaddr_loader /system/bin/bdaddr_loader
     group system bluetooth
     oneshot
 
-service hciattach /system/bin/sh /system/etc/init.awifi.bt.sh
+service hciattach /system/bin/init.awifi.bt.sh
     class late_start
     user bluetooth
     group qcom_oncrpc bluetooth net_bt_admin system
