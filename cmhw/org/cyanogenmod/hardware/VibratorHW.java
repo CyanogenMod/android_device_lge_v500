@@ -20,7 +20,7 @@ import org.cyanogenmod.hardware.util.FileUtils;
 import java.io.File;
 
 public class VibratorHW {
-    private static String AMP_PATH = "/sys/class/timed_output/vibrator/amp";
+    private static String AMP_PATH = "/sys/devices/virtual/timed_output/vibrator/amp";
 
     public static boolean isSupported() {
         return new File(AMP_PATH).exists();
