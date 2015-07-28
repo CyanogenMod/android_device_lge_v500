@@ -69,6 +69,12 @@ on boot
     # Set default LCD brightness
     write /sys/class/leds/lcd-backlight/brightness 102
 
+    # Create PERFD daemon related dirs
+    mkdir /data/misc/perfd 0755 root system
+    chmod 2755 /data/misc/perfd
+    mkdir /data/system/perfd 0770 root system
+    chmod 2770 /data/system/perfd
+
     # Create symlink for fb1 as HDMI
     symlink /dev/graphics/fb1 /dev/graphics/hdmi
 
