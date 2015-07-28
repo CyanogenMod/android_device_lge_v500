@@ -172,6 +172,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # Telephony
 PRODUCT_PROPERTY_OVERRIDES += \
+    ro.carrier=wifi-only \
     ro.radio.noril=1
 
 # Thermal
