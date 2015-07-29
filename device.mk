@@ -140,11 +140,11 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.vendor.extension_library=/vendor/lib/libqti-perfd-client.so
 
 # Rootdir
-PRODUCT_PACKAGES += \
-    fstab.awifi \
-    init.awifi.rc \
-    init.awifi.usb.rc \
-    ueventd.awifi.rc
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/rootdir/fstab.awifi:root/fstab.awifi \
+    $(LOCAL_PATH)/rootdir/init.awifi.rc:root/init.awifi.rc \
+    $(LOCAL_PATH)/rootdir/init.awifi.usb.rc:root/init.awifi.usb.rc \
+    $(LOCAL_PATH)/rootdir/ueventd.awifi.rc:root/ueventd.awifi.rc
 
 # Sensors
 PRODUCT_PROPERTY_OVERRIDES += \

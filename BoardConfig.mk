@@ -97,7 +97,7 @@ TARGET_BOARD_PLATFORM_GPU := qcom-adreno320
 TARGET_POWERHAL_VARIANT := qcom
 
 # Recovery
-TARGET_RECOVERY_FSTAB := device/lge/awifi/rootdir/etc/fstab.awifi
+TARGET_RECOVERY_FSTAB := device/lge/awifi/rootdir/fstab.awifi
 TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
 
 # SELinux policies
