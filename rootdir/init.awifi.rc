@@ -418,7 +418,6 @@ on property:sys.boot_completed=1
     write /sys/devices/system/cpu/cpufreq/ondemand/high_grid_load 65
     write /sys/devices/system/cpu/cpufreq/ondemand/optimal_max_freq 1026000
 
-    write /sys/block/mmcblk0/queue/scheduler fiops
     start mpdecision
 
 # CyanogenMod Performance Profiles
