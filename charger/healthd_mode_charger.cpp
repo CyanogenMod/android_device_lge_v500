@@ -138,63 +138,63 @@ struct charger {
 
 static struct frame batt_anim_frames[] = {
     {
-        .name = "battery_0",
+        .name = "charger/battery_0",
         .disp_time = 750,
         .min_capacity = 0,
         .level_only = false,
         .surface = NULL,
     },
     {
-        .name = "battery_1",
+        .name = "charger/battery_1",
         .disp_time = 750,
         .min_capacity = 10,
         .level_only = false,
         .surface = NULL,
     },
     {
-        .name = "battery_2",
+        .name = "charger/battery_2",
         .disp_time = 750,
         .min_capacity = 20,
         .level_only = false,
         .surface = NULL,
     },
     {
-        .name = "battery_3",
+        .name = "charger/battery_3",
         .disp_time = 750,
         .min_capacity = 35,
         .level_only = false,
         .surface = NULL,
     },
     {
-        .name = "battery_4",
+        .name = "charger/battery_4",
         .disp_time = 750,
         .min_capacity = 50,
         .level_only = false,
         .surface = NULL,
     },
     {
-        .name = "battery_5",
+        .name = "charger/battery_5",
         .disp_time = 750,
         .min_capacity = 65,
         .level_only = false,
         .surface = NULL,
     },
     {
-        .name = "battery_6",
+        .name = "charger/battery_6",
         .disp_time = 750,
         .min_capacity = 80,
         .level_only = false,
         .surface = NULL,
     },
     {
-        .name = "battery_7",
+        .name = "charger/battery_7",
         .disp_time = 750,
         .min_capacity = 90,
         .level_only = true,
         .surface = NULL,
     },
     {
-        .name = "battery_charge",
+        .name = "charger/battery_charge",
         .disp_time = 750,
         .min_capacity = BATTERY_FULL_THRESH,
         .level_only = false,
@@ -947,7 +947,7 @@ void healthd_mode_charger_init(struct healthd_config* config)
         healthd_register_event(epollfd, charger_event_handler);
     }
 
-    ret = res_create_display_surface("battery_fail", &charger->surf_unknown);
+    ret = res_create_display_surface("charger/battery_fail", &charger->surf_unknown);
     if (ret < 0) {
         LOGE("Cannot load battery_fail image\n");
         charger->surf_unknown = NULL;
