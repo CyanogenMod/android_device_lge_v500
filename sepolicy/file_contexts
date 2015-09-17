@@ -14,5 +14,3 @@
 /system/etc/init\.qcom\.bt\.sh     u:object_r:bluetooth_loader_exec:s0
 
 /sys/devices/virtual/input/lge_touch/knock_on u:object_r:touchpanel_sysfs:s0
-/sys/devices/virtual/graphics/fb0/rgb      u:object_r:kcal_sysfs:s0
-
