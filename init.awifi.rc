@@ -647,11 +647,14 @@ on post-fs-data
 # bonkang.koo@lge.com 2012.10.23 set default sdcard fs type
     setprop vold.sdcard_fs_type none
 
-    chown root system /sys/devices/virtual/graphics/fb0/rgb
+    chown root system /sys/devices/platform/kcal_ctrl.0/kcal
+    chown root system /sys/devices/platform/kcal_ctrl.0/kcal_ctrl
     chmod 0664 /sys/class/timed_output/vibrator/amp
-    chmod 0664 /sys/devices/virtual/graphics/fb0/rgb
+    chmod 0664 /sys/devices/platform/kcal_ctrl.0/kcal
+    chmod 0664 /sys/devices/platform/kcal_ctrl.0/kcal_ctrl
     restorecon /sys/class/timed_output/vibrator/amp
-    restorecon /sys/devices/virtual/graphics/fb0/rgb
+    restorecon /sys/devices/platform/kcal_ctrl.0/kcal
+    restorecon /sys/devices/platform/kcal_ctrl.0/kcal_ctrl
 
 on property:init.svc.surfaceflinger=stopped
     stop ppd
