@@ -1,18 +1,20 @@
 # Camera
-/dev/gemini0                                      u:object_r:camera_device:s0
-/data/misc/camera/cam_socket.*                    u:object_r:camera_socket:s0
+/dev/gemini0                                         u:object_r:camera_device:s0
+/data/misc/camera/cam_socket.*                       u:object_r:camera_socket:s0
 
-# Encryption
-/dev/block/platform/msm_sdcc\.1/by-name/encrypt   u:object_r:encrypt_block_device:s0
+# Dev block nodes
+/dev/block/platform/msm_sdcc\.1/by-name/encrypt      u:object_r:encrypt_block_device:s0
+/dev/block/platform/msm_sdcc\.1/by-name/persist      u:object_r:persist_block_device:s0
+/dev/block/platform/msm_sdcc\.1/by-name/sns          u:object_r:sns_block_device:s0
 
 # GPS
-/dev/gss                                          u:object_r:sensors_device:s0
+/dev/gss                                             u:object_r:sensors_device:s0
 
 # Sensors
-/sns(/.*)?                                        u:object_r:sensors_persist_file:s0
+/sns(/.*)?                                           u:object_r:sensors_persist_file:s0
 
 # CMHW
-/sys/devices/platform/kcal_ctrl.0/kcal            u:object_r:kcal_sysfs:s0
-/sys/devices/platform/kcal_ctrl.0/kcal_ctrl       u:object_r:kcal_sysfs:s0
-/sys/devices/virtual/input/lge_touch/knock_on     u:object_r:knock_sysfs:s0
-/sys/devices/virtual/timed_output/vibrator/amp    u:object_r:vibeamp_sysfs:s0
+/sys/devices/platform/kcal_ctrl.0/kcal               u:object_r:kcal_sysfs:s0
+/sys/devices/platform/kcal_ctrl.0/kcal_ctrl          u:object_r:kcal_sysfs:s0
+/sys/devices/virtual/input/lge_touch/knock_on        u:object_r:knock_sysfs:s0
+/sys/devices/virtual/timed_output/vibrator/amp       u:object_r:vibeamp_sysfs:s0
