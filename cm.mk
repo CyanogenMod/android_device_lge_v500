@@ -32,6 +32,6 @@ PRODUCT_MODEL := LG-V500
 PRODUCT_MANUFACTURER := LGE
 
 PRODUCT_BUILD_PROP_OVERRIDES += \
-    PRODUCT_NAME=awifi_open_kr \
-    BUILD_FINGERPRINT=lge/awifi_open_kr/awifi:5.0.2/LRX22G/150901527c301:user/release-keys \
-    PRIVATE_BUILD_DESC="awifi_open_kr-user 5.0.2 LRX22G 150901527c301 release-keys"
+    PRODUCT_NAME=awifi_open_esa \
+    BUILD_FINGERPRINT=lge/awifi_open_esa/awifi:5.0.2/LRX22G/152531444fe34:user/release-keys \
+    PRIVATE_BUILD_DESC="awifi_open_esa-user 5.0.2 LRX22G 152531444fe34 release-keys"
