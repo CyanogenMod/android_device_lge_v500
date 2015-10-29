@@ -53,7 +53,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # Camera
 PRODUCT_PACKAGES += \
-    camera.msm8960
+    camera.msm8960 \
+    liblocal
 
 # Charger
 PRODUCT_PACKAGES += \

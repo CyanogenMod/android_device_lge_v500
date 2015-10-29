@@ -28,6 +28,9 @@ on init
     # Set permissions for persist partition
     mkdir /persist 0771 system system
     mkdir /sns 0755 system system
+    
+    # Symbols required for blobs
+    export LD_PRELOAD /system/lib/liblocal.so
 
 on fs
     mount_all ./fstab.awifi
