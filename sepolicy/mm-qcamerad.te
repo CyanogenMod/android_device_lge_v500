@@ -1,4 +1,4 @@
-allow mm-qcamerad default_prop:property_service set;
+allow mm-qcamerad camera_prop:property_service set;
 allow mm-qcamerad init:unix_stream_socket connectto;
 allow mm-qcamerad mpctl_socket:dir search;
 allow mm-qcamerad mpctl_socket:sock_file write;

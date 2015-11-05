@@ -1,2 +1,2 @@
-allow mediaserver default_prop:property_service set;
+allow mediaserver camera_prop:property_service set;
 allow mediaserver init:unix_dgram_socket sendto;
