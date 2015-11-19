@@ -128,6 +128,9 @@ on post-fs-data
     # Create directory used by camera subsystem
     mkdir /data/misc/camera 0770 camera camera
 
+    # Create directory for TZ Apps
+    mkdir /data/misc/qsee 0770 system system
+
     # Mounting of persist is moved to 'on emmc-fs' and 'on fs' sections
     # We chown/chmod /persist again so because mount is run as root + defaults
     chown system system /persist
@@ -172,11 +175,11 @@ on post-fs-data
     mkdir /data/time/ 0700 system system
 
     # Tap to wake
-    chown root system /sys/devices/virtual/input/lge_touch/knock_on
+    chown system system /sys/devices/virtual/input/lge_touch/knock_on
     chmod 0664 /sys/devices/virtual/input/lge_touch/knock_on
 
     # Vibrator amplitude
-    chown root system /sys/devices/virtual/timed_output/vibrator/amp
+    chown system system /sys/devices/virtual/timed_output/vibrator/amp
     chmod 0664 /sys/devices/virtual/timed_output/vibrator/amp
 
 on property:dev.bootcomplete=1
@@ -244,42 +247,42 @@ service p2p_supplicant /system/bin/wpa_supplicant \
     oneshot
 
 service dhcpcd_wlan0 /system/bin/dhcpcd -aABDKL
-    class main
+    class late_start
     disabled
     oneshot
 
 service dhcpcd_eth0 /system/bin/dhcpcd -aABDKL
-    class main
+    class late_start
     disabled
     oneshot
 
 service dhcpcd_p2p /system/bin/dhcpcd -aABKL
-    class main
+    class late_start
     disabled
     oneshot
 
 service dhcpcd_bt-pan /system/bin/dhcpcd -ABKL
-    class main
+    class late_start
     disabled
     oneshot
 
 service iprenew_wlan0 /system/bin/dhcpcd -n
-    class main
+    class late_start
     disabled
     oneshot
 
 service iprenew_eth0 /system/bin/dhcpcd -n
-    class main
+    class late_start
     disabled
     oneshot
 
 service iprenew_p2p /system/bin/dhcpcd -n
-    class main
+    class late_start
     disabled
     oneshot
 
 service iprenew_bt-pan /system/bin/dhcpcd -n
-    class main
+    class late_start
     disabled
     oneshot
 
@@ -384,6 +387,7 @@ on property:sys.boot_completed=1
     write /sys/devices/system/cpu/cpu1/online 1
     write /sys/devices/system/cpu/cpu2/online 1
     write /sys/devices/system/cpu/cpu3/online 1
+
     write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor "ondemand"
     write /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor "ondemand"
     write /sys/devices/system/cpu/cpu2/cpufreq/scaling_governor "ondemand"
