@@ -171,12 +171,6 @@ on post-fs-data
     # Create /data/time folder for time-services
     mkdir /data/time/ 0700 system system
 
-    # Display color calibration
-    chown root system /sys/devices/platform/kcal_ctrl.0/kcal
-    chown root system /sys/devices/platform/kcal_ctrl.0/kcal_ctrl
-    chmod 0664 /sys/devices/platform/kcal_ctrl.0/kcal
-    chmod 0664 /sys/devices/platform/kcal_ctrl.0/kcal_ctrl
-
     # Tap to wake
     chown root system /sys/devices/virtual/input/lge_touch/knock_on
     chmod 0664 /sys/devices/virtual/input/lge_touch/knock_on
