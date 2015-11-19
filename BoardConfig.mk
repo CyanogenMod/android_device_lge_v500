@@ -116,9 +116,6 @@ BOARD_SEPOLICY_UNION += \
        property.te \
        property_contexts
 
-# Time services
-BOARD_USES_QC_TIME_SERVICES := true
-
 # Vold
 BOARD_VOLD_MAX_PARTITIONS := 40
 BOARD_VOLD_EMMC_SHARES_DEV_MAJOR := true

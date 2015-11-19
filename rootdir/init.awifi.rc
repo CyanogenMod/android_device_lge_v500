@@ -171,9 +171,6 @@ on post-fs-data
     # Communicate with mpdecision and thermald
     mkdir /dev/socket/mpdecision 2770 root system
 
-    # Create /data/time folder for time-services
-    mkdir /data/time/ 0700 system system
-
     # Tap to wake
     chown system system /sys/devices/virtual/input/lge_touch/knock_on
     chmod 0664 /sys/devices/virtual/input/lge_touch/knock_on
@@ -331,11 +328,6 @@ service qseecomd /system/bin/qseecomd
 on property:ro.boot.baseband=apq
     setprop ro.radio.noril yes
     stop ril-daemon
-
-service time_daemon /system/bin/time_daemon
-    class late_start
-    user root
-    group root
 
 service wcnss-service /system/bin/wcnss_service
     class late_start
