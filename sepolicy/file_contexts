@@ -12,5 +12,7 @@
 /sns(/.*)?                                        u:object_r:sensors_persist_file:s0
 
 # CMHW
+/sys/devices/platform/kcal_ctrl.0/kcal            u:object_r:kcal_sysfs:s0
+/sys/devices/platform/kcal_ctrl.0/kcal_ctrl       u:object_r:kcal_sysfs:s0
 /sys/devices/virtual/input/lge_touch/knock_on     u:object_r:knock_sysfs:s0
 /sys/devices/virtual/timed_output/vibrator/amp    u:object_r:vibeamp_sysfs:s0

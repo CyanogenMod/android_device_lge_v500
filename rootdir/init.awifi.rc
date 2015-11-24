@@ -171,6 +171,12 @@ on post-fs-data
     # Communicate with mpdecision and thermald
     mkdir /dev/socket/mpdecision 2770 root system
 
+    # Display color calibration
+    chown root system /sys/devices/platform/kcal_ctrl.0/kcal
+    chown root system /sys/devices/platform/kcal_ctrl.0/kcal_ctrl
+    chmod 0664 /sys/devices/platform/kcal_ctrl.0/kcal
+    chmod 0664 /sys/devices/platform/kcal_ctrl.0/kcal_ctrl
+
     # Tap to wake
     chown system system /sys/devices/virtual/input/lge_touch/knock_on
     chmod 0664 /sys/devices/virtual/input/lge_touch/knock_on
