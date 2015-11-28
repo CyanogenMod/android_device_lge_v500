@@ -51,7 +51,7 @@ PRODUCT_COPY_FILES += \
 # Camera
 PRODUCT_PACKAGES += \
     camera.msm8960 \
-    liblocal
+    libcamera_shim
 
 # Charger
 PRODUCT_PACKAGES += \
