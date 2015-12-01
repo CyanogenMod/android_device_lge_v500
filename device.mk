@@ -45,10 +45,14 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.audio.lowlatency.rec=false
 
 # Bluetooth
+PRODUCT_PACKAGES += \
+    hwaddrs
+
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/init.awifi.bt.sh:system/bin/init.awifi.bt.sh
 
 PRODUCT_PROPERTY_OVERRIDES += \
+    ro.bt.bdaddr_path=/data/misc/bluetooth/bdaddr \
     ro.qualcomm.bt.hci_transport=smd
 
 # Camera
