@@ -141,9 +141,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # OMX
 PRODUCT_PACKAGES += \
-    libc2dcolorconvert \
-    libdivxdrmdecrypt \
-    libmm-omxcore \
     libOmxCore \
     libOmxVdec \
     libOmxVenc \
