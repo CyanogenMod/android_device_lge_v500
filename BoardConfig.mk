@@ -114,11 +114,6 @@ include device/qcom/sepolicy/sepolicy.mk
 
 BOARD_SEPOLICY_DIRS += device/lge/awifi/sepolicy
 
-# Vold
-BOARD_VOLD_MAX_PARTITIONS := 40
-BOARD_VOLD_EMMC_SHARES_DEV_MAJOR := true
-BOARD_VOLD_DISC_HAS_MULTIPLE_MAJORS := true
-
 # Wifi
 TARGET_WLAN_VARIANT := caf
 BOARD_HAS_QCOM_WLAN := true
