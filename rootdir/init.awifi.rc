@@ -27,7 +27,6 @@ on init
 
     # Set permissions for persist partition
     mkdir /persist 0771 system system
-    mkdir /sns 0755 system system
     
     # Symbols required for blobs
     export LD_SHIM_LIBS "/system/lib/hw/camera.vendor.msm8960.so|libcamera_shim.so"
@@ -35,7 +34,6 @@ on init
 on fs
     mount_all ./fstab.awifi
     restorecon_recursive /persist
-    restorecon_recursive /sns
 
 on early-boot
     # Set RLIMIT_MEMLOCK to 64MB
@@ -122,10 +120,12 @@ on post-fs-data
     chown system system /sys/devices/platform/msm_sdcc.3/polling
     chown system system /sys/devices/platform/msm_sdcc.4/polling
 
-    # Create directory used by sensor subsystem
-    mkdir /data/system 0755 system system
+    # Create directory used by sensor subsystem (dsps)
+    mkdir /data/system 0775 system system
     mkdir /data/system/sensors
-    chmod 755 /data/system/sensors
+    chmod 775 /data/system/sensors
+    write /data/system/sensors/settings 1
+    chmod 660 /data/system/sensors/settings
 
     # AKM setting data
     mkdir /data/misc/sensors
@@ -134,11 +134,6 @@ on post-fs-data
     # Sensor
     mkdir /persist/sensors
     chmod 775 /persist/sensors
-    write /persist/sensors/sensors_settings 1
-    chmod 660 /persist/sensors/sensors_settings
-
-    # Sensor registry
-    mkdir /sns/cal 0644 system system
 
     # Provide the access to hostapd.conf only to root and group
     chmod 0660 /data/hostapd/hostapd.conf
@@ -199,7 +194,7 @@ on property:bluetooth.hciattach=false
 service sensors /system/bin/sensors.qcom
     class late_start
     user root
-    group root radio system
+    group root
 
 service wpa_supplicant /system/bin/wpa_supplicant \
     -iwlan0 -Dnl80211 -c/data/misc/wifi/wpa_supplicant.conf \
