@@ -14,4 +14,5 @@
 -->
 <resources>
     <bool name="profile_supported_map">false</bool>
+    <bool name="profile_supported_sap">true</bool>
 </resources>
