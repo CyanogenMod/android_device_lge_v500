@@ -361,6 +361,7 @@ on property:sys.boot_completed=1
     write /sys/devices/system/cpu/cpufreq/ondemand/optimal_max_freq 1026000
 
     setprop sys.io.scheduler bfq
+    write /sys/block/mmcblk1/queue/scheduler bfq
 
     rm /data/system/perfd/default_values
     start mpdecision
