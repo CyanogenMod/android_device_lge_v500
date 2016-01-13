@@ -55,6 +55,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.bt.bdaddr_path=/data/misc/bluetooth/bdaddr \
     ro.qualcomm.bt.hci_transport=smd
 
+# CABL
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.qualcomm.cabl=0
+
 # Camera
 PRODUCT_PACKAGES += \
     camera.msm8960 \
