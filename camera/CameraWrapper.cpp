@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2016, The CyanogenMod Project
+ * Copyright (C) 2012-2015, The CyanogenMod Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -32,9 +32,6 @@
 #include <hardware/camera.h>
 #include <camera/Camera.h>
 #include <camera/CameraParameters.h>
-
-#define BACK_CAMERA     0
-#define FRONT_CAMERA    1
 
 static android::Mutex gCameraWrapperLock;
 static camera_module_t *gVendorModule = 0;
@@ -102,6 +99,8 @@ static int check_vendor_module()
 
 static char *camera_fixup_getparams(int id, const char *settings)
 {
+    const char *supportedSceneModes = "auto,asd,action,portrait,landscape,night,night-portrait,theatre,beach,snow,sunset,steadyphoto,fireworks,sports,party,candlelight,backlight,flowers,AR";
+
     android::CameraParameters params;
     params.unflatten(android::String8(settings));
 
@@ -110,10 +109,9 @@ static char *camera_fixup_getparams(int id, const char *settings)
     params.dump();
 #endif
 
-    /* Remove HDR mode in front camera */
-    if (id == FRONT_CAMERA) {
-        params.set(android::CameraParameters::KEY_SUPPORTED_SCENE_MODES,
-            "auto,asd,action,portrait,landscape,night,night-portrait,theatre,beach,snow,sunset,steadyphoto,fireworks,sports,party,candlelight,backlight,flowers,AR");
+    /* Disable HDR mode in front camera */
+    if (id == 1) {
+        params.set(android::CameraParameters::KEY_SUPPORTED_SCENE_MODES, supportedSceneModes);
     }
 
 #ifdef LOG_NDEBUG
@@ -129,7 +127,7 @@ static char *camera_fixup_getparams(int id, const char *settings)
 
 static char *camera_fixup_setparams(int id, const char *settings)
 {
-    bool hdrMode = false;
+    bool HdrMode = false;
 
     android::CameraParameters params;
     params.unflatten(android::String8(settings));
@@ -140,11 +138,11 @@ static char *camera_fixup_setparams(int id, const char *settings)
 #endif
 
     if (params.get(android::CameraParameters::KEY_SCENE_MODE)) {
-        hdrMode = (!strcmp(params.get(android::CameraParameters::KEY_SCENE_MODE), "hdr"));
+        HdrMode = (!strcmp(params.get(android::CameraParameters::KEY_SCENE_MODE), "hdr"));
     }
 
     /* Disable ZSL and enable LG parameters in HDR mode */
-    if (hdrMode) {
+    if (HdrMode) {
         params.set("zsl", "off");
         params.set("hdr-mode", "1");
         params.set("lge-camera", "1");
