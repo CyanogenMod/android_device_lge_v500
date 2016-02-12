@@ -7,7 +7,6 @@
 
 # Dev block nodes
 /dev/block/platform/msm_sdcc\.1/by-name/encrypt      u:object_r:encrypt_block_device:s0
-/dev/block/platform/msm_sdcc\.1/by-name/persist      u:object_r:persist_block_device:s0
 
 # Sensors
 /data/app/sensor_ctl_socket                          u:object_r:sensors_socket:s0
