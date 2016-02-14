@@ -62,7 +62,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # Camera
 PRODUCT_PACKAGES += \
     camera.msm8960 \
-    libcamera_shim
+    libcamera_shim \
+    Snap
 
 # Charger
 PRODUCT_PACKAGES += \
