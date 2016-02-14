@@ -99,22 +99,21 @@ static int check_vendor_module()
 
 static char *camera_fixup_getparams(int id, const char *settings)
 {
-    const char *supportedSceneModes = "auto,asd,action,portrait,landscape,night,night-portrait,theatre,beach,snow,sunset,steadyphoto,fireworks,sports,party,candlelight,backlight,flowers,AR";
-
     android::CameraParameters params;
     params.unflatten(android::String8(settings));
 
-#ifdef LOG_NDEBUG
+#if !LOG_NDEBUG
     ALOGV("%s: original parameters:", __FUNCTION__);
     params.dump();
 #endif
 
     /* Disable HDR mode in front camera */
     if (id == 1) {
-        params.set(android::CameraParameters::KEY_SUPPORTED_SCENE_MODES, supportedSceneModes);
+        params.set(android::CameraParameters::KEY_SUPPORTED_SCENE_MODES,
+            "auto,asd,action,portrait,landscape,night,night-portrait,theatre,beach,snow,sunset,steadyphoto,fireworks,sports,party,candlelight,backlight,flowers,AR");
     }
 
-#ifdef LOG_NDEBUG
+#if !LOG_NDEBUG
     ALOGV("%s: fixed parameters:", __FUNCTION__);
     params.dump();
 #endif
@@ -132,7 +131,7 @@ static char *camera_fixup_setparams(int id, const char *settings)
     android::CameraParameters params;
     params.unflatten(android::String8(settings));
 
-#ifdef LOG_NDEBUG
+#if !LOG_NDEBUG
     ALOGV("%s: original parameters:", __FUNCTION__);
     params.dump();
 #endif
@@ -147,8 +146,9 @@ static char *camera_fixup_setparams(int id, const char *settings)
         params.set("hdr-mode", "1");
         params.set("lge-camera", "1");
     } else {
-        params.set("hdr-mode", "0");
         params.set("lge-camera", "0");
+        params.set("hdr-mode", "0");
+        params.set("zsl", "on");
     }
 
 #ifdef LOG_NDEBUG
