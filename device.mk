@@ -165,7 +165,6 @@ PRODUCT_COPY_FILES += \
 # Wifi
 PRODUCT_PACKAGES += \
     conn_init \
-    dhcpcd.conf \
     hostapd \
     wpa_supplicant \
     wpa_supplicant.conf
