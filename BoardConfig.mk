@@ -37,7 +37,7 @@ TARGET_NO_RADIOIMAGE := true
 BOARD_HAVE_BLUETOOTH := true
 BOARD_HAVE_BLUETOOTH_QCOM := true
 BLUETOOTH_HCI_USE_MCT := true
-BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/lge/awifi/bluetooth
+BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/lge/v500/bluetooth
 
 # Build
 TARGET_NEEDS_GCC_LIBC := true
@@ -69,18 +69,18 @@ TARGET_DISPLAY_USE_RETIRE_FENCE := true
 OVERRIDE_RS_DRIVER := libRSDriver_adreno.so
 
 # Hardware tunables
-BOARD_HARDWARE_CLASS := device/lge/awifi/cmhw/
+BOARD_HARDWARE_CLASS := device/lge/v500/cmhw/
 TARGET_TAP_TO_WAKE_NODE := "/sys/devices/virtual/input/lge_touch/knock_on"
 
 # Kernel
-TARGET_KERNEL_SOURCE := kernel/lge/awifi
-TARGET_KERNEL_CONFIG := cyanogenmod_awifi_defconfig
+TARGET_KERNEL_SOURCE := kernel/lge/v500
+TARGET_KERNEL_CONFIG := cyanogenmod_v500_defconfig
 TARGET_KERNEL_CROSS_COMPILE_PREFIX := arm-linux-androideabi-
 BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 user_debug=31 msm_rtb.filter=0x3F ehci-hcd.park=3 lpj=67677 androidboot.hardware=awifi vmalloc=400M
 BOARD_KERNEL_BASE := 0x80200000
 BOARD_KERNEL_PAGESIZE := 2048
 BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x02000000
-BOARD_CUSTOM_BOOTIMG_MK := device/lge/awifi/mkbootimg.mk
+BOARD_CUSTOM_BOOTIMG_MK := device/lge/v500/mkbootimg.mk
 BOARD_CUSTOM_BOOTIMG := true
 
 # Partitions
@@ -102,13 +102,13 @@ TARGET_BOARD_PLATFORM_GPU := qcom-adreno320
 TARGET_POWERHAL_VARIANT := qcom
 
 # Recovery
-TARGET_RECOVERY_FSTAB := device/lge/awifi/rootdir/fstab.awifi
+TARGET_RECOVERY_FSTAB := device/lge/v500/rootdir/fstab.awifi
 TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
 
 # SELinux policies
 include device/qcom/sepolicy/sepolicy.mk
 
-BOARD_SEPOLICY_DIRS += device/lge/awifi/sepolicy
+BOARD_SEPOLICY_DIRS += device/lge/v500/sepolicy
 
 # Snapdragon LLVM
 TARGET_USE_SDCLANG := true
@@ -125,4 +125,4 @@ WIFI_DRIVER_FW_PATH_STA := "sta"
 WIFI_DRIVER_FW_PATH_AP  := "ap"
 
 # inherit from the proprietary version
--include vendor/lge/awifi/BoardConfigVendor.mk
+-include vendor/lge/v500/BoardConfigVendor.mk

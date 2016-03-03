@@ -14,4 +14,4 @@
 # limitations under the License.
 #
 
-add_lunch_combo cm_awifi-userdebug
+add_lunch_combo cm_v500-userdebug
