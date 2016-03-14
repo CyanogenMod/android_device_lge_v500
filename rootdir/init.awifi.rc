@@ -17,7 +17,6 @@
 import init.awifi.usb.rc
 
 on early-init
-    mount debugfs debugfs /sys/kernel/debug
     chown system system /sys/kernel/debug/kgsl/proc
 
 on init
