@@ -45,10 +45,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/init.awifi.bt.sh:system/etc/init.awifi.bt.sh
 
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.bt.bdaddr_path=/data/misc/bluetooth/bdaddr \
-    ro.qualcomm.bt.hci_transport=smd
-
 # CABL
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.qualcomm.cabl=0
