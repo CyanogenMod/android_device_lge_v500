@@ -55,9 +55,6 @@ ifeq ($(HOST_OS),linux)
   endif
 endif
 
-# Fonts
-EXTENDED_FONT_FOOTPRINT := true
-
 # Graphics
 USE_OPENGL_RENDERER := true
 NUM_FRAMEBUFFER_SURFACE_BUFFERS := 3
