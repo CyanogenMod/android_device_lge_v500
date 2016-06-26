@@ -11,6 +11,9 @@
 # Sensors
 /data/app/sensor_ctl_socket                          u:object_r:sensors_socket:s0
 
+# Wifi
+/system/bin/conn_init                                u:object_r:conn_init_exec:s0
+
 # CMHW
 /sys/devices/platform/kcal_ctrl.0/kcal               u:object_r:kcal_sysfs:s0
 /sys/devices/platform/kcal_ctrl.0/kcal_ctrl          u:object_r:kcal_sysfs:s0
