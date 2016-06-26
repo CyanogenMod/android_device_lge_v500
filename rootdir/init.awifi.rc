@@ -93,6 +93,9 @@ on post-fs-data
     # To observe dnsmasq.leases file for dhcp information of soft ap.
     chown dhcp system /data/misc/dhcp
 
+    chown system system /dev/wcnss_wlan
+    write /sys/module/wcnss_ssr_8960/parameters/enable_riva_ssr 1
+
     # Create directory used by audio subsystem
     mkdir /data/misc/audio 0770 audio audio
 
@@ -101,6 +104,10 @@ on post-fs-data
 
     # Create directory for TZ Apps
     mkdir /data/misc/qsee 0770 system system
+
+    # Workaround for conn_init not copying the updated firmware
+    rm /data/misc/wifi/WCNSS_qcom_cfg.ini
+    rm /data/misc/wifi/WCNSS_qcom_wlan_nv.bin
 
     # Mounting of persist is moved to 'on emmc-fs' and 'on fs' sections
     # We chown/chmod /persist again so because mount is run as root + defaults
@@ -285,6 +292,12 @@ service qcamerasvr /system/bin/mm-qcamera-daemon
     user camera
     group camera system inet input
 
+service conn_init /system/bin/conn_init
+    class late_start
+    user system
+    group system wifi
+    oneshot
+
 service qseecomd /system/bin/qseecomd
     class late_start
     user system
@@ -293,12 +306,6 @@ service qseecomd /system/bin/qseecomd
 on property:ro.boot.baseband=apq
     setprop ro.radio.noril yes
     stop ril-daemon
-
-service wcnss-service /system/bin/wcnss_service
-    class late_start
-    user root
-    group system wifi
-    oneshot
 
 on charger
     # Enable Power modes and set the CPU Freq Sampling rates

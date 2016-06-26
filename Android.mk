@@ -20,16 +20,4 @@ ifeq ($(TARGET_DEVICE),awifi)
 
 include $(call all-makefiles-under,$(LOCAL_PATH))
 
-# Create a link for the WCNSS config file, which ends up as a writable
-# version in /data/misc/wifi
-$(shell mkdir -p $(TARGET_OUT)/etc/firmware/wlan/prima; \
-    ln -sf /data/misc/wifi/WCNSS_qcom_cfg.ini \
-        $(TARGET_OUT)/etc/firmware/wlan/prima/WCNSS_qcom_cfg.ini)
-
-# Create a link for the WCNSS nv file ended with "init", which is
-# required for initial wifi startup
-$(shell mkdir -p $(TARGET_OUT)/etc/firmware/wlan/prima; \
-    ln -sf /system/etc/firmware/wlan/prima/WCNSS_qcom_wlan_nv.bin \
-        $(TARGET_OUT)/etc/firmware/wlan/prima/WCNSS_qcom_wlan_nv_init.bin)
-
 endif
