@@ -14,7 +14,7 @@
 # limitations under the License.
 #
 
-ifneq ($(filter awifi ,$(TARGET_DEVICE)),)
+ifneq ($(filter awifi v500,$(TARGET_DEVICE)),)
 
 LOCAL_PATH:= $(call my-dir)
 
@@ -32,7 +32,7 @@ LOCAL_CFLAGS += -DWLAN_CHIP_VERSION_WCNSS
 endif
 LOCAL_SHARED_LIBRARIES := libcutils liblog
 LOCAL_MODULE_TAGS := optional
-LOCAL_MODULE_OWNER := lge
+LOCAL_MODULE_OWNER := qcom
 include $(BUILD_SHARED_LIBRARY)
 
 include $(CLEAR_VARS)
@@ -43,13 +43,15 @@ LOCAL_CFLAGS += -Wall -Werror
 LOCAL_MODULE_TAGS := optional
 LOCAL_MODULE_PATH := $(TARGET_OUT)/bin
 LOCAL_MODULE := conn_init
-LOCAL_MODULE_OWNER := lge
+LOCAL_MODULE_OWNER := qcom
 
-# Install symlinks with targets unavailable at build time
+# Make sure the symlinks get created as well.
 LOCAL_POST_INSTALL_CMD := \
-    mkdir -p $(TARGET_OUT_VENDOR)/firmware/wlan/prima/; \
-    ln -sf /data/misc/wifi/WCNSS_qcom_cfg.ini $(TARGET_OUT_VENDOR)/firmware/wlan/prima/WCNSS_qcom_cfg.ini; \
-    ln -sf /data/misc/wifi/WCNSS_qcom_wlan_nv.bin $(TARGET_OUT_VENDOR)/firmware/wlan/prima/WCNSS_qcom_wlan_nv.bin
+  mkdir -p $(TARGET_OUT_VENDOR)/firmware/wlan/prima/; \
+  ln -sf /data/misc/wifi/WCNSS_qcom_cfg.ini \
+    $(TARGET_OUT_VENDOR)/firmware/wlan/prima/WCNSS_qcom_cfg.ini; \
+  ln -sf /data/misc/wifi/WCNSS_qcom_wlan_nv.bin \
+    $(TARGET_OUT_VENDOR)/firmware/wlan/prima/WCNSS_qcom_wlan_nv.bin
 
 include $(BUILD_EXECUTABLE)
 

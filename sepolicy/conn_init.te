@@ -4,10 +4,7 @@ type conn_init_exec, exec_type, file_type;
 
 init_daemon_domain(conn_init)
 
-# Allow misc partition access
-allow conn_init misc_partition:blk_file r_file_perms;
-
-# Allow /data/misc/wifi access for firmware files
+# Allow /data/misc/wifi access
 allow conn_init wifi_data_file:dir w_dir_perms;
 allow conn_init wifi_data_file:file create_file_perms;
 

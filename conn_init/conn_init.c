@@ -18,7 +18,6 @@
 #include <unistd.h>
 #include <fcntl.h>
 
-#include <cutils/log.h>
 extern int wfc_util_qcom_check_config(unsigned char *nv_mac_addr);
 extern void wfc_util_atoh(char *pAsciiString, int szAsciiString, unsigned char *pHexaBuff, int szHexaBuff);
 
@@ -32,20 +31,15 @@ static int wifi_check_qcom_cfg_files()
     // Read MAC String
     FILE *fp = NULL;
     int n = 0;
-    fp = fopen("/dev/block/platform/msm_sdcc.1/by-name/misc", "r");
+    fp = fopen("/data/misc/wifi/macaddr", "r");
     if ( fp == NULL )
     {
-        ALOGD("Failed to open NV for wlan macaddr read");
-        return -1;
+        wfc_util_qcom_check_config((unsigned char *)macAddress);
+        return 0;
     }
     else
     {
-        unsigned char macbuf[6];
-        fseek(fp,0x3000,SEEK_SET);
-        n = fread(macbuf, 6, 1, fp);
-        sprintf(macAddress,"%02x%02x%02x%02x%02x%02x",
-                macbuf[0], macbuf[1], macbuf[2],
-                macbuf[3], macbuf[4], macbuf[5]);
+        n = fread(macAddress, 12, 1, fp);
         fclose(fp);
         if (n == 0) {
             // Buffer may be partially written. Reset.

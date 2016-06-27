@@ -178,6 +178,7 @@ service hwaddrs /system/bin/hwaddrs
     oneshot
 
 on property:init.svc.hwaddrs=stopped
+    chmod 644 /data/misc/wifi/macaddr
     chmod 644 /data/misc/bluetooth/bdaddr
     chown bluetooth bluetooth /data/misc/bluetooth/bdaddr
 
