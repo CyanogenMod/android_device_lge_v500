@@ -40,7 +40,7 @@ PRODUCT_COPY_FILES += \
 
 # Bluetooth
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/init.awifi.bt.sh:system/etc/init.awifi.bt.sh
+    $(LOCAL_PATH)/configs/init.awifi.bt.sh:system/bin/init.awifi.bt.sh
 
 # CABL
 PRODUCT_PROPERTY_OVERRIDES += \

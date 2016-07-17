@@ -1,0 +1,27 @@
+# Bluetooth script (init.awifi.bt.sh)
+type bluetooth_loader, domain;
+type bluetooth_loader_exec, exec_type, file_type;
+
+init_daemon_domain(bluetooth_loader)
+
+# Run init.awifi.bt.sh
+allow bluetooth_loader shell_exec:file rx_file_perms;
+allow bluetooth_loader bluetooth_loader_exec:file rx_file_perms;
+
+# init.awifi.bt.sh needs /dev/smd.* access
+allow bluetooth_loader smd_device:chr_file rw_file_perms;
+
+# Run hci_qcomm_init from init.awifi.bt.sh
+domain_auto_trans(bluetooth_loader, hci_attach_exec, hci_attach)
+allow hci_attach bluetooth_loader:fd use;
+
+# Allow /data/misc/bluetooth access
+allow bluetooth_loader bluetooth_data_file:dir search;
+r_dir_file(bluetooth_loader, bluetooth_data_file)
+
+# Set persist.service.bdroid.* and bluetooth.* property values
+set_prop(bluetooth, bluetooth_prop)
+set_prop(bluetooth_loader, bluetooth_prop)
+
+# Allow getprop/setprop for init.awifi.bt.sh
+allow bluetooth_loader system_file:file execute_no_trans;
