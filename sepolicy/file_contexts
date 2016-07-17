@@ -13,6 +13,7 @@
 
 # Wifi
 /system/bin/conn_init                                u:object_r:conn_init_exec:s0
+/system/bin/init\.awifi\.wifi\.sh                    u:object_r:conn_init_exec:s0
 
 # CMHW
 /sys/devices/platform/kcal_ctrl.0/kcal               u:object_r:kcal_sysfs:s0

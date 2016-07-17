@@ -105,10 +105,6 @@ on post-fs-data
     # Create directory for TZ Apps
     mkdir /data/misc/qsee 0770 system system
 
-    # Workaround for conn_init not copying the updated firmware
-    rm /data/misc/wifi/WCNSS_qcom_cfg.ini
-    rm /data/misc/wifi/WCNSS_qcom_wlan_nv.bin
-
     # Mounting of persist is moved to 'on emmc-fs' and 'on fs' sections
     # We chown/chmod /persist again so because mount is run as root + defaults
     chown system system /persist
@@ -293,7 +289,7 @@ service qcamerasvr /system/bin/mm-qcamera-daemon
     user camera
     group camera system inet input
 
-service conn_init /system/bin/conn_init
+service wcnss_init /system/bin/init.awifi.wifi.sh
     class late_start
     user system
     group system wifi
