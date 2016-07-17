@@ -39,9 +39,6 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/mixer_paths.xml:system/etc/mixer_paths.xml
 
 # Bluetooth
-PRODUCT_PACKAGES += \
-    hwaddrs
-
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/init.awifi.bt.sh:system/etc/init.awifi.bt.sh
 
@@ -116,6 +113,10 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.software.midi.xml:system/etc/permissions/android.software.midi.xml \
     frameworks/native/data/etc/android.software.sip.voip.xml:system/etc/permissions/android.software.sip.voip.xml \
     frameworks/native/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml
+
+# Hwaddrs
+PRODUCT_PACKAGES += \
+    hwaddrs
 
 # Lights
 PRODUCT_PACKAGES += \
