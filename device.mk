@@ -56,11 +56,6 @@ PRODUCT_PACKAGES += \
     libcamera_shim \
     Snap
 
-# Charger
-PRODUCT_PACKAGES += \
-    charger_res_images \
-    libhealthd.awifi
-
 # Configure libhwui
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.hwui.texture_cache_size=48 \
