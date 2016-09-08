@@ -1,9 +1,8 @@
-allow mm-qcamerad camera_prop:property_service set;
-allow mm-qcamerad init:unix_stream_socket connectto;
+set_prop(mm-qcamerad, camera_prop)
+
 allow mm-qcamerad mpctl_socket:dir search;
 allow mm-qcamerad mpctl_socket:sock_file write;
 allow mm-qcamerad mpdecision:unix_stream_socket connectto;
-allow mm-qcamerad property_socket:sock_file write;
 
 # Connect to sensor socket (/data/app/sensor_ctl_socket)
 allow mm-qcamerad sensors_socket:sock_file read;
