@@ -1,0 +1,3 @@
+set_prop(cameraserver, camera_prop)
+
+allow cameraserver camera_device:chr_file rw_file_perms;
