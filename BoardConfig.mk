@@ -52,12 +52,12 @@ BOARD_CHARGER_DISABLE_INIT_BLANK := true
 BOARD_CHARGING_CMDLINE_NAME := "androidboot.mode"
 BOARD_CHARGING_CMDLINE_VALUE := "chargerlogo"
 
-# Enable dex-preoptimization to speed up first boot sequence
-ifeq ($(HOST_OS),linux)
-  ifeq ($(WITH_DEXPREOPT),)
-    WITH_DEXPREOPT := true
-  endif
-endif
+# Dex-preoptimization to speed up first boot sequence
+#ifeq ($(HOST_OS),linux)
+#  ifeq ($(WITH_DEXPREOPT),)
+#    WITH_DEXPREOPT := true
+#  endif
+#endif
 
 # Graphics
 USE_OPENGL_RENDERER := true
