@@ -1,2 +1,6 @@
 allow mediaserver camera_prop:property_service set;
 allow mediaserver init:unix_dgram_socket sendto;
+
+# For text relocations in /system/lib/libmorpho_image_stab31.so
+# and /system/lib/libmorpho_movie_stabilization.so
+allow mediaserver system_file:file execmod;
