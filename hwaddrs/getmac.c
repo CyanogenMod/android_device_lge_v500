@@ -42,7 +42,6 @@ int main() {
             read(fd1, &macbyte, 1);
             sprintf(macbuf, "%02x", macbyte);
             write(fd2, &macbuf, 2);
-            if(i != 5) write(fd2, 0, 1);
         }
     }
 
