@@ -102,6 +102,8 @@ on post-fs-data
 
     # Create directory for TZ Apps
     mkdir /data/misc/qsee 0770 system system
+    mkdir /data/misc/playready 0770 system system
+    mkdir /data/misc/tzapps 0770 system system
 
     # Mounting of persist is moved to 'on emmc-fs' and 'on fs' sections
     # We chown/chmod /persist again so because mount is run as root + defaults

@@ -17,6 +17,10 @@
 # Sensors
 /data/app/sensor_ctl_socket                          u:object_r:sensors_socket:s0
 
+# Tee
+/data/misc/playready(/.*)?                           u:object_r:tee_data_file:s0
+/data/misc/tzapps(/.*)?                              u:object_r:tee_data_file:s0
+
 # Wifi
 /system/bin/conn_init                                u:object_r:conn_init_exec:s0
 /system/bin/init\.awifi\.wifi\.sh                    u:object_r:conn_init_exec:s0
