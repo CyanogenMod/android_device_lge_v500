@@ -43,6 +43,7 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/init.awifi.bt.sh:system/bin/init.awifi.bt.sh
 
 PRODUCT_PROPERTY_OVERRIDES += \
+    qcom.bluetooth.soc=smd \
     ro.qualcomm.bt.hci_transport=smd
 
 # Bootanimation
