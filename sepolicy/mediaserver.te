@@ -1,5 +1,8 @@
+allow mediaserver audio_device:chr_file rw_file_perms;
+allow mediaserver camera_device:chr_file rw_file_perms;
 allow mediaserver camera_prop:property_service set;
 allow mediaserver init:unix_dgram_socket sendto;
+allow mediaserver system_data_file:sock_file write;
 
 # For text relocations in /system/lib/libmorpho_image_stab31.so
 # and /system/lib/libmorpho_movie_stabilization.so
