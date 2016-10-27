@@ -131,7 +131,9 @@ PRODUCT_COPY_FILES += \
     frameworks/av/media/libstagefright/data/media_codecs_google_video.xml:system/etc/media_codecs_google_video.xml
 
 PRODUCT_PROPERTY_OVERRIDES += \
-    media.aac_51_output_enabled=true
+    media.aac_51_output_enabled=true \
+    media.stagefright.legacyencoder=true \
+    media.stagefright.less-secure=true
 
 # OMX
 PRODUCT_PACKAGES += \

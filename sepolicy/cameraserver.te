@@ -1,8 +1,0 @@
-set_prop(cameraserver, camera_prop)
-
-allow cameraserver camera_device:chr_file rw_file_perms;
-allow cameraserver mpdecision:unix_stream_socket connectto;
-allow cameraserver system_data_file:sock_file write;
-
-# For text relocations in /system/lib/libmorpho_image_stab31.so
-allow cameraserver system_file:file execmod;
