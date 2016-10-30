@@ -1,10 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <stdint.h>
 #include <pthread.h>
-#include <utils/Log.h>
-#include <hardware/power.h>
-#include <hardware/hardware.h>
 
 //various funcs we'll need to call, in their mangled form
 
@@ -13,21 +7,6 @@
 
     //android::String8::~String8()
     extern void _ZN7android7String8D1Ev(void **str8P);
-
-    //android::String16::String16(char const*)
-    extern void _ZN7android8String16C1EPKc(void **str16P, const char *str);
-
-    //android::String16::~String16()
-    extern void _ZN7android8String16D1Ev(void **str16P);
-
-    //android::SensorManager::~SensorManager()
-    extern void _ZN7android13SensorManagerD1Ev(void *sensorMgr);
-
-    //android::SensorManager::SensorManager(android::String16 const&)
-    extern void _ZN7android13SensorManagerC1ERKNS_8String16E(void *sensorMgr, void **str16P);
-
-    //android::SensorManager::createEventQueue(android::String8, int)
-    extern void _ZN7android13SensorManager16createEventQueueENS_7String8Ei(void **retVal, void *sensorMgr, void **str8P, int mode);
 
 
 //data exports we must provide for camera library to be happy
@@ -61,14 +40,6 @@
     void* _ZN7android9SingletonINS_13SensorManagerEE9sInstanceE = NULL;
 
 
-//code exports we provide
-
-    //android::SensorManager::SensorManager(void)
-    void _ZN7android13SensorManagerC1Ev(void *sensorMgr);
-
-    //android::SensorManager::createEventQueue(void)
-    void _ZN7android13SensorManager16createEventQueueEv(void **retVal, void *sensorMgr);
-
 /*
  * FUNCTION: android::SensorManager::SensorManager(void)
  * USE:      INTERPOSE: construct a sensor manager object
@@ -78,13 +49,9 @@
  *           and this provide the constructor that the camera library wants.
  *           The package name we use if "camera.msm8960". Why not?
  */
-void _ZN7android13SensorManagerC1Ev(void *sensorMgr)
+void _ZN7android13SensorManagerC1Ev()
 {
     void *string;
-
-    _ZN7android8String16C1EPKc(&string, "camera.msm8960");
-    _ZN7android13SensorManagerC1ERKNS_8String16E(sensorMgr, &string);
-    _ZN7android8String16D1Ev(&string);
 }
 
 /*
@@ -95,11 +62,10 @@ void _ZN7android13SensorManagerC1Ev(void *sensorMgr)
  *           sources list default values for these params as an empty string
  *           and 0. So we'll craft the same call here.
  */
-void _ZN7android13SensorManager16createEventQueueEv(void **retVal, void *sensorMgr)
+void _ZN7android13SensorManager16createEventQueueEv()
 {
     void *string;
 
     _ZN7android7String8C1EPKc(&string, "");
-    _ZN7android13SensorManager16createEventQueueENS_7String8Ei(retVal, sensorMgr, &string, 0);
     _ZN7android7String8D1Ev(&string);
 }
