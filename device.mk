@@ -82,6 +82,11 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PACKAGES += \
     Gello
 
+# GPS
+PRODUCT_PACKAGES += \
+    gps.conf \
+    gps.msm8960
+
 # Graphics
 PRODUCT_PACKAGES += \
     libgenlock \
