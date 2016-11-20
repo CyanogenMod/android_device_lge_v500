@@ -111,12 +111,7 @@ vendor/firmware/tzapps.mdt
 
 # GPS
 bin/rmt_storage
-etc/gps.conf
 lib/hw/flp.msm8960.so
-lib/hw/gps.msm8960.so
-lib/libgps.utils.so
-lib/libloc_core.so
-lib/libloc_eng.so
 vendor/lib/libgeofence.so
 vendor/lib/libizat_core.so
 vendor/lib/libloc_api_v02.so
