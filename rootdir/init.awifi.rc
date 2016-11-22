@@ -166,14 +166,13 @@ service rmt_storage /system/bin/rmt_storage
 
 service hwaddrs /system/bin/hwaddrs
     class core
-    user root
-    group system
+    user system
+    group system wifi
     oneshot
 
 on property:init.svc.hwaddrs=stopped
     chmod 644 /data/misc/wifi/macaddr
     chmod 644 /data/misc/bluetooth/bdaddr
-    chown bluetooth bluetooth /data/misc/bluetooth/bdaddr
 
 service hciattach /system/bin/init.awifi.bt.sh
     class late_start
