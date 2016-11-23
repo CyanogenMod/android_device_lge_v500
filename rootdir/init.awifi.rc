@@ -256,10 +256,6 @@ service qseecomd /system/bin/qseecomd
     user system
     group system
 
-on property:ro.boot.baseband=apq
-    setprop ro.radio.noril yes
-    stop ril-daemon
-
 on charger
     # Enable Power modes and set the CPU Freq Sampling rates
     write /sys/module/rpm_resources/enable_low_power/L2_cache 1
