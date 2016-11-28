@@ -18,6 +18,7 @@ import init.awifi.usb.rc
 
 on early-init
     chown system system /sys/kernel/debug/kgsl/proc
+    write /sys/devices/virtual/graphics/fb0/rgb "32768 32768 32768"
 
 on init
     symlink /sdcard /storage/sdcard0
