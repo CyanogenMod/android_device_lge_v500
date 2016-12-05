@@ -158,6 +158,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/rootdir/fstab.awifi:root/fstab.awifi \
     $(LOCAL_PATH)/rootdir/init.awifi.rc:root/init.awifi.rc \
+    $(LOCAL_PATH)/rootdir/init.awifi.power.rc:root/init.awifi.power.rc \
     $(LOCAL_PATH)/rootdir/init.awifi.usb.rc:root/init.awifi.usb.rc \
     $(LOCAL_PATH)/rootdir/ueventd.awifi.rc:root/ueventd.awifi.rc
 
