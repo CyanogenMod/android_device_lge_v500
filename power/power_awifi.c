@@ -48,6 +48,8 @@
 #define MAX_FREQ_LIMIT_PATH "/sys/kernel/cpufreq_limit/limited_max_freq"
 #define MIN_FREQ_LIMIT_PATH "/sys/kernel/cpufreq_limit/limited_min_freq"
 
+#define NODE_MAX (64)
+
 static int client_sockfd;
 static struct sockaddr_un client_addr;
 static int last_state = -1;
@@ -299,6 +301,19 @@ static struct hw_module_methods_t power_module_methods = {
     .open = NULL,
 };
 
+static void set_feature(__attribute__((unused)) struct power_module *module,
+                       feature_t feature, int state)
+{
+#ifdef TAP_TO_WAKE_NODE
+    char tmp_str[NODE_MAX];
+    if (feature == POWER_FEATURE_DOUBLE_TAP_TO_WAKE) {
+        snprintf(tmp_str, NODE_MAX, "%d", state);
+        sysfs_write(TAP_TO_WAKE_NODE, tmp_str);
+        return;
+    }
+#endif
+}
+
 static int get_feature(__attribute__((unused)) struct power_module *module,
                        feature_t feature)
 {
@@ -322,5 +337,6 @@ struct power_module HAL_MODULE_INFO_SYM = {
     .init = power_init,
     .setInteractive = power_set_interactive,
     .powerHint = power_hint,
+    .setFeature = set_feature,
     .getFeature = get_feature
 };
