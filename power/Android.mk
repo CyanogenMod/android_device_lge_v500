@@ -20,6 +20,11 @@ include $(CLEAR_VARS)
 LOCAL_MODULE_RELATIVE_PATH := hw
 LOCAL_SRC_FILES := power_awifi.c
 LOCAL_SHARED_LIBRARIES := liblog libcutils
+
+ifneq ($(TARGET_TAP_TO_WAKE_NODE),)
+  LOCAL_CFLAGS += -DTAP_TO_WAKE_NODE=\"$(TARGET_TAP_TO_WAKE_NODE)\"
+endif
+
 LOCAL_MODULE_TAGS := optional
 LOCAL_MODULE := power.awifi
 include $(BUILD_SHARED_LIBRARY)
