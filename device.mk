@@ -151,9 +151,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     power.awifi
 
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.vendor.extension_library=/vendor/lib/libqti-perfd-client.so
-
 # Rootdir
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/rootdir/fstab.awifi:root/fstab.awifi \
