@@ -1,3 +1,2 @@
 # Allow /data/misc/bluetooth access
 allow bluetooth_loader bluetooth_data_file:dir search;
-r_dir_file(bluetooth_loader, bluetooth_data_file)
